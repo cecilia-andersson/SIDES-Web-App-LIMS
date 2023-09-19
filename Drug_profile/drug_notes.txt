@@ -1,0 +1,40 @@
+Combination
+Progestin-Only
+Extended Cycle
+Phasic
+Low-Dose
+Emergency Contraceptive
+Continuous or Continuous-Cycling
+
+Generic and Brand-Name <- generic names are just the chemical name, and not all drugs have brand names
+So, should we make 'drug name' a composite attribute, with brand name being optional and chemical name
+being mandatory? Adding on to this, would the whole 'drug name' be the combination of the Brand Name (o),
+Chemical Name, and Ingredients (active and inactive??)? is that too much to identify the drugs?
+
+- multi-valued active/inactive ingredients: can use VARCHAR, but need to ensure the ingredients always appear in the same order
+-assign the multi-valued attributes as an array in php when calling from html. Then, can use php array functions to sort (sort(descending))
+
+ unique composite key made out of the brand name and the ingredient, we need it to be unique but we are using drug_id as the main key
+the composite attribute has to be unique as a combination. each attribute wihtin the composite composite attribue do not have to be unique but the composite attribute has to be 
+
+
+
+
+---
+separate tables idea:
+We crate two tables completely separate from eachother and then to solve the association problem we create an association table that takes in the 
+side effect and the drug as foreign keys - this allows for the association table to collect frequency of our reports as an attribute and existance in Fass as an attribute
+in other words the drug association table will have 5 attributes- the unique id (if necessary), the foreign drug key, the foreign side effect key, the if in Fass attribute and the count of reports frio users attribute.
+
+
+
+
+
+
+---
+when updating the reported side effect count (for a particular SE of a particular drug), we were pondering whether
+it would make more sense to store the count in the attribute "association", and add updates transactionally (+1),
+OR if we should use SELECT and COUNT statements to perform calculations as needed.
+
+PROS FOR SELECT/COUNT STATMENTS:
+-when users report they can get a time stamp, the person who reported it, etc
