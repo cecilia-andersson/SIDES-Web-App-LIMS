@@ -1,0 +1,42 @@
+/* default margin and padding */
+body, h1, h2, h3, p, ul, li, table {
+    margin: 0;
+    padding: 0;
+}
+
+/* background white */
+body {
+    background-color: #ffffff;
+    font-family: 'Roboto', sans-serif; 
+    font-size: 16px; 
+    color: #1a3038; /* Smaller text color */
+}
+
+h1 {
+    color: #256e8a; /* Larger text color */
+}
+
+a {
+    color: #256e8a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
