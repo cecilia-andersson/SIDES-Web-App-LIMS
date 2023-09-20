@@ -38,3 +38,14 @@ OR if we should use SELECT and COUNT statements to perform calculations as neede
 
 PROS FOR SELECT/COUNT STATMENTS:
 -when users report they can get a time stamp, the person who reported it, etc
+
+---
+
+find rows where drug_id = x
+and from these rows calculate most frequent occuring sideeffect id
+
+SELECT column_name, COUNT(*) AS frequency
+FROM your_table
+GROUP BY column_name
+ORDER BY frequency DESC
+LIMIT 3;
