@@ -29,7 +29,7 @@ echo '<table><tr><th>Brand</th><th></th><th>Class</th><th></th><th>Active Ingred
 // $sql = "SELECT drugs.drug_name, drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient
 // FROM drugs WHERE (drug_brand, drug_active_ingredient, drug_inactive_ingredient) LIKE '%$search_query%'";
 
-$sql = "SELECT  drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient
+$sql = "SELECT  drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, drugs.drug_id
 FROM drugs
 WHERE drug_brand LIKE '%$search_query%'
    OR drug_class LIKE '%$search_query%'
@@ -43,7 +43,8 @@ $result = $link->query($sql);
 
 if ($result->num_rows > 0) { // more 
     while($row = $result->fetch_assoc()) {
-        echo "<tr> <td>" .  $row["drug_brand"] . "</td><td>" . "</td><td>" .  $row["drug_class"] . "</td><td>" . "</td><td>" . $row["drug_active_ingredient"] . "</td><td>" . "</td><td>" . $row["drug_inactive_ingredient"] . "</td></tr>"; /// hyper link here 
+        $drug_id = $row["drug_id"];
+        echo "<tr> <td><a href='drug_page.php?drug_id=$drug_id'>" .  $row["drug_brand"] . "</a></td><td>" . "</td><td>" .  $row["drug_class"] . "</td><td>" . "</td><td>" . $row["drug_active_ingredient"] . "</td><td>" . "</td><td>" . $row["drug_inactive_ingredient"] . "</td></tr>";
     }
 } else {
     echo "0 results";
