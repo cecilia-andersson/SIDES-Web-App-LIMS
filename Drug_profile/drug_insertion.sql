@@ -135,26 +135,16 @@ VALUES
     ('Ella', 'Emergency Contraceptive', 'Ulipristal Acetate', 'Lactose, Magnesium Stearate, Corn Starch');
 
 
-INSERT INTO drug_association_ex1 (drug_fk_id, se_fk_id, in_fass, report_count)
+INSERT INTO drug_association_report (R_drug_fk_id, R_se_fk_id, report_date)
 VALUES
-    -- Example associations for drug Ortho Tri-Cyclen
-    (1, 1, 1, 50),  -- Ortho Tri-Cyclen and Headache, in FASS, 50 reports
-    (1, 2, 1, 40),  -- Ortho Tri-Cyclen and Nausea, in FASS, 40 reports
-    (1, 3, 0, 10),  -- Ortho Tri-Cyclen and Dizziness, not in FASS, 10 reports
+    (1, 1, '2023-09-19 10:00:00'),  -- Drug 1, Side Effect 1, reported on 2023-09-19
+    (1, 2, '2023-09-19 11:30:00'),  -- Drug 1, Side Effect 2, reported on 2023-09-19
+    (2, 1, '2023-09-20 09:45:00'); 
+    
 
-    -- Example associations for drug Yasmin
-    (2, 1, 1, 30),  -- Yasmin and Headache, in FASS, 30 reports
-    (2, 2, 1, 20),  -- Yasmin and Nausea, in FASS, 20 reports
-    (2, 4, 0, 5),   -- Yasmin and Fatigue, not in FASS, 5 reports
 
-    -- Add more associations for other drugs and side effects here
-    ;
-
-    INSERT INTO drug_association_ex1 (drug_fk_id, se_fk_id, in_fass, report_count)
+INSERT INTO drug_association_fass (F_drug_fk_id, F_se_fk_id)
 VALUES
-    (1, 1, 1, 50),  
-    (1, 2, 1, 40),  
-    (1, 3, 0, 10),
-    (2, 1, 1, 30), 
-    (2, 2, 1, 20), 
-    (2, 4, 0, 5);
+    (1, 1),  -- Drug 1, Side Effect 1 is in FASS
+    (2, 1),  -- Drug 2, Side Effect 1 is in FASS
+    (2, 2);
