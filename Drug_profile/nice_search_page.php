@@ -3,7 +3,7 @@
 <head>
     <title>Drug Search</title>
     <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to CSS file -->
-    <style>
+    <!-- <style>
        
         body {
             background-color: #ffffff; 
@@ -33,10 +33,10 @@
         a:hover {
             text-decoration: underline;
         }
-    </style>
+    </style> -->
 </head>
 <body>
-    <h1>Drug Search</h1>
+    <h2>Drug Search</h2>
     <form action="search_drugs.php" method="POST">
         Search: <input type="text" name="search_query">
         <input type="submit" value="Go">

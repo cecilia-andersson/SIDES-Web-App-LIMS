@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to CSS file -->
     <style>
         body{
 
@@ -14,7 +15,7 @@
     
     </style>
 </head>
-<h1 style="text-align:center;"> Create your SIDES account right now baby </h1>
+<h2> Create your SIDES account right now baby </h2>
 
 
 <body>

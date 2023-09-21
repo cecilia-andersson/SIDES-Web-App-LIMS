@@ -3,7 +3,7 @@
 <head>
     <title>Drug Page</title>
     <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to CSS file -->
-    <style>
+    <!-- <style>
         
         body {
             background-color: #ffffff; 
@@ -19,11 +19,11 @@
         p {
             margin: 10px 0; 
         }
-    </style>
+    </style> -->
 </head>
 
 <body>
-    <h1>Drug Details</h1>
+    <h2>Drug Details</h2>
     <?php
     // Retrieve the drug information based on the drug_id query parameter
     $servername = "localhost";
