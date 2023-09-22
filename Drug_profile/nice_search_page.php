@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Drug Search</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to CSS file -->
+    <link rel="stylesheet" type="text/css" href="../stylesheet/styles.css"> <!-- Link to CSS file -->
     <!-- <style>
        
         body {
