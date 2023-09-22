@@ -24,13 +24,15 @@ if ($result->num_rows > 0) {
             die;
         }
         else {
-            $message = urlencode("Wrong username or password");
-            header("Location:../index.php?Message=".$message);
+            $message = urlencode("Wrong password. Please try again.");
+            header("Location:login_page.php?Message=".$message);
             die;
         }
     }
 } else {
-    echo "No accounts in database"; // skriv ngt bra
+    $message = urlencode("No matching username in database");
+            header("Location:login_page.php?Message=".$message);
+            die;
 }
 
 
