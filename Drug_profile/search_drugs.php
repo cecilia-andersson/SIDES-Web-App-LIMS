@@ -7,7 +7,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "things";
+$dbname = "sides";
 $search_query = $_POST['search_query']; // get query from somewhere
 
 // Create connection
