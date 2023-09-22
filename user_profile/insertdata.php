@@ -43,11 +43,11 @@ $result1 = $stmt1->execute();
 
 if ($result1) {
     $message = urlencode("New account created successfully");
-    header("Location:index.php?Message=".$message);
+    header("Location:../index.php?Message=".$message);
     die;
 } else {
     $message = urlencode("Error: Account could not be created");
-    header("Location:index.php?Message=".$message);
+    header("Location:../index.php?Message=".$message);
     die;
 }
 

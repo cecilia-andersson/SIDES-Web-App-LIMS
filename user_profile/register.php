@@ -23,7 +23,7 @@
 <form action="insertdata.php" method="POST">
     Username: <input type="text" name="username" required> <br>
     Password: <input type="password" name="pwd" pattern="^(?=.*[A-Z])(?=.*\d).+$" title="Password must contain at least one capital letter and one number." required> <br>
-    Personal Identity Number: <input type="text" name="personnmr" placeholder="YYYYMMDDXXXX" pattern="(1999|2000)[0-9]{8}" required> <br>
+    Personal Identity Number: <input type="text" name="personnmr" placeholder="YYYYMMDDXXXX" pattern="(19[0-9]{2}|20[0-1][0-5])[0-9]{8}" required> <br>
     <input type="submit" value="Add" class="register-button"><br>
 
 </form>

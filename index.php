@@ -53,7 +53,7 @@
 
             ?>
 
-            <form action="login.php" method="POST">
+            <form action="user_profile/login.php" method="POST">
                 Username: <input type="text" name="username" required> <br>
                 Password: <input type="password" name="login_password" required> <br>
                 <input type="submit" value="Login"> <br>
@@ -71,7 +71,7 @@
     <div class="column">
         <h3> New here? Register an account today! </h3>
         <p>
-            <form action="register.php">
+            <form action="user_profile/register.php">
                 <input type="submit" value="Register">
             </form>
         </p>

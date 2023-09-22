@@ -20,17 +20,17 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         if (password_verify($inputPassword, $row["pwd"])) {
             $message = urlencode("You are now logged in");
-            header("Location:index.php?Message=".$message);
+            header("Location:../index.php?Message=".$message);
             die;
         }
         else {
             $message = urlencode("Wrong username or password");
-            header("Location:index.php?Message=".$message);
+            header("Location:../index.php?Message=".$message);
             die;
         }
     }
 } else {
-    echo "0 results"; // skriv ngt bra
+    echo "No accounts in database"; // skriv ngt bra
 }
 
 
