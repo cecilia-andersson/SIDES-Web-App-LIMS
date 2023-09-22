@@ -27,5 +27,10 @@
     <input type="submit" value="Add" class="register-button"><br>
 
 </form>
+<?php
+    if(isset($_GET['Message'])){
+        echo $_GET['Message'];
+    }
+    ?>
 </body>
 </html>
