@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -11,6 +13,7 @@ if (mysqli_connect_error()) {
     die("Connection failed: " . mysqli_connect_error()); 
 }
 
+
 $inputUsername = $_POST['username'];
 $inputPassword = $_POST['login_password'];
 $sql = "SELECT pwd FROM users WHERE username = '$inputUsername'";
@@ -19,6 +22,7 @@ $result = $link->query($sql);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         if (password_verify($inputPassword, $row["pwd"])) {
+            $_SESSION['username'] = $inputUsername;
             $message = urlencode("You are now logged in");
             header("Location:../index.php?Message=".$message);
             die;

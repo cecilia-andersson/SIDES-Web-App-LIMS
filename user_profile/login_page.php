@@ -8,17 +8,21 @@
     <nav style="display: inline;">
         <a href="../Drug_profile/nice_search_page.php">Search</a>
         <a href="../index.php">Home</a>
-        <a href="#">Contact</a>
-        <a href="#">About us</a>
+        <a href="contact.php">Contact</a>
+        <a href="aboutus.php">About us</a>
         <a href="#">My profile</a>
-        <a href="#">Forum</a>
+        <a href="forum.php">Forum</a>
     </nav>
-    <form action="login_page.php" style="display: inline">
+    <?php
+    echo '<a href="login_page.php">Login</a>&nbsp;&nbsp;';
+    echo '<a href="register.php">Register</a>';
+    ?>
+    <!--<form action="login_page.php" style="display: inline">
         <input type="submit" value="Log in">
     </form>
     <form action="register.php" style="display: inline">
         <input type="submit" value="Register">
-    </form>
+    </form> -->
 </head>
 
 <body>
@@ -26,6 +30,7 @@
     <h3> Log in </h3>
     <p>
         <?php
+        session_start();
         // Database connection parameters
         $servername = "localhost";
         $username = "root";
