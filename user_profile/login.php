@@ -26,7 +26,7 @@ if ($result->num_rows == 1) {
         $_SESSION['id'] = $row['userid'];
 
         $message = urlencode("You are now logged in");
-        header("Location:../home.php?Message=".$message);
+        header("Location:../index.php?Message=".$message);
         die;
     }
     else {
