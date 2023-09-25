@@ -1,8 +1,8 @@
-<?php
+<?php 
 session_start();
-
-unset($_SESSION['username']); 
-
-header("Location: login_page.php");
-exit; 
+session_unset();
+session_destroy();
+$message = urlencode("Session erased"); // placeholder to check that it works -- change
+header("Location: login_page.php?Message=".$message);
+exit();
 ?>

@@ -2,43 +2,45 @@
 
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "sides";
+include "../DB_connect.php";
 
-$link = mysqli_connect($servername, $username, $password, $dbname);
-
-if (mysqli_connect_error()) {
-    die("Connection failed: " . mysqli_connect_error()); 
+if (isset($_POST['username']) && isset($_POST['login_password'])) {
+    function validate($data){
+        $data = trim($data);
+        $data = htmlspecialchars($data);
+        return $data;
+}
 }
 
+$inputUsername = validate($_POST['username']);
+$inputPassword = validate($_POST['login_password']);
 
-$inputUsername = $_POST['username'];
-$inputPassword = $_POST['login_password'];
-$sql = "SELECT pwd FROM users WHERE username = '$inputUsername'";
+$sql = "SELECT * FROM users WHERE username = '$inputUsername'";
 $result = $link->query($sql);
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        if (password_verify($inputPassword, $row["pwd"])) {
-            $_SESSION['username'] = $inputUsername;
-            $message = urlencode("You are now logged in");
-            header("Location:../index.php?Message=".$message);
-            die;
-        }
-        else {
-            $message = urlencode("Wrong password. Please try again.");
-            header("Location:login_page.php?Message=".$message);
-            die;
-        }
+if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+
+    if (password_verify($inputPassword, $row["pwd"])) {
+        $_SESSION['username'] = $inputUsername;
+        $_SESSION['id'] = $row['userid'];
+
+        $message = urlencode("You are now logged in");
+        header("Location:../home.php?Message=".$message);
+        die;
     }
+    else {
+        $message = urlencode("Incorrect username or password. Please try again.");
+        header("Location:login_page.php?Message=".$message);
+        die;
+    }
+    
 } else {
-    $message = urlencode("No matching username in database");
+    $message = urlencode("Incorrect username or password. Please try again.");
             header("Location:login_page.php?Message=".$message);
             die;
 }
 
+//$link->close(); // does this need to be closed every time..?
 
-$link->close();
 ?>

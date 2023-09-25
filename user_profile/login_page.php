@@ -29,21 +29,6 @@
 
     <h3> Log in </h3>
     <p>
-        <?php
-        session_start();
-        // Database connection parameters
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "sides";
-        // Create connection
-        $link = mysqli_connect($servername, $username, $password, $dbname);
-        // Check if connection is established
-        if (mysqli_connect_error()) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-        $link->close();
-        ?>
     <form action="login.php" method="POST">
         Username: <input type="text" name="username" required> <br>
         Password: <input type="password" name="login_password" required> <br>

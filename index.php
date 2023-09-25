@@ -12,11 +12,10 @@
         <a href="user_profile/aboutus.php">About us</a>
         <?php
         session_start();
-        if (isset($_SESSION['username'])){
+        if (isset($_SESSION['username']) && isset($_SESSION["id"])){
             echo '<a href="user_profile/myprofile.php">My profile</a>';
         }else {
             echo '<a href="user_profile/login_page.php">My profile</a>';
-
         }
         ?>
         <a href="user_profile/forum.php">Forum</a>
@@ -55,3 +54,4 @@ if (isset($_GET['Message'])) {
 </body>
 
 </html>
+
