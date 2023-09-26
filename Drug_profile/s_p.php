@@ -2,43 +2,53 @@
 <html>
 <head>
     <title>Drug Search</title>
-    <link href="../images/S.png" rel="icon">
+    <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
 
-        body {
-            background-color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            color: #1a3038;
-            line-height: 22px;
-            width: 70%;
-            margin: auto;
-            padding: 4em;
-        }
+    body {
+        background-color: #ffffff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        color: #1a3038;
+        line-height: 22px;
+        margin: auto;
+        padding: 4em;
+    }
 
+        header {
+
+            text-align: center
+        }
         h2 {
             color: #256e8a;
             font-size: 36px;
-            text-align: center;
+        }
+/* search */
+        .search-container {
+            margin-top: 70px;
+            display: flex;
+            justify-content: center;
         }
 
-        .search-container {
-            text-align: center;
-            margin-top: 20px;
-        }
+
+
 
         .search-input {
             width: 100%;
-            padding: 20px;
+            padding: 20px ;
             font-size: 24px;
-            border: none;
+            border: 2px solid #E6E6E6; 
+            color: #E6E6E6; 
             border-radius: 5px;
         }
 
-        .filter-container {
-            text-align: center;
-            margin-top: 20px;
-        }
+/* filtering */
+    .filter-container {
+        margin-top: 20px;
+        display: flex;
+
+        justify-content: center;
+    }
         .filter-container table {
         border-collapse: collapse;
         border: none; 
@@ -51,6 +61,7 @@
 
         .filter-select {
             border: none;
+            text-align: left;
         }
 
         .filter-button {
@@ -61,12 +72,15 @@
             padding: 15px 30px;
             font-size: 24px;
             cursor: pointer;
+            text-align: right;
             transition: background-color 0.3s ease;
         }
 
         .filter-button:hover {
             background-color: #1A3038;
         }
+
+/* collapsibles */
 
         .collapsible {
             background-color: #256e8a;
@@ -79,7 +93,6 @@
             outline: none;
             font-size: 15px;
         }
-
         .active, .collapsible:hover {
             background-color: #1A3038;
         }
@@ -104,31 +117,35 @@
             background-color: #f1f1f1;
         }
 
-        .container {
-            text-align: center;
-        }
+/* results */
         .search-results {
             background-color: #256e8a;
             color: white;
             padding: 10px 20px;
-            text-align: center;
             font-size: 24px;
             border-radius: 5px;
             margin-top: 10px;
+            text-align: left;
+        }
+        .logo {
+            text-align: left;  
         }
 </style>
 </head>
 <body>
+
     <header>
+        <sub><img src="../images/SIDES_head.png" alt="SIDES logo" id="logo" width="70" height="70"></sub>
+        <nobr>
         <?php
         include "../navigation.php";
         ?>
     </header>
     
-    <h2>Drug Search</h2>
+
     <div class="search-container">
         <form action="s_p.php" method="POST">
-            <input type="text" class="search-input" name="search_query" placeholder="Search">
+            <input type="text" class="search-input" name="search_query" placeholder="Search for contraceptives">
         </form>
     </div>
 
@@ -178,13 +195,19 @@
                         </select>
                     </th>
                     <th>
+        
+                    </th>
+                    <th>
+        
+                   </th>
+                    <th>
                         <input type="submit" class="filter-button" value="Filter Search">
                     </th>
                 </tr>
             </table>
         </form>
-        
-
+    <br>        
+    </div> 
 
     <?php
 $servername = "localhost";
