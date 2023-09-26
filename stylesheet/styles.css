@@ -1,38 +1,40 @@
-/* default margin and padding */
-/*
-body, h1, h2, h3, p, ul, li, table {
-    margin: 0;
-    padding: 0;
-}
-*/
-
-/* background white */
 body {
     background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #1a3038;
-    /* Smaller text color */
     line-height: 22px;
     width: 70%;
     margin: auto;
-    padding: 4em;
+    padding: 2em;
     /*border:1px solid #828282;*/
+}
+
+body header {
+    width: 120%;
+    margin-left: -10%;
+    margin-right: -10%;
 }
 
 h1 {
     color: #256e8a;
     /* Largest text color */
     font-size: 48px;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 h2 {
     color: #256e8a;
     /* Large text color */
     font-size: 36px;
-    text-align: center;
+    margin-top: 3%;
 }
+
+h3 {
+    color: #256e8a;
+    margin-top: 3%;
+}
+
 
 a {
     color: #256e8a;
@@ -49,7 +51,6 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    ;
 }
 
 table,
@@ -74,14 +75,12 @@ form {
 
 nav {
     text-align: center;
-    margin: 5%;
 }
 
 nav a {
     color: #1A3038;
-    margin: 0 30px;
     text-decoration: none;
-    /* Remove underlines from links */
+    margin: 2.5em;
 }
 
 
