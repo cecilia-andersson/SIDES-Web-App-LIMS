@@ -10,6 +10,7 @@
         <a href="index.php">Home</a>
         <a href="user_profile/contact.php">Contact</a>
         <a href="user_profile/aboutus.php">About us</a>
+        <a href="user_profile/forum.php">Forum</a>
         <?php
         session_start();
         if (isset($_SESSION['username']) && isset($_SESSION["id"])){
@@ -17,11 +18,10 @@
             echo '<a href="user_profile/logout.php">Log out</a>';
         }else {
             echo '<a href="user_profile/login_page.php">My profile</a>';
-            echo '<a href="user_profile/login_page.php">Login</a>&nbsp;&nbsp;';
+            echo '<a href="user_profile/login_page.php">Login</a>';
             echo '<a href="user_profile/register.php">Register</a>';
         }
         ?>
-        <a href="user_profile/forum.php">Forum</a>
     </nav>
     <?php
     
@@ -45,4 +45,3 @@ if (isset($_GET['Message'])) {
 </body>
 
 </html>
-
