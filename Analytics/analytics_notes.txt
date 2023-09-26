@@ -1,0 +1,23 @@
+** On drug page, only see general (all, age group, etc. Not traceable to single users) **
+
+
+Ideas: 
+- For side effects, which drug has it reported the most frequently
+- Maybe the average amount of time it takes for a side effect's intensity to decrease (as reported by users) on a particular drug
+    - line graph over time (linear regression?)
+    - both available for individual users on their profile, and average for a drug
+    - only use the ones with intensity? 
+    - 
+- Average monthly side effects, (for one or several side effects). Bar plot? 
+
+
+- Look into visualization tools to link into site & to SQL: Python, Tableau, other?
+
+EXTRA SPECIAL IDEA
+- similarity analysis
+    - Recommendations 
+    - (data mining course-- these things often occur together, rule generation/analysis)
+(need to somehow only give good recommendations, meaning that we only want to give recommendations to drugs that people are happy with) 
+
+
+in future we could add rule mining for combinations of drugs and diseases 
