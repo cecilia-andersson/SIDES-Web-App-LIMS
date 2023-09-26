@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Login</title>
+    <title>Forgot password</title>
     <link href="../images/S.png" rel="icon">
 </head>
 <body>
@@ -13,12 +13,10 @@
     </header>
     <h3> Log in </h3>
     <p>
-    <form action="login.php" method="POST">
-        Username: <input type="text" name="username" required> <br>
-        Password: <input type="password" name="login_password" required> <br>
-        <input type="submit" value="Login"> <br>
+    <form action="send_email.php" method="POST">
+        Email: <input size="50" type="email" name="email" placeholder="example@email.com" required> <br>
+        <input type="submit" value="Send new password"> <br>
     </form>
-    <a href="forgot_pwd.php">I forgot my password</a>
     <?php
     if (isset($_GET['Message'])) {
         echo $_GET['Message'];

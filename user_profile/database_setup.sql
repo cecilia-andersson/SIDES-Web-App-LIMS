@@ -3,7 +3,8 @@ CREATE TABLE users (
     birthdate VARCHAR(8),
     uniquefour VARCHAR(60) NOT NULL, -- UNIQUE??
     username VARCHAR(30) NOT NULL UNIQUE,
-    pwd VARCHAR(60) NOT NULL
+    pwd VARCHAR(60) NOT NULL,
+    email VARCHAR(100) NOT NULL -- How big? Need to be encrypted?
 );
 
 CREATE TABLE review (
@@ -27,3 +28,8 @@ CREATE TABLE report (
     FOREIGN KEY (side_effect) REFERENCES side_effects(se_id)
 );
 
+CREATE TABLE password_reset_temp (
+  email varchar(250) NOT NULL,
+  pkey varchar(250) NOT NULL,
+  expDate datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

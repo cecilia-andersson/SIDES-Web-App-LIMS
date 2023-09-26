@@ -2,10 +2,15 @@
 
 include "../DB_connect.php";
 
+
+
 $inputUsername = $_POST['username'];
 $hashedAndSaltedPassword = password_hash($_POST['pwd'], $PASSWORD_BCRYPT); // "Using the PASSWORD_BCRYPT as the algorithm, will result in the password parameter being truncated to a maximum length of 72 bytes."
 $inputPersonnmr = $_POST['personnmr']; 
 $birthdate = substr($inputPersonnmr, 0, 8);
+$email = $_POST['email'];
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
 // verify that personal number is unique by filtering out the same birthdates
 $sql_birthdates = "SELECT * FROM users WHERE birthdate = '$birthdate'";
@@ -27,9 +32,9 @@ while($row = $result_birthdates->fetch_assoc()) {
 
 $uniquefour = password_hash(substr($inputPersonnmr, 8), $PASSWORD_BCRYPT); // salt & hash four last digits
 
-$sql1 = "INSERT INTO users (birthdate, uniquefour, username, pwd) VALUES (?, ?, ?, ?)";
+$sql1 = "INSERT INTO users (birthdate, uniquefour, username, pwd, email) VALUES (?, ?, ?, ?, ?)";
 $stmt1 = $link->prepare($sql1);
-$stmt1->bind_param("ssss", $birthdate, $uniquefour, $inputUsername, $hashedAndSaltedPassword);
+$stmt1->bind_param("sssss", $birthdate, $uniquefour, $inputUsername, $hashedAndSaltedPassword, $email);
 $result1 = $stmt1->execute();
 
 if ($result1) {
