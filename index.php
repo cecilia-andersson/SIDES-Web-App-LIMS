@@ -17,11 +17,11 @@
             echo '<a href="user_profile/logout.php">Log out</a>';
         }else {
             echo '<a href="user_profile/login_page.php">My profile</a>';
-            echo '<a href="user_profile/login_page.php">Login</a>&nbsp;&nbsp;';
+            echo '<a href="user_profile/login_page.php">Login</a>';
             echo '<a href="user_profile/register.php">Register</a>';
         }
         ?>
-        <a href="user_profile/forum.php">Forum</a>
+        <a href="user_profile/forum.php">Forum</a> <!-- move up? -->
     </nav>
     <?php
     
@@ -45,4 +45,3 @@ if (isset($_GET['Message'])) {
 </body>
 
 </html>
-
