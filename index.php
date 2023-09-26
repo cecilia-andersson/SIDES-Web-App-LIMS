@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="stylesheet/styles.css"> <!-- Link to CSS file -->
         <h3 style="color: #9510AC; display: inline;">SID</h3><h3 style="color: #246F8A; display: inline; margin-right: 2em;">ES</h3>
         <nav style="display: inline;">
-            <a href="Drug_profile/nice_search_page.php">
+            <a href="Drug_profile/nice_search_page.php" style="text-decoration: none;">
                 <img src="images/search.png" alt="Search Drugs" style="width: 15px;">
             </a>
             <!-- <a href="Drug_profile/nice_search_page.php">Search</a> -->
