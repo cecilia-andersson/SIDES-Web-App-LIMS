@@ -2,9 +2,14 @@
 <html>
 <head>
     <title>Drug Page</title>
-    <link rel="stylesheet" type="text/css" href="../stylesheet/styles.css"> <!-- Link to CSS file -->
 </head>
+
 <body>
+    <header>
+        <?php
+        include "../navigation.php";
+        ?>
+    </header>
     <h2>Drug Details</h2>
     <?php
     // Retrieve the drug information based on the drug_id query parameter

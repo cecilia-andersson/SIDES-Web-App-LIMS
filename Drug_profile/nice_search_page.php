@@ -1,41 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Drug Search</title>
-    <link rel="stylesheet" type="text/css" href="../stylesheet/styles.css"> <!-- Link to CSS file -->
-    <!-- <style>
-       
-        body {
-            background-color: #ffffff; 
-            font-family: 'Roboto', sans-serif; 
-            font-size: 16px; 
-            color: #1a3038; 
-            margin: 20px; 
-        }
-        h1 {
-            color: #256e8a; 
-            margin-bottom: 20px; 
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px; 
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        a {
-            color: #256e8a;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style> -->
 </head>
+
 <body>
+    <header>
+        <?php
+        include "../navigation.php";
+        ?>
+    </header>
+
     <h2>Drug Search</h2>
     <form action="search_drugs.php" method="POST">
         Search: <input type="text" name="search_query">
@@ -47,7 +23,7 @@
     $username = "root";
     $password = "root";
     $dbname = "sides";
-    $search_query = $_POST['search_query']; 
+    $search_query = $_POST['search_query'];
 
     // Create connection
     $link = mysqli_connect($servername, $username, $password, $dbname);
@@ -82,4 +58,5 @@
     ?>
 
 </body>
+
 </html>
