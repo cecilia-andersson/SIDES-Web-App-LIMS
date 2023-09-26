@@ -3,12 +3,13 @@
 
 <head>
     <title>SIDES</title>
+    <link href="images/S.png" rel="icon">
 </head>
 
 <body>
     <header>
         <link rel="stylesheet" type="text/css" href="stylesheet/styles.css"> <!-- Link to CSS file -->
-        <h3 style="color: #9510AC; display: inline;">SID</h3><h3 style="color: #246F8A; display: inline;">ES</h3>
+        <h3 style="color: #9510AC; display: inline;">SID</h3><h3 style="color: #246F8A; display: inline; margin-right: 2em;">ES</h3>
         <nav style="display: inline;">
             <a href="Drug_profile/nice_search_page.php">Search</a>
             <a href="index.php">Home</a>

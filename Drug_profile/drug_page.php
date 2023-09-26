@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Drug Page</title>
+    <link href="../images/S.png" rel="icon">
 </head>
 
 <body>

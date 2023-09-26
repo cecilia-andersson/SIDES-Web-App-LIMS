@@ -3,6 +3,7 @@
 
 <head>
     <title>Register</title>
+    <link href="../images/S.png" rel="icon">
     <style>
         body {}
 

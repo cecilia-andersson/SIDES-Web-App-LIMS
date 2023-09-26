@@ -3,6 +3,7 @@
 
 <head>
     <title>My Profile</title>
+    <link href="../images/S.png" rel="icon">
 </head>
 
 <body>
