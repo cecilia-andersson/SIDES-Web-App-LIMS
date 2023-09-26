@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Drug Page</title>
+    <link href="../images/S.png" rel="icon">
 </head>
 
 <body>
@@ -46,6 +47,33 @@
     // Executing the second SQL query that gathers common Fass side effects and stores the result in $fass_side_effects_result
     $fass_side_effects_result = $link->query($drug_side_effects_fass);
 
+    // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
+    // Fetching top user-reported side effects
+    // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
+    $query1 = "CREATE TEMPORARY TABLE occurrences AS
+    SELECT side_effects.se_name, side_effects.se_id, drug_association_report.R_drug_fk_id
+    FROM drug_association_report
+    INNER JOIN side_effects ON side_effects.se_id=drug_association_report.R_se_fk_id";
+            
+    // Creating a temp table with drug IDs, side effect names, and count of identical occurrences of that unique combo (drug ID+side effect name)
+    $query2 = "CREATE TEMPORARY TABLE running_tallies AS
+    SELECT R_drug_fk_id, se_name, COUNT(*) AS occurrence_count
+    FROM occurrences
+    GROUP BY R_drug_fk_id, se_name
+    ORDER BY R_drug_fk_id, occurrence_count DESC";
+            
+    // Temporary table of just the top 3 side effects for each drug, listed by drug ID
+    $query3 = "CREATE TEMPORARY TABLE top_reported_sides AS
+    SELECT R_drug_fk_id, se_name
+    FROM running_tallies 
+    LIMIT 3";
+
+    // Fetching drug info and the top side effects
+    $query4 = "SELECT drugs.drug_brand, drugs.drug_class, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, GROUP_CONCAT(top_reported_sides.se_name SEPARATOR ', ') AS user_side_effects
+    FROM top_reported_sides
+    INNER JOIN drugs ON drugs.drug_id=top_reported_sides.R_drug_fk_id
+    WHERE drug_id = $drug_id -- from a click, made to align with 'drug_page' syntax";
+
     // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤  
     // ¤ Displaying results ¤
     // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
@@ -58,6 +86,7 @@
         echo "<p>Class: " . $row["drug_class"] . "</p>";
         echo "<p>Inactive Ingredients: " . $row["drug_inactive_ingredient"] . "</p>";
 
+
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
         // ~~ Displaying Fass side effects ~~
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,7 +96,30 @@
             {echo "<p>Fass side effects: " . $row_fass["fass_side_effects"] . "</p>"; }
         else 
             {echo "<p>No Fass side effects found</p>";}
-          
+        
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~        
+        // ~~ Displaying User reported side effects ~~
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        if ($link->query($query1)) {
+            $query2;
+            if ($link->query($query2)) {
+                $query3;
+                if ($link->query($query3)) {
+                    $query4;
+                    $top_sides_result = $link->query($query4);
+                    if ($top_sides_result){
+                        if($top_sides_result->num_rows > 0) {
+                            $row4 = $top_sides_result->fetch_assoc();
+                            if ($row4["user_side_effects"] !== "" && $row4["user_side_effects"] !==null)
+                                {echo "<p>Top user-reported side effects: " . $row4["user_side_effects"] . "</p>";}
+                            else
+                                {echo "<p>No side effects yet reported by users.</p>"; }
+                        }
+                    } else {echo "Error with 4th query: " . $link->error; }
+                } else {echo "Error with 3rd query: " . $link->error;}
+            } else {echo "Error with 2nd query: " . $link->error; }
+        } else {echo "Error with 1st query: " . $link->error; }
+
     } else {
         echo "Drug not found";
     }
