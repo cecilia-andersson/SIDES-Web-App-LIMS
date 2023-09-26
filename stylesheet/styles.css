@@ -20,19 +20,20 @@ h1 {
     color: #256e8a;
     /* Largest text color */
     font-size: 48px;
-    margin-top: 3%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 h2 {
     color: #256e8a;
     /* Large text color */
     font-size: 36px;
-    margin-top: 3%;
+    margin-top: 5%;
 }
 
 h3 {
     color: #256e8a;
-    margin-top: 3%;
+    margin-top: 5%;
 }
 
 
@@ -69,9 +70,26 @@ img {
     border: 0;
 }
 
-form {
-    width: 80%;
+input[type=text], input[type=password], input[type=email] {
+    width: 40%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border: 1px solid #757CB3;
+    border-radius: 6px;
+    font-size: 14px;
 }
+
+input[type=button], input[type=submit], input[type=reset] {
+    width: 10%;
+    background-color: #64A7AC;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: none;
+    font-size: 14px;
+    text-align: center;
+  }
 
 nav {
     text-align: center;

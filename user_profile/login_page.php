@@ -3,22 +3,29 @@
 
 <head>
     <title>Login</title>
-    <link href="../images/S.png" rel="icon">
+    <link href="../images/SIDES_head_icon.png" rel="icon">
 </head>
+
 <body>
     <header>
         <?php
         include "../navigation.php";
         ?>
     </header>
-    <h3> Log in </h3>
+    <h2> Sign in </h2>
     <p>
     <form action="login.php" method="POST">
-        Username: <input type="text" name="username" required> <br>
-        Password: <input type="password" name="login_password" required> <br>
-        <input type="submit" value="Login"> <br>
+        <p>
+            <input type="text" name="username" placeholder="Username" required> <br>
+        </p>
+        <p>
+            <input type="password" name="login_password" placeholder="Password" required> <br>
+        </p>
+        <input type="submit" value="Sign in"> <br>
     </form>
-    <a href="forgot_pwd.php">I forgot my password</a>
+    <p>
+        <a href="forgot_pwd.php">I forgot my password</a>
+    </p>
     <?php
     if (isset($_GET['Message'])) {
         echo $_GET['Message'];

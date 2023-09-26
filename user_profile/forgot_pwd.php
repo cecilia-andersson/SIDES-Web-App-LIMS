@@ -3,7 +3,7 @@
 
 <head>
     <title>Forgot password</title>
-    <link href="../images/S.png" rel="icon">
+    <link href="../images/SIDES_head_icon.png" rel="icon">
 </head>
 <body>
     <header>
