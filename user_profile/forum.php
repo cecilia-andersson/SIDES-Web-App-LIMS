@@ -3,6 +3,7 @@
     
 <head>
     <title>Forum</title>
+    <link href="../images/S.png" rel="icon">
 </head>
 <body>
 <header>

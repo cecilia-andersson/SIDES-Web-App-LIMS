@@ -3,33 +3,38 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #1a3038;
-    /* Smaller text color */
     line-height: 22px;
     width: 70%;
     margin: auto;
-    padding: 4em;
+    padding: 2em;
     /*border:1px solid #828282;*/
 }
 
 body header {
-    width: 200%;
-    padding: 1em;
+    width: 120%;
     margin-left: -10%;
+    margin-right: -10%;
 }
 
 h1 {
     color: #256e8a;
     /* Largest text color */
     font-size: 48px;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 h2 {
     color: #256e8a;
     /* Large text color */
     font-size: 36px;
-    text-align: center;
+    margin-top: 3%;
 }
+
+h3 {
+    color: #256e8a;
+    margin-top: 3%;
+}
+
 
 a {
     color: #256e8a;
@@ -70,7 +75,6 @@ form {
 
 nav {
     text-align: center;
-    margin: 2.5em;
 }
 
 nav a {

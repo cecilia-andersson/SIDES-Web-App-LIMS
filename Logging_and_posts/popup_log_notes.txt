@@ -1,0 +1,13 @@
+Pop up that only shows up once per day- base it on time stamps in side effect ass. table? or new table to account for point below.
+
+
+Should we add a "no I dont want to log today option"? otherwise we might get false entires. Maybe a new table just for this. (BRING this up in report)
+    -Important to prevent people from just submitting whatever symptoms to get the popup out of their face (giving us inaccurate data)
+
+multiple choice clickable list. intensity optional (for analysis, exclude null values)- make it super easy to enter. sliding thing? also 1-10 for more variety
+    -slidey intensity list (default = 0 = not reported) mark the 0 very clearly. or maybe toggle active sliding thing? 
+
+Should have active drugs- activated until the user says no, maybe add new table which stores all drugs a user is taking and if they are active or not. Only active ones are logged. 
+
+Write at top "currently logging for $active_drugs" so they know what they are logging
+

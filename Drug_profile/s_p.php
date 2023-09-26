@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Drug Search</title>
-    <link rel="stylesheet" type="text/css" href="../stylesheet/styles.css"> <!-- Link to CSS file -->
+    <link href="../images/S.png" rel="icon">
     <style>
 
         body {
@@ -119,6 +119,11 @@
 </style>
 </head>
 <body>
+    <header>
+        <?php
+        include "../navigation.php";
+        ?>
+    </header>
     
     <h2>Drug Search</h2>
     <div class="search-container">

@@ -3,6 +3,7 @@
 
 <head>
     <title>Register</title>
+    <link href="../images/S.png" rel="icon">
     <style>
         body {}
 
@@ -26,8 +27,8 @@
             title="Password must contain at least one capital letter and one number." required> <br>
         Personal Identity Number: <input type="text" name="personnmr" placeholder="YYYYMMDDXXXX"
             pattern="(19[0-9]{2}|20[0-1][0-5])[0-9]{8}" required> <br>
+        Email: <input size="50" type="email" name="email" placeholder="example@email.com" required> <br>
         <input type="submit" value="Add" class="register-button"><br>
-
     </form>
     <?php
     if (isset($_GET['Message'])) {
