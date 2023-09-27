@@ -24,6 +24,7 @@ if ($result->num_rows == 1) {
     if (password_verify($inputPassword, $row["pwd"])) {
         $_SESSION['username'] = $inputUsername;
         $_SESSION['id'] = $row['userid'];
+        $_SESSION['personalnumber'] = $row['birthdate'];
 
         $message = urlencode("You are now logged in");
         header("Location:../index.php?Message=".$message);
