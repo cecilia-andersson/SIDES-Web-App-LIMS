@@ -57,7 +57,6 @@
     // Close the database connection
     mysqli_close($link);
     ?>
-
 </body>
-
 </html>
+

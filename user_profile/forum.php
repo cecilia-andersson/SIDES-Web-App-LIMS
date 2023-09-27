@@ -13,4 +13,7 @@
 </header>
 
 <p> This is going to be the forum page </p>
+<?php
+    include "../footer.php";
+?>
 </body>

@@ -44,6 +44,9 @@
         echo $_GET['Message'];
     }
     ?>
+    <?php
+    include "../footer.php";
+    ?>
 </body>
 
 </html>

@@ -44,6 +44,10 @@
     <p style="color: #757CB3;"> We keep track of how your medications affect you. Share experiences anonymously with
         others to collectively feel better. </p>
 
+    <footer>
+        <a href="user_profile/contact.php">Contact</a>
+        <a href="user_profile/aboutus.php">About us</a>
+    </footer>
 
 </body>
 

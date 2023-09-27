@@ -14,4 +14,7 @@
     </header>
 
 <p> We love snus here in our group </p>
+<?php
+    include "../footer.php";
+?>
 </body>

@@ -127,5 +127,8 @@
     // Close the database connection
     mysqli_close($link);
     ?>
+    <?php
+        include "../footer.php";
+    ?>
 </body>
 </html>

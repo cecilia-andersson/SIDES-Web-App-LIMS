@@ -12,6 +12,9 @@
     include "../navigation.php";
     ?>
     </header>
+    <p> Call me at 0765557476 </p>
+    <?php
+    include "../footer.php";
+    ?>
 </body>
 
-<p> Call me at 0765557476 </p>
