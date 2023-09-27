@@ -1,3 +1,13 @@
+/*
+Mörk #1A3038
+Lila #9510AC
+Ljuslila #757CB3
+Blå #246f8a
+Ljusblå #64a7ac
+Röd #C43B39
+Orange #F5733A
+*/
+
 body {
     background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
@@ -36,7 +46,6 @@ h3 {
     margin-top: 5%;
 }
 
-
 a {
     color: #256e8a;
     text-decoration: none;
@@ -47,7 +56,6 @@ a:focus {
     text-decoration: underline;
 }
 
-/* tables */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -80,15 +88,15 @@ input[type=text], input[type=password], input[type=email] {
 }
 
 input[type=button], input[type=submit], input[type=reset] {
-    width: 10%;
-    background-color: #64A7AC;
+    background-color: #246f8a;
     color: white;
     border-radius: 6px;
     padding: 10px;
     cursor: pointer;
-    box-shadow: none;
+    border: 1px solid #246f8a;
     font-size: 14px;
     text-align: center;
+    margin-top: 1%;
   }
 
 nav {
