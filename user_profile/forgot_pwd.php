@@ -14,7 +14,9 @@
     <h3> Log in </h3>
     <p>
     <form action="send_email.php" method="POST">
-        Email: <input size="50" type="email" name="email" placeholder="example@email.com" required> <br>
+        <p>
+            Email: <input size="50" type="email" name="email" placeholder="example@email.com" required>
+        </p>
         <input type="submit" value="Send new password"> <br>
     </form>
     <?php
