@@ -11,22 +11,24 @@ Orange #F5733A
 body {
     background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     color: #1a3038;
     line-height: 22px;
     width: 70%;
     margin: auto;
     padding: 2em;
-    border:1px solid #828282;
+    /*border:1px solid #828282;*/
 }
 
 body header {
-    width: 120%;
-    margin-left: -15%;
+    width: 100%;
+    margin-left: -20%;
 }
 
 nav {
-    text-align: left;
+    position: fixed;
+    top:1%;
+    background-color: #ffffff;
 }
 
 nav a {
@@ -37,16 +39,14 @@ nav a {
 
 h1 {
     color: #256e8a;
-    /* Largest text color */
-    font-size: 48px;
+    font-size: 3rem;
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
 h2 {
     color: #256e8a;
-    /* Large text color */
-    font-size: 36px;
+    font-size: 2.25rem;
     margin-top: 5%;
 }
 
@@ -68,7 +68,7 @@ a:focus {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 table,
@@ -89,21 +89,21 @@ img {
 
 input[type=text], input[type=password], input[type=email] {
     width: 40%;
-    padding: 10px 10px;
+    padding: 0.625rem 0.625rem;
     box-sizing: border-box;
     border: 1px solid #757CB3;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
 }
 
 input[type=button], input[type=submit], input[type=reset] {
     background-color: #246f8a;
     color: white;
-    border-radius: 6px;
-    padding: 10px;
+    border-radius: 0.375rem;
+    padding: 0.625rem;
     cursor: pointer;
     border: 1px solid #246f8a;
-    font-size: 14px;
+    font-size: 0.875rem;
     text-align: center;
     margin-top: 1%;
 }
@@ -121,7 +121,7 @@ footer{
 footer a{
     color: #ffffff;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     margin: 2em;
 }
 
