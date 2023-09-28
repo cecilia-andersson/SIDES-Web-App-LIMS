@@ -17,7 +17,7 @@ body {
     width: 70%;
     margin: auto;
     padding: 2em;
-    /*border:1px solid #828282;*/
+    border:1px solid #828282;
 }
 
 body header {
@@ -109,15 +109,17 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 footer{
-    margin: auto;
-    margin-top: 5%;
-    width: 50%;
     font-size: 0.9rem;
     text-align: center;
     background-color:#64a7ac;
+    position:fixed;
+    bottom: 0;
+    text-align: center;
+    width: 110%;
+    margin-left: -20%;
 }
 footer a{
-    color: #1A3038;
+    color: #ffffff;
     cursor: pointer;
     font-size: 16px;
     margin: 2em;
