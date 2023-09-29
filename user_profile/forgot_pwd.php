@@ -88,7 +88,9 @@
                     $message = "<p>Hello SIDES user,</p>";
                     $message.= "<p>Please click on the following link to reset your password: </p>";
                     $message.= "<p><a href='http://localhost/user_profile/reset_pwd.php?token=$token'>http://localhost/user_profile/reset_pwd.php?token=$token</a></p>";
-                    $message.= "<p><br>If you did not request to reset your password you can ignore this email.</p>";
+                    $message.= "<p>The link is valid for 1 hour.</p>";
+                    $message.= "<p>If you did not request to reset your password you can ignore this email.</p>";
+                    $message.= "<p>Best regards, the SIDES team.</p>";
 
                     $mail->Body = $message;
                     echo $message;
@@ -119,7 +121,9 @@
     else {
     ?>
     <form action="forgot_pwd.php" method="POST">
-        Email: <input size="50" type="email" name="email" placeholder="example@email.com" required> <br>
+        <p>
+            <input size="50" type="email" name="email" placeholder="example@email.com" required> <br>
+        </p>
         <input type="submit" value="Send new password"> <br>
     </form> 
     <?php

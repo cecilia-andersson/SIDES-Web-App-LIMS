@@ -83,11 +83,19 @@
 
     ?>
     <form action="reset_pwd.php" method="POST">
-        Email: <input size="50" type="email" name="email" value="<?= $email ?>" readonly> <br>
-        New password: <input type="password" name="pwd" pattern="^(?=.*[A-Z])(?=.*\d).+$"
+        <p>
+            <input size="50" type="email" name="email" value="<?= $email ?>" readonly> <br>
+        </p>
+        <p>
+            <input type="password" name="pwd" placeholder="New password" 
+            pattern="^(?=.*[A-Z])(?=.*\d).+$" required> <br>
+        </p>
+        <p>
+            <input type="password" name="pwd2" placeholder="Confirm password" 
+            pattern="^(?=.*[A-Z])(?=.*\d).+$"
             title="Password must contain at least one capital letter and one number." required> <br>
-        Confirm password: <input type="password" name="pwd2" pattern="^(?=.*[A-Z])(?=.*\d).+$" required> <br>
-        <!--confirm that passwords are the same before sending -->
+        </p>
+        <!-- TODO: confirm that passwords are the same before sending -->
         <input type="submit" value="Send new password"> <br>
     </form> 
     <?php
