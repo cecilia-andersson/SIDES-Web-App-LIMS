@@ -26,18 +26,19 @@ body header {
 }
 
 nav {
+    width: 90vw;
     position: fixed;
     top:0;
     background-color: #ffffff;
     padding-top: 1%;
     padding-bottom: 1%;
+    display:flex;
+    justify-content:space-between;
 }
 
 nav a {
     color: #1A3038;
     text-decoration: none;
-    margin: 12em;
-    margin-right: 0em;
 }
 
 h1 {
