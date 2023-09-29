@@ -36,12 +36,22 @@
         echo $_GET['Message'];
     }
     ?>
+    <img src="images/SIDES_head.png"  alt="SIDES logo" style="width: 15vw; margin-right: 9vw; margin-top: 0vh;" align="right">
+    
+    <h1 style="color: #1A3038; margin-top:6%; margin-bottom: 0"> Real people </h1>
+    <h1 style="color: #9510AC; margin-top:2%;">Real side effects </h1>
 
-    <h1 style="color: #1A3038;"> Real people </h1>
-    <h1 style="color: #9510AC; margin-top: 4%; margin-bottom: 4%;">Real side effects </h1>
+    <p style="color: #757CB3; font-size: 18px; line-height: 26px;"> We keep track of how your medications affect you. <br> Share experiences anonymously with
+        others to <b>collectively feel better</b>.</p>
 
-    <p style="color: #757CB3;"> We keep track of how your medications affect you. Share experiences anonymously with
-        others to collectively feel better. </p>
+    <section style="margin-top: 10vh;">
+        <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..? </h4>
+        <p>
+            <form action="Drug_profile/s_p.php" method="POST">
+                <input type="text" name="search_query" placeholder="Search">
+            </form>
+        </p>
+    </section>
 
     <footer>
         <a href="user_profile/contact.php">Contact</a>
