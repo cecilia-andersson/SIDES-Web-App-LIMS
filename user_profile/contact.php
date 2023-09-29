@@ -12,7 +12,11 @@
     include "../navigation.php";
     ?>
     </header>
-    <p> Call me at 0765557476 </p>
+    <h3> Welcome to SIDES! </h3>
+    <p> Feel free to contact us on our email: </p>
+    <p>
+    <a href=mailto:“sideslims@gmail.com”>sideslims@gmail.com</a>
+    </p>
     <?php
     include "../footer.php";
     ?>
