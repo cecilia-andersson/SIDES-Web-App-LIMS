@@ -21,20 +21,23 @@ body {
 }
 
 body header {
-    width: 100%;
     margin-left: -20%;
+    margin-bottom: 4%;
 }
 
 nav {
     position: fixed;
-    top:1%;
+    top:0;
     background-color: #ffffff;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 nav a {
     color: #1A3038;
     text-decoration: none;
-    margin: 4.5em;
+    margin: 12em;
+    margin-right: 0em;
 }
 
 h1 {

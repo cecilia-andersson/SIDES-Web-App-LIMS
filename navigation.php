@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../stylesheet/styles.css"> <!-- Link to CSS file -->
 <nav>
-    <a href="../index.php">
+    <a href="../index.php" style="margin-left: 0em;">
         <img src="../images/SIDES_head.png" alt="Home" style="width: 15px;">
         <h3 style="color: #9510AC; display: inline;">SID</h3><h3 style="color: #246F8A; display: inline;">ES</h3>
     </a>
