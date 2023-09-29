@@ -14,7 +14,7 @@
                 <img src="images/SIDES_head.png" alt="Home" style="width: 15px;">
                 <h3 style="color: #9510AC; display: inline;">SID</h3><h3 style="color: #246F8A; display: inline;">ES</h3>
             </a>
-            <a href="Drug_profile/nice_search_page.php" style="text-decoration: none;">
+            <a href="Drug_profile/s_p.php" style="text-decoration: none;">
                 <img src="images/search.png" alt="Search Drugs" style="width: 15px;">
             </a>
             <a href="user_profile/forum.php">Forum</a>
