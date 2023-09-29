@@ -29,7 +29,7 @@ CREATE TABLE report (
 );
 
 CREATE TABLE password_reset_temp (
-  email varchar(250) NOT NULL,
-  pkey varchar(250) NOT NULL,
-  expDate datetime NOT NULL
+  email varchar(250) NOT NULL UNIQUE,
+  token varchar(32) NOT NULL,
+  expiry datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

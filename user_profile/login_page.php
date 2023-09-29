@@ -24,7 +24,7 @@
         <input type="submit" value="Sign in"> <br>
     </form>
     <p>
-        <a href="forgot_pwd.php">I forgot my password</a>
+        <a href="forgot_pwd.php">I forgot my password</a> <br><br>
     </p>
     <?php
     if (isset($_GET['Message'])) {
