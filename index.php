@@ -37,8 +37,8 @@
     }
     ?>
 
-    <h1 style="color: #1A3038; margin-bottom: 3%;"> Real people </h1>
-    <h1 style="color: #9510AC; margin-top: 3%;">Real side effects </h1>
+    <h1 style="color: #1A3038;"> Real people </h1>
+    <h1 style="color: #9510AC; margin-top: 4%; margin-bottom: 4%;">Real side effects </h1>
 
     <p style="color: #757CB3;"> We keep track of how your medications affect you. Share experiences anonymously with
         others to collectively feel better. </p>

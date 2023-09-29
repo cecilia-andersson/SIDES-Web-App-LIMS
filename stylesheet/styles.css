@@ -14,14 +14,14 @@ body {
     font-size: 1rem;
     color: #1a3038;
     line-height: 22px;
-    width: 70%;
+    width: 80%;
     margin: auto;
     padding: 2em;
     /*border:1px solid #828282;*/
 }
 
 body header {
-    margin-left: -20%;
+    margin-left: -10%;
     margin-bottom: 4%;
 }
 
@@ -44,8 +44,8 @@ nav a {
 h1 {
     color: #256e8a;
     font-size: 3rem;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    line-height: auto;
+    margin-top: 7%;
 }
 
 h2 {
