@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <title>Drug Search</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
@@ -142,72 +143,127 @@
         ?>
     </header>
     
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "sides";
 
-    <div class="search-container">
-        <form action="s_p.php" method="POST">
-            <input type="text" class="search-input" name="search_query" placeholder="Search for contraceptives">
-        </form>
-    </div>
+// Create connection
+$link = mysqli_connect($servername, $username, $password, $dbname);
+
+if (mysqli_connect_error()) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// active ingredient options
+$act_sql = "SELECT DISTINCT drug_active_ingredient FROM drugs";
+$act_result = $link->query($act_sql);
+
+// Store unique values in an array
+$act_list = [];
+if ($act_result->num_rows > 0) {
+    while ($act_row = $act_result->fetch_assoc()) {
+        $act_list[] = $act_row["drug_active_ingredient"];
+    }
+}
+
+//class options
+$class_sql = "SELECT DISTINCT drug_class FROM drugs";
+$class_result = $link->query($class_sql);
+$class_list = [];
+if ($class_result->num_rows > 0) {
+    while ($class_row = $class_result->fetch_assoc()) {
+        $class_list[] = $class_row["drug_class"];
+    }
+}
+
+//
+$brand_sql = "SELECT DISTINCT drug_brand FROM drugs";
+$brand_result = $link->query($brand_sql);
+$brand_list = [];
+
+if ($brand_result->num_rows > 0) {
+    while ($brand_row = $brand_result->fetch_assoc()) {
+        $brand_list[] = $brand_row["drug_brand"]; 
+        //print_r($brand_row);
+    }
+}
+
+
+// filtering stuff:
+
+
+
+
+// Close the database connection
+$link->close();
+
+?>
+
+
+
 
     
-    <div class="filter-container">
-        <form action="s_p.php" method="POST">
-            <table>
-                <tr>
-
-                    <th>Sort:</th>
-                    <th>
-                        <select class="filter-select" name="sort_by" id="sort_by">
-                            <option value="empty"></option>
-                            <option value="brand">Brand</option>
-                            <label for="sort_by">Sort By:</label>
-                            <option value="active_ingredient">Active Ingredient</option>
-                            <option value="type">Type</option>
-                        </select>
-                    </th>
-                    <th>
+<div class="filter-container">
+    <form action="s_p.php" method="POST">
+    <input type="text" class="search-input" name="search_query" placeholder="Search for contraceptives">
+        <table>
+            <tr>
+                <th>Sort By:</th>
+                <th>
+                    <select class="filter-select" name="sort_by" id="sort_by">
+                        <option value="drug_brand">Brand</option>
+                        <option value="drug_active_ingredient">Active Ingredient</option>
+                        <option value="drug_class">Type</option>
+                    </select>
+                </th>
+                <th>Active Ingredient:</th>
+                <th>
+                    <select class="filter-select" name="filter_active_ingredient" id="filter_active_ingredient">
+                        <option value=""></option>
+                        <?php
+                        foreach ($act_list as $ingredient) {
+                            $selected = ($filter_active_ingredient == $ingredient) ? 'selected' : '';  
+                            echo "<option value='$ingredient'>$ingredient</option>";
+                        }
+                        ?>
+                    </select>
+                </th>
+                <th>Brand:</th>
+                <th>
+                    <select class="filter-select" name="filter_brand" id="filter_brand">
                         
-                    </th>
-                    <th>Fass side effects:</th>
-                    <th>
-                        <select class="filter-select" name="fast_side_effects" id="fast_side_effects">
-                            <label for="fast_side_effects">Fast Side Effects:</label>
-                            <option value=""></option>
-                        </select>
-                    </th>
-                    <th>
-                    <th>Our side effects:</th>   
-                    </th>
-                    <th>
-                        <select class="filter-select" name="our_side_effects" id="our_side_effects">
-                            <label for="our_side_effects">Our Side Effects:</label>
-                            <option value=""></option>
-                        </select>
-                    </th>
-                    <th>
-                        
-                    </th>
-                    <th>Rating:</th>
-                    <th>
-                        <select class="filter-select" name="ratings" id="ratings">
-                            <label for="ratings">Ratings:</label>
-                            <option value=""></option>
-                        </select>
-                    </th>
-                    <th>
-        
-                    </th>
-                    <th>
-        
-                   </th>
-                    <th>
-                        <input type="submit" class="filter-button" value="Filter Search">
-                    </th>
-                </tr>
-            </table>
-        </form>
+                        <option value=""></option>
+                        <?php
+                        foreach ($brand_list as $brand) {
+                            $selected = ($filter_brand == $brand) ? 'selected' : '';
+                            echo "<option value='$brand'>$brand</option>";
+                        }
+                        ?>
+                    </select>
+                </th>
+                <th>Class:</th>
+                <th>
+                    <select class="filter-select" name="filter_class" id="filter_class">
+                        <option value=""></option>
+                        <?php
+                        foreach ($class_list as $class) {
+                            $selected = ($filter_class == $class) ? 'selected' : '';
+                            echo "<option value='$class'>$class</option>";
+                        }
+                        ?>
+                    </select>
+                </th>
+                <th>
+                    <input type="submit" class="filter-button" value="Filter Search">
+                </th>
+            </tr>
+        </table>
+    </form>
     <br>        
-    </div> 
+</div>
+
 
     <?php
 $servername = "localhost";
@@ -224,10 +280,12 @@ if (mysqli_connect_error()) {
 
 // Initialize filter variables
 $sort_by = isset($_POST['sort_by']) ? $_POST['sort_by'] : '';
-$fast_side_effects = isset($_POST['fast_side_effects']) ? $_POST['fast_side_effects'] : '';
-$our_side_effects = isset($_POST['our_side_effects']) ? $_POST['our_side_effects'] : '';
-$ratings = isset($_POST['ratings']) ? $_POST['ratings'] : '';
 $search_query = $_POST['search_query'];
+$filter_brand = isset($_POST['filter_brand']) ? $_POST['filter_brand'] : '';
+$filter_class = isset($_POST['filter_class']) ? $_POST['filter_class'] : '';
+$filter_active_ingredient = isset($_POST['filter_active_ingredient']) ? $_POST['filter_active_ingredient'] : '';
+
+
 
 echo '<div class="search-results">Search results for "' . $search_query . '":</div>';
 
@@ -240,23 +298,25 @@ $sql = "SELECT drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient,
             OR drug_inactive_ingredient LIKE '%$search_query%')";
 
 // code to implement filtering here - need to make them connected to the actual attribute names. 
-//if (!empty($sort_by)) {
-//    $sql .= " ORDER BY $sort_by";
-//}
 
-//if (!empty($fast_side_effects)) {
-//    $sql .= " AND fast_side_effects_column = '$fast_side_effects'";
-//}
 
-//if (!empty($our_side_effects)) {
-//    $sql .= " AND our_side_effects_column = '$our_side_effects'";
-//}
+if (!empty($filter_brand)) {
+    $sql .= " AND drug_brand = '$filter_brand'";
+}
 
-//if (!empty($ratings)) {
-//    $sql .= " AND ratings_column = '$ratings'";
-//}
+if (!empty($filter_class)) {
+    $sql .= " AND drug_class = '$filter_class'"; 
+}
 
-$result = $link->query($sql);
+if (!empty($filter_active_ingredient)) {
+    $sql .= " AND drug_active_ingredient = '$filter_active_ingredient'";
+}
+
+if (!empty($sort_by)) {
+    $sql .= " ORDER BY $sort_by";
+}
+
+$result = $link->query($sql); // is it ok that I am concatenating this`?
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -304,4 +364,8 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 </script>
+
+
+
+
 </html>
