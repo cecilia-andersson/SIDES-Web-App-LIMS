@@ -136,12 +136,11 @@
 <body>
 
     <header>
-        <sub><img src="../images/SIDES_head.png" alt="SIDES logo" id="logo" width="70" height="70"></sub>
-        <nobr>
         <?php
         include "../navigation.php";
         ?>
     </header>
+    <h2>Search contraceptives </h2>
     
 <?php
 $servername = "localhost";
