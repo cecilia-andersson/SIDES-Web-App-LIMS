@@ -1,7 +1,7 @@
 CREATE TABLE users (
     userid INT PRIMARY KEY AUTO_INCREMENT,
     birthdate VARCHAR(8),
-    uniquefour VARCHAR(60) NOT NULL, -- UNIQUE??
+    uniquefour VARCHAR(60) NOT NULL,
     username VARCHAR(30) NOT NULL UNIQUE,
     pwd VARCHAR(60) NOT NULL,
     email VARCHAR(100) NOT NULL -- How big? Need to be encrypted?
