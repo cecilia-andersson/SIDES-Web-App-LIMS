@@ -25,9 +25,7 @@ if ($result->num_rows == 1) {
         $_SESSION['username'] = $inputUsername;
         $_SESSION['id'] = $row['userid'];
         $_SESSION['personalnumber'] = $row['birthdate'];
-
-        $message = urlencode("You are now logged in");
-        header("Location:../index.php?Message=".$message);
+        header("Location:myprofile.php");
         die;
     }
     else {
@@ -41,7 +39,5 @@ if ($result->num_rows == 1) {
             header("Location:login_page.php?Message=".$message);
             die;
 }
-
-//$link->close(); // does this need to be closed every time..?
 
 ?>

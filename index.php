@@ -31,11 +31,6 @@
             ?>
         </nav>
     </header>
-    <?php
-    if (isset($_GET['Message'])) {
-        echo $_GET['Message'];
-    }
-    ?>
 
     <img src="images/SIDES_head.png" alt="SIDES logo" style="width: 15vw; margin-right: 9vw; margin-top: 5vh;"
         align="right">

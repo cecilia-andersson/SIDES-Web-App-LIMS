@@ -25,22 +25,6 @@ body header {
     margin-bottom: 4%;
 }
 
-nav {
-    width: 90vw;
-    position: fixed;
-    top:0;
-    background-color: #ffffff;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    display:flex;
-    justify-content:space-between;
-}
-
-nav a {
-    color: #1A3038;
-    text-decoration: none;
-}
-
 h1 {
     color: #256e8a;
     font-size: 3rem;
@@ -68,6 +52,27 @@ a:focus {
     text-decoration: underline;
 }
 
+nav {
+    width: 90vw;
+    position: fixed;
+    top:0;
+    background-color: #ffffff;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display:flex;
+    justify-content:space-between;
+    text-decoration: none;
+}
+
+nav a {
+    color: #1A3038;
+}
+
+nav a:hover{
+    text-decoration: none;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -89,6 +94,7 @@ td {
 img {
     border: 0;
 }
+
 
 input[type=text], input[type=password], input[type=email] {
     width: 40%;
@@ -126,6 +132,10 @@ footer a{
     font-size: 1rem;
     margin: 2em;
 }
+
+footer a:hover{
+    text-decoration: none;
+} 
 
 fieldset {
     margin-bottom: 2em;

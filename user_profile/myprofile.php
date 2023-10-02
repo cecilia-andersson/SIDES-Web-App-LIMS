@@ -5,18 +5,16 @@
     <title>My Profile</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
-        body section p{
-            border: 1px solid #757CB3;
-            width: auto;
+        body section{
+            border: 2px solid #757CB3;
             display: block;
             position: fixed;
             right: 10vw;
-            top: 10vw;
+            top:15vh;
             padding: 1rem;
+            text-align: left;
         }
-
     </style>
-
 </head>
 
 <body>
@@ -26,14 +24,9 @@
         include "../DB_connect.php";
         ?>
     </header>
+
     <h2>My profile</h2>
     <?php
-
-
-    if (!$_SESSION) {
-        session_start();
-    }
-
     if (isset($_SESSION['username'])) {
         $loggedInUser = $_SESSION['username'];
         $personalnumber = $_SESSION['personalnumber'];
@@ -56,23 +49,21 @@
 
         echo "
         <section>
-        <p> <b> Your information </b> <br>
-        User profile of: $loggedInUser <br>
-        Age: $agerange <br>
-        Email address: $email </p>
-        </section>
+        <p> <b> Your information </b> </p>
+        <p> Username: $loggedInUser </p>
+        <p> Age: $agerange </p>
+        <p> Email: $email </p>
         "; // this cannot be displayed if salted and hashed
     }
 
     ?>
-
     <form action="edit_myprofile.php">
-        <input type="submit" value="Edit profile" />
+        <input type="submit" value="Edit profile"/>
     </form>
+    </section>
 
     <?php
     include "../footer.php";
     ?>
 </body>
-
 </html>
