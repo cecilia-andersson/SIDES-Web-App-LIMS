@@ -2,8 +2,6 @@
 
 include "../DB_connect.php";
 
-
-
 $inputUsername = $_POST['username'];
 $hashedAndSaltedPassword = password_hash($_POST['pwd'], $PASSWORD_BCRYPT); // "Using the PASSWORD_BCRYPT as the algorithm, will result in the password parameter being truncated to a maximum length of 72 bytes."
 $inputPersonnmr = $_POST['personnmr']; 
@@ -11,6 +9,14 @@ $birthdate = substr($inputPersonnmr, 0, 8);
 $email = $_POST['email'];
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+$sql_email = "SELECT * FROM users WHERE email = '$email'";
+$no_email = $link->query($sql_email);
+
+if ($no_email->num_rows > 0) {
+    $message = urlencode("Error: Email is already connected to an account");
+    header("Location:../index.php?Message=".$message);
+    die;
+}
 
 // verify that personal number is unique by filtering out the same birthdates
 $sql_birthdates = "SELECT * FROM users WHERE birthdate = '$birthdate'";
@@ -46,6 +52,4 @@ if ($result1) {
     header("Location:../index.php?Message=".$message);
     die;
 }
-
-$link->close();
 ?>

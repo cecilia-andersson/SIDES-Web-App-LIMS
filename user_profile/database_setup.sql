@@ -4,7 +4,7 @@ CREATE TABLE users (
     uniquefour VARCHAR(60) NOT NULL,
     username VARCHAR(30) NOT NULL UNIQUE,
     pwd VARCHAR(60) NOT NULL,
-    email VARCHAR(100) NOT NULL -- How big? Need to be encrypted?
+    email VARCHAR(100) NOT NULL UNIQUE -- How big? Need to be encrypted?
 );
 
 CREATE TABLE review (
