@@ -17,11 +17,8 @@
     <?php
     if (isset($_POST['email']) && isset($_POST['pwd']) && isset($_POST['pwd2'])) {
         // confirm that the pwds are the same
-        if ($_POST["pwd"] == $_POST["pwd2"]) {
-            continue;
-        }
-        else {
-        unset($_POST);
+        if ($_POST["pwd"] != $_POST["pwd2"]) {
+            break; // implement something here
         }
         $email = $_POST['email'];
         $sql1 = "SELECT * FROM users WHERE email='$email'";
@@ -94,12 +91,12 @@
         </p>
         <p>
             <input type="password" name="pwd" placeholder="New password" 
-            pattern="^(?=.*[A-Z])(?=.*\d).+$" 
-            title="Password must contain at least one capital letter and one number." required> <br>
+            pattern="^(?=.*[A-Z])(?=.*\d).+$" required> <br>
         </p>
         <p>
             <input type="password" name="pwd2" placeholder="Confirm password" 
-            pattern="^(?=.*[A-Z])(?=.*\d).+$" required> <br>
+            pattern="^(?=.*[A-Z])(?=.*\d).+$"
+            title="Password must contain at least one capital letter and one number." required> <br>
         </p>
         <!-- TODO: confirm that passwords are the same before sending -->
         <input type="submit" value="Send new password"> <br>
