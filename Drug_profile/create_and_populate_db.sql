@@ -1,6 +1,6 @@
 -- Creating database
 
-CREATE DATABASE SIDES;
+CREATE DATABASE sides;
 
 -- Creating the tables
 
@@ -20,6 +20,14 @@ CREATE TABLE users (
     uniquefour VARCHAR(60) NOT NULL, -- UNIQUE??
     username VARCHAR(30) NOT NULL UNIQUE,
     pwd VARCHAR(60) NOT NULL
+);
+
+CREATE TABLE user_drug (
+    user_drug_id INT PRIMARY KEY AUTO_INCREMENT,
+    userid INT,
+    drug_id INT,
+    FOREIGN KEY (userid) REFERENCES users(userid),
+    FOREIGN KEY (drug_id) REFERENCES drugs(drug_id)
 );
 
 CREATE TABLE review (

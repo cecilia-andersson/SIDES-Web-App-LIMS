@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
 
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "sides";
+
+// Create connection
+$link = mysqli_connect($servername, $username, $password, $dbname); 
+
+if (mysqli_connect_error()) { 
+    die("Connection failed: " . mysqli_connect_error());  
+}
+?>
+
 <head>
     <title>My Profile</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
-        body section{
+        body section {
             border: 2px solid #757CB3;
             display: block;
             position: fixed;
             right: 10vw;
-            top:15vh;
+            top: 15vh;
             padding: 1rem;
             text-align: left;
         }
@@ -58,12 +72,48 @@
 
     ?>
     <form action="edit_myprofile.php">
-        <input type="submit" value="Edit profile"/>
+        <input type="submit" value="Edit profile" />
     </form>
     </section>
 
     <?php
     include "../footer.php";
     ?>
+
+    <p>
+        Currently using: <br><b>
+            <?php
+            $sql = "SELECT userid FROM users WHERE username = '$loggedInUser'";
+            $result = $link->query($sql);
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $userid = $row["userid"];
+            }
+
+            $sql = "SELECT drug_id FROM user_drug WHERE userid = $userid";
+            $result = $link->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $drug_id = $row["drug_id"];
+
+                    $sql1 = "SELECT drug_brand FROM drugs WHERE drug_id = $drug_id";
+                    $result1 = $link->query($sql1);
+                    if ($result1->num_rows > 0) {
+                        $row = $result1->fetch_assoc();
+                        $drug_brand = $row["drug_brand"];
+                        echo "$drug_brand <br>";
+                    } else {
+                        echo "Drug_id does not exist in the drug table";
+                    }
+                }
+            } else {
+                echo "<p> No reported contraceptives </p> ";
+            }
+            ?>
+        </b>
+    </p>
+
+
 </body>
+
 </html>
