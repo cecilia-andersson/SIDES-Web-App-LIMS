@@ -175,7 +175,7 @@
 
 
     <div class="filter-container">
-        <form action="s_p.php" method="POST">
+        <form action="s_p.php" method="GET">
             <input type="text" name="search_query" placeholder="Search for contraceptives">
             <table>
                 <tr>
@@ -248,22 +248,19 @@
     }
 
     // Initialize filter variables
-    $sort_by = isset($_POST['sort_by']) ? $_POST['sort_by'] : '';
+    $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
 
-    if (!$_POST) {
-        $search_query = "";
-        echo '<div class="search-results">Search results:</div>';
-    } elseif (!$_POST['search_query']) {
-        $search_query = "";
-        echo '<div class="search-results">Search results:</div>';
+    if (isset($_GET['search_query']) && !empty(trim($_GET['search_query']))) {
+        $search_query = trim($_GET['search_query']);
+        echo '<div class="search-results">Search results for "' . htmlspecialchars($search_query) . '":</div>';
     } else {
-        $search_query = $_POST['search_query'];
-        echo '<div class="search-results">Search results for "' . $search_query . '":</div>';
+        $search_query = "";
+        echo '<div class="search-results">Search results:</div>';
     }
 
-    $filter_brand = isset($_POST['filter_brand']) ? $_POST['filter_brand'] : '';
-    $filter_class = isset($_POST['filter_class']) ? $_POST['filter_class'] : '';
-    $filter_active_ingredient = isset($_POST['filter_active_ingredient']) ? $_POST['filter_active_ingredient'] : '';
+    $filter_brand = isset($_GET['filter_brand']) ? $_GET['filter_brand'] : '';
+    $filter_class = isset($_GET['filter_class']) ? $_GET['filter_class'] : '';
+    $filter_active_ingredient = isset($_GET['filter_active_ingredient']) ? $_GET['filter_active_ingredient'] : '';
 
     // Build the SQL query based on filter criteria
     $sql = "SELECT drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, drugs.drug_id
@@ -292,7 +289,7 @@
         $sql .= " ORDER BY $sort_by";
     }
 
-    $result = $link->query($sql); // is it ok that I am concatenating this`?
+    $result = $link->query($sql); // is it ok that I am concatenating this`? I I am input validating the search input. Could not get this to work with prepared sql statements
     
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
