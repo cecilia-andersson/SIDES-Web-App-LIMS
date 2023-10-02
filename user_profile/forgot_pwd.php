@@ -87,7 +87,7 @@
 
                     $message = "<p>Hello SIDES user,</p>";
                     $message.= "<p>Please click on the following link to reset your password: </p>";
-                    $message.= "<p><a href='http://localhost/user_profile/reset_pwd.php?token=$token'>http://localhost/user_profile/reset_pwd.php?token=$token</a></p>";
+                    $message.= "<p><a href='http://localhost:443/user_profile/reset_pwd.php?token=$token'>http://localhost:443/user_profile/reset_pwd.php?token=$token</a></p>";
                     $message.= "<p>The link is valid for 1 hour.</p>";
                     $message.= "<p>If you did not request to reset your password you can ignore this email.</p>";
                     $message.= "<p>Best regards, the SIDES team.</p>";
