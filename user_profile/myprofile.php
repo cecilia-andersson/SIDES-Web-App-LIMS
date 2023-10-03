@@ -21,6 +21,7 @@ if (mysqli_connect_error()) {
     <style>
         body section {
             border: 2px solid #757CB3;
+            border-radius: 5px;
             display: block;
             position: fixed;
             right: 8vw;
@@ -33,14 +34,14 @@ if (mysqli_connect_error()) {
             list-style-type: none;
         }
 
-        .container{
+        .container {
             position: fixed;
-            right:8vw;
-            bottom:13vh;
+            right: 8vw;
+            bottom: 13vh;
         }
 
         .month {
-            background: #F5733A;
+            background: #1A3038;
             width: 20vw;
             text-align: center;
         }
@@ -48,6 +49,7 @@ if (mysqli_connect_error()) {
         .month ul {
             margin: 0;
             padding: 0;
+            padding: 5px;
         }
 
         .month ul li {
@@ -60,19 +62,19 @@ if (mysqli_connect_error()) {
         /* Previous button inside month header */
         .month .prev {
             float: left;
-            margin-top: 10px;
+            margin: 10px;
         }
 
         /* Next button */
         .month .next {
             float: right;
-            margin-top: 10px;
+            margin: 10px;
         }
 
         /* Weekdays (Mon-Sun) */
         .weekdays {
             margin: 0;
-            background-color: #ddd;
+            background-color: #64a7ac;
             width: 20vw;
             padding: 0;
             text-align: center;
@@ -81,7 +83,7 @@ if (mysqli_connect_error()) {
         }
 
         .weekdays li {
-            color: #666;
+            color: #fff;
             margin-left: 4px;
             margin-right: 3px;
         }
@@ -94,23 +96,20 @@ if (mysqli_connect_error()) {
             padding: 0;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            grid-row-gap: 10px;
-            height:auto;
         }
 
         .days li {
-            list-style-type: none;
             color: #777;
             font-size: 16px;
-            margin: 0px;
             text-align: center;
-
+            margin: 6px;
         }
 
         .days li .active {
-            background: #1abc9c;
+            background: #757CB3;
+            color: white;
+            padding: 4px;
             border-radius: 5px;
-            color: white !important
         }
     </style>
 </head>
@@ -156,11 +155,11 @@ if (mysqli_connect_error()) {
 
     ?>
     <form action="edit_myprofile.php">
-        <input type="submit" value="Edit profile" />
+        <input type="submit" value="Edit profile" style="background-color:#1A3038" />
     </form>
     </section>
     <div class='container'>
-        <div class="month">
+        <div class="month" style="border-radius: 2px;">
             <ul>
                 <li class="prev">&#10094;</li>
                 <li class="next">&#10095;</li>
@@ -168,7 +167,7 @@ if (mysqli_connect_error()) {
             </ul>
         </div>
 
-        <ul class="weekdays">
+        <ul class="weekdays" style="border-radius: 2px;">
             <li>Mo</li>
             <li>Tu</li>
             <li>We</li>
@@ -178,7 +177,7 @@ if (mysqli_connect_error()) {
             <li>Su</li>
         </ul>
 
-        <ul class="days">
+        <ul class="days" style="border-radius: 2px;">
             <li>1</li>
             <li>2</li>
             <li>3</li>
@@ -214,7 +213,7 @@ if (mysqli_connect_error()) {
     </div>
 
     <p>
-        <b>Currently using:</b><br>
+        <b>Current contraceptives:</b><br>
         <?php
         $sql = "SELECT userid FROM users WHERE username = '$loggedInUser'";
         $result = $link->query($sql);
@@ -223,17 +222,19 @@ if (mysqli_connect_error()) {
             $userid = $row["userid"];
         }
 
-        $sql = "SELECT drug_id FROM user_drug WHERE userid = $userid";
+        $sql = "SELECT * FROM user_drug WHERE userid = $userid";
         $result = $link->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $drug_id = $row["drug_id"];
+                $date = $row["reg_date"];
+                $Date = date("Y-m-d", strtotime($date));
                 $sql1 = "SELECT drug_brand FROM drugs WHERE drug_id = $drug_id";
                 $result1 = $link->query($sql1);
                 if ($result1->num_rows > 0) {
                     $row = $result1->fetch_assoc();
                     $drug_brand = $row["drug_brand"];
-                    echo "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a><br>";
+                    echo "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a>  since $Date<br>";
                 } else {
                     echo "Drug_id does not exist in the drug table";
                 }

@@ -26,6 +26,7 @@ CREATE TABLE user_drug (
     user_drug_id INT PRIMARY KEY AUTO_INCREMENT,
     userid INT,
     drug_id INT,
+    reg_date Timestamp,
     FOREIGN KEY (userid) REFERENCES users(userid),
     FOREIGN KEY (drug_id) REFERENCES drugs(drug_id)
 );
