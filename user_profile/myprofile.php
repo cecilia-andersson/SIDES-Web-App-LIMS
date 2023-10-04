@@ -16,6 +16,7 @@ include "../footer.php";
             padding: 1rem;
             text-align: left;
             max-width: fit-content;
+            max-height:210px;
         }
 
         p {
