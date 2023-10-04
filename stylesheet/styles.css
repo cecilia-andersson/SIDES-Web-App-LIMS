@@ -17,6 +17,7 @@ body {
     width: 80%;
     margin: auto;
     padding: 2em;
+    z-index: 1;
     /*border:1px solid #828282;*/
 }
 
@@ -128,6 +129,7 @@ footer {
     width: 100vw;
     margin-left: -10%;
     text-align: center;
+    z-index: 2;
 }
 
 footer a {
