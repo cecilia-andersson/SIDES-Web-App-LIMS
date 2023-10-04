@@ -35,12 +35,14 @@
         .month .prev {
             float: left;
             margin: 10px;
+            cursor: pointer;
         }
 
         /* Next button */
         .month .next {
             float: right;
             margin: 10px;
+            cursor: pointer;
         }
 
         /* Weekdays (Mon-Sun) */
