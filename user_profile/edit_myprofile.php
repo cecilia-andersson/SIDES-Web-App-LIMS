@@ -4,6 +4,25 @@
 <head>
     <title>My Profile</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
+    <style>
+        body section {
+            border: 2px solid #757CB3;
+            border-radius: 5px;
+            text-align: left;
+            max-width: fit-content;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 3px;
+            padding: 5px;
+            font-weight: 300;
+        }
+
+        b {
+            font-weight: normal;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,15 +32,14 @@
         include "../DB_connect.php";
         ?>
     </header>
+    <h2>Edit your profile </h2>
     <?php
-
-    session_start();
 
     if (isset($_SESSION['username'])) {
         $loggedInUser = $_SESSION['username'];
-        $personalnumber = $_SESSION['personalnumber'];
+        $userid = $_SESSION['id'];
 
-        $sql = "SELECT * FROM users WHERE username = '$loggedInUser'";
+        $sql = "SELECT * FROM users WHERE userid = '$userid'";
         $result = $link->query($sql);
 
         if ($result->num_rows == 1) {
@@ -29,17 +47,28 @@
             $email = $row['email'];
         }
 
-        echo "<p> User profile of: $loggedInUser </p>";
-        echo "<p> Make user able to edit username, email etc. </p>";
-        echo "<p> Email address: $email </p>"; // this cannot be displayed if salted and hashed
-        
+        echo "<section> <p> <b> Username:</b> $loggedInUser </p>";
+        echo "<p> <b>Email:</b> $email </p> </section>";
     }
-
     ?>
-    
-
+    <p>
+    <form action="change_username.php" method="POST">
+        <input type="text" name="new_username" placeholder="New Username" required>
+        <input type="submit" value="Change username"><br>
+    </form>
+    </p>
+    <p>
+    <form action="change_email.php" method="POST">
+        <input size="50" type="email" name="new_email" placeholder="New Email Adress (example@email.com)" required>
+        <input type="submit" value="Change email"><br>
+    </form>
+    </p>
     <?php
-        include "../footer.php";
+    if (isset($_GET['Message'])) {
+        echo $_GET['Message'];
+    }
+    
+    include "../footer.php";
     ?>
 </body>
 

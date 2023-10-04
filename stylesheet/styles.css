@@ -101,7 +101,7 @@ img {
 input[type=text],
 input[type=password],
 input[type=email] {
-    width: 40%;
+    width: 30%;
     padding: 0.625rem 0.625rem;
     box-sizing: border-box;
     border: 1px solid #757CB3;
