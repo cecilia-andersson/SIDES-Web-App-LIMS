@@ -93,7 +93,7 @@
         $row_fass = $fass_side_effects_result->fetch_assoc();
         # if $row_fass is not an empty string & not NULL, then the side effects gets displayed
         if ($row_fass["fass_side_effects"] !== "" && $row_fass["fass_side_effects"] !== null) 
-            {echo "<p>Fass side effects: " . $row_fass["fass_side_effects"] . "</p>"; }
+            {echo "<p><strong>Fass side effects: </strong>" . $row_fass["fass_side_effects"] . "</p>"; }
         else 
             {echo "<p>No Fass side effects found</p>";}
         
@@ -111,7 +111,7 @@
                         if($top_sides_result->num_rows > 0) {
                             $row4 = $top_sides_result->fetch_assoc();
                             if ($row4["user_side_effects"] !== "" && $row4["user_side_effects"] !==null)
-                                {echo "<p>Top user-reported side effects: " . $row4["user_side_effects"] . "</p>";}
+                                {echo "<p><strong>Top user-reported side effects: </strong>" . $row4["user_side_effects"] . "</p>";}
                             else
                                 {echo "<p>No side effects yet reported by users.</p>"; }
                         }
@@ -123,7 +123,17 @@
     } else {
         echo "Drug not found";
     }
+    ?>
 
+    <form action="../Analytics/analytics.php" method="POST">
+    <input type="submit" value="See more about this drug">
+    </form>
+
+    <form action="../Analytics/compare_analytics.php" method="POST">
+    <input type="submit" value="Compare any two drugs">
+    </form>
+
+    <?php
     // Close the database connection
     mysqli_close($link);
     ?>
