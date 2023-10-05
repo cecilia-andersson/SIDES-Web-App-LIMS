@@ -128,6 +128,32 @@ include "../footer.php";
 
 
     </main>
+
+<p>
+<br> 
+<form action="../Forms/changedrug_form.php" method="POST">
+    <strong>Something doesn't look right?</strong> <br>
+    <input type="submit" value="Update my contraceptive">
+</form>
+<br>
+<form action="../Forms/changesides_form.php" method="POST">
+    <input type="submit" value="Change my top SIDES">
+</form>
+<br>
+<strong> More options: </strong>
+<br>
+<form action="../Forms/rating_form.php" method="POST">
+    <input type="submit" value="Review a drug">
+</form>
+<br>
+<form action="../Forms/sidesreport_form.php" method="POST">
+    <input type="submit" value="Report Past SIDES">
+</form>
+
+</p>
+
+
 </body>
+
 
 </html>
