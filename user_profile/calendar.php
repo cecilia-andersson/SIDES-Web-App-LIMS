@@ -73,15 +73,17 @@
             color: #777;
             font-size: 16px;
             text-align: center;
-            margin: 10px;
-            
+            margin: 7px;
+            padding: 3px;
+            text-align: center;
+
         }
 
-        .days li .active {
-            background: #757CB3;
+        li.active {
+            background-color: #757CB3;
             color: white;
-            border-radius: 8px;
-            padding:8px;
+            border-radius: 4px;
+            
         }
     </style>
 </head>
@@ -141,7 +143,6 @@
             }
 
             // Create list items for the days of the month
-            // Create list items for the days of the month
             for (var day = 1; day <= numDays; day++) {
                 var listItem = document.createElement('li');
                 if (
@@ -149,15 +150,15 @@
                     currentDate.getMonth() === currentMonth &&
                     currentDate.getFullYear() === currentYear
                 ) {
-                    var span = document.createElement('span');
-                    span.textContent = day;
-                    span.classList.add('active');
-                    listItem.appendChild(span);
-                } else {
+                    listItem.classList.add('active'); // Apply the class to the li element
+                    listItem.textContent = day;
+                }
+                else {
                     listItem.textContent = day;
                 }
                 daysListElement.appendChild(listItem);
             }
+
 
         }
 

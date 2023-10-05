@@ -40,9 +40,11 @@ CREATE TABLE report (
 
 CREATE TABLE user_drug (
     user_drug_id INT PRIMARY KEY AUTO_INCREMENT,
-    userid INT,
+    userid INT NOT NULL,
     drug_id INT,
     reg_date Timestamp,
+    startdate date NOT NULL,
+    enddate date,
     FOREIGN KEY (userid) REFERENCES users(userid),
     FOREIGN KEY (drug_id) REFERENCES drugs(drug_id)
 );
