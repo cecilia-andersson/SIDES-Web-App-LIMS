@@ -22,6 +22,22 @@ CREATE TABLE users (
     pwd VARCHAR(60) NOT NULL
 );
 
+CREATE TABLE password_reset_temp (
+  email varchar(250) NOT NULL UNIQUE,
+  token varchar(32) NOT NULL,
+  expiry datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE report (
+    report_id INT PRIMARY KEY AUTO_INCREMENT,
+    userid INT,
+    side_effect INT,
+    intensity BOOLEAN NOT NULL,
+    review_date Timestamp,
+    FOREIGN KEY (userid) REFERENCES users(userid),
+    FOREIGN KEY (side_effect) REFERENCES side_effects(se_id)
+);
+
 CREATE TABLE user_drug (
     user_drug_id INT PRIMARY KEY AUTO_INCREMENT,
     userid INT,
