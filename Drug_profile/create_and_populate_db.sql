@@ -66,6 +66,16 @@ CREATE TABLE side_effects (
     se_name VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE forum_posts (
+    post_id INT PRIMARY KEY AUTO_INCREMENT,
+    userid INT,
+    user_drug_id INT, -- Reference to the user_drug table
+    post_text VARCHAR(255) NOT NULL,
+    post_date TIMESTAMP,
+    FOREIGN KEY (userid) REFERENCES users(userid),
+    FOREIGN KEY (user_drug_id) REFERENCES user_drug(user_drug_id)
+);
+
 -- R as in Report
 CREATE TABLE drug_association_report (
     R_association_id INT PRIMARY KEY AUTO_INCREMENT,

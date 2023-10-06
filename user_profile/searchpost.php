@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
     
@@ -28,9 +31,6 @@
     include "../footer.php";
 ?>
 
-
-
-
 <?php
 
 
@@ -59,14 +59,16 @@ if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
 
 ?>
 
-
 <?php
+if (isset($_GET['keyword'])) {
+    $searchKeyword=$_GET['keyword']; }
+
 
 $sql = "SELECT forum_posts.*, users.username, drugs.drug_brand
         FROM forum_posts
         INNER JOIN users ON forum_posts.userid = users.userid
         INNER JOIN user_drug ON forum_posts.user_drug_id = user_drug.user_drug_id
-        INNER JOIN drugs ON user_drug.drug_id = drugs.drug_id
+        INNER JOIN drugs ON user_drug.drug_id = drugs.drug_id WHERE username LIKE '%" . $searchKeyword . "%' OR drug_brand LIKE '%" . $searchKeyword . "%'
         ORDER BY forum_posts.post_date DESC";
 
 $result = $link->query($sql);
@@ -86,9 +88,10 @@ if($result->num_rows > 0){
             echo '</div>';
 
     }
+} else {
+    echo " <br> 0 results";
 }
 
 ?>
 </body>
 </html>
-
