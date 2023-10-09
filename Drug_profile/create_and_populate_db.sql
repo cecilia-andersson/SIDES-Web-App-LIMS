@@ -19,7 +19,8 @@ CREATE TABLE users (
     birthdate VARCHAR(8),
     uniquefour VARCHAR(60) NOT NULL,
     username VARCHAR(30) NOT NULL UNIQUE,
-    pwd VARCHAR(60) NOT NULL
+    pwd VARCHAR(60) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE -- How big? Need to be encrypted?
 );
 
 CREATE TABLE password_reset_temp (
@@ -31,7 +32,12 @@ CREATE TABLE password_reset_temp (
 CREATE TABLE block_ip (
     ip varchar(15),
     expiry datetime NOT NULL
-)
+);
+
+CREATE TABLE side_effects (
+    se_id INT PRIMARY KEY AUTO_INCREMENT, 
+    se_name VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE report (
     report_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -48,8 +54,8 @@ CREATE TABLE user_drug (
     userid INT NOT NULL,
     drug_id INT,
     reg_date Timestamp,
-    startdate date NOT NULL,
-    enddate date,
+    startdate DATE NOT NULL,
+    enddate DATE,
     FOREIGN KEY (userid) REFERENCES users(userid),
     FOREIGN KEY (drug_id) REFERENCES drugs(drug_id)
 );
@@ -66,10 +72,7 @@ CREATE TABLE review (
 );
 
 
-CREATE TABLE side_effects (
-    se_id INT PRIMARY KEY AUTO_INCREMENT, 
-    se_name VARCHAR(50) NOT NULL
-);
+
 
 CREATE TABLE forum_posts (
     post_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -153,6 +156,14 @@ VALUES
     ('Plan B One-Step', 'Emergency Contraceptive', 'Levonorgestrel', 'Lactose, Corn Starch, Magnesium Stearate'),
     ('Ella', 'Emergency Contraceptive', 'Ulipristal Acetate', 'Lactose, Magnesium Stearate, Corn Starch');
 
+INSERT INTO drug_association_fass (F_drug_fk_id, F_se_fk_id)
+VALUES
+    (1, 1),  -- Drug 1, Side Effect 1 is in FASS
+    (2, 1),  
+    (2, 2);
+
+
+
 
 INSERT INTO drug_association_report (R_drug_fk_id, R_se_fk_id, R_user_fk_id ,intensity, report_date)
 VALUES
@@ -162,8 +173,3 @@ VALUES
     
 
 
-INSERT INTO drug_association_fass (F_drug_fk_id, F_se_fk_id)
-VALUES
-    (1, 1),  -- Drug 1, Side Effect 1 is in FASS
-    (2, 1),  
-    (2, 2);
