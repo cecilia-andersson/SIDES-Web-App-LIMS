@@ -33,3 +33,8 @@ CREATE TABLE password_reset_temp (
   token varchar(32) NOT NULL,
   expiry datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE block_ip (
+    ip varchar(15),
+    expiry datetime NOT NULL
+)

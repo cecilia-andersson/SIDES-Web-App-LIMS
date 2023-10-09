@@ -28,6 +28,11 @@ CREATE TABLE password_reset_temp (
   expiry datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE block_ip (
+    ip varchar(15),
+    expiry datetime NOT NULL
+)
+
 CREATE TABLE report (
     report_id INT PRIMARY KEY AUTO_INCREMENT,
     userid INT,
