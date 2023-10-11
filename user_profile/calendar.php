@@ -86,7 +86,7 @@
             color: white;
         }
 
-        a {
+        .days li a {
             color: #777;
             font-size: 16px;
         }
