@@ -70,8 +70,6 @@
         }
 
         .days li {
-            color: #777;
-            font-size: 16px;
             text-align: center;
             margin: 7px;
             padding: 3px;
@@ -79,11 +77,18 @@
 
         }
 
-        li.active {
+        .days li.active{
             background-color: #757CB3;
-            color: white;
             border-radius: 4px;
-            
+        }
+
+        .days li.active a{
+            color: white;
+        }
+
+        a {
+            color: #777;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -145,18 +150,21 @@
             // Create list items for the days of the month
             for (var day = 1; day <= numDays; day++) {
                 var listItem = document.createElement('li');
+                var dayLink = document.createElement('a');
                 if (
                     currentDate.getDate() === day &&
                     currentDate.getMonth() === currentMonth &&
                     currentDate.getFullYear() === currentYear
                 ) {
                     listItem.classList.add('active'); // Apply the class to the li element
-                    listItem.textContent = day;
                 }
-                else {
-                    listItem.textContent = day;
-                }
-                daysListElement.appendChild(listItem);
+
+                dayLink.textContent = day; // Set the day as the anchor text
+                dayLink.href = 'your-link-here'; // Set the link for each day
+
+                listItem.appendChild(dayLink); // Append the anchor element to the list item
+                daysListElement.appendChild(listItem); // Append the list item to the days list
+
             }
 
 
