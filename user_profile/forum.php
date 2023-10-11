@@ -33,8 +33,6 @@
 
 <?php
 
-
-session_start();
 echo '<div style = "text-align:center;">';
 echo '<h1  a </h1>';
 echo '<form method="GET" action="searchpost.php">';
