@@ -1,20 +1,19 @@
 <?php
+// Validated and sanitized 11-10-2023
 
 include "../DB_connect.php";
 
 $inputUsername = $_POST['username'];
-$hashedAndSaltedPassword = password_hash($_POST['pwd'], $PASSWORD_BCRYPT); // "Using the PASSWORD_BCRYPT as the algorithm, will result in the password parameter being truncated to a maximum length of 72 bytes."
-$inputPersonnmr = $_POST['personnmr']; 
-$birthdate = substr($inputPersonnmr, 0, 8);
-$email = $_POST['email'];
-$email = filter_var($email, FILTER_SANITIZE_EMAIL);
-$email = filter_var($email, FILTER_VALIDATE_EMAIL);
-$sql_email = "SELECT * FROM users WHERE email = '$email'";
-$no_email = $link->query($sql_email);
+$hashedAndSaltedPassword = password_hash($_POST['pwd'], $PASSWORD_BCRYPT);
 
-if ($no_email->num_rows > 0) {
-    $message = urlencode("Error: Email is already connected to an account");
-    header("Location:../index.php?Message=".$message);
+// PERSONAL SECURITY NUMBER
+// sanitize personnummer and make sure user has reached the age of consent
+$inputPersonnmr = filter_var($_POST['personnmr'], FILTER_SANITIZE_NUMBER_INT); 
+$birthdate = substr($inputPersonnmr, 0, 8);
+$earliestBirthdate=date('Ymd', strtotime('-15 years'));
+if ($birthdate > $earliestBirthdate) {
+    $message = urlencode("You have to be older than 15 to create an account");
+    header("Location:register.php?Message=".$message);
     die;
 }
 
@@ -34,9 +33,23 @@ while($row = $result_birthdates->fetch_assoc()) {
     }
 }
 
-// For report: prove that if a perpetrator already knows the personal number, they don't need to hack (?)
-
 $uniquefour = password_hash(substr($inputPersonnmr, 8), $PASSWORD_BCRYPT); // salt & hash four last digits
+
+// EMAIL
+// validate and sanitize email
+$email = $_POST['email'];
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+// make sure email is unique
+$sql_email = "SELECT * FROM users WHERE email = '$email'";
+$no_email = $link->query($sql_email);
+
+if ($no_email->num_rows > 0) {
+    $message = urlencode("Error: Email is already connected to an account");
+    header("Location:register.php?Message=".$message);
+    die;
+}
 
 $sql1 = "INSERT INTO users (birthdate, uniquefour, username, pwd, email) VALUES (?, ?, ?, ?, ?)";
 $stmt1 = $link->prepare($sql1);

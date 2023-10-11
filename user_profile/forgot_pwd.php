@@ -24,6 +24,7 @@
     <h3> Forgot password </h3>
     <p>
     <?php
+    // Validated and sanitized 11-10-2023
     if (isset($_POST["email"])){ // if an email should be sent
         $recipient = $_POST["email"];
         $recipient = filter_var($recipient, FILTER_SANITIZE_EMAIL);
@@ -93,7 +94,6 @@
                     $message.= "<p>Best regards, the SIDES team.</p>";
 
                     $mail->Body = $message;
-                    echo $message;
 
                     try {
                         $mail->send();

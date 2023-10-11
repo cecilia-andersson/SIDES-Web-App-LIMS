@@ -1,12 +1,8 @@
 <?php
-
+// Validated and sanitized 11-10-2023
 session_start();
 include "../DB_connect.php";
 $ip=$_SERVER['REMOTE_ADDR'];
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 $block_ip = "SELECT * FROM block_ip WHERE ip = '$ip'";
 $result = $link->query($block_ip);
@@ -65,14 +61,18 @@ if (isset($_POST['username']) && isset($_POST['login_password'])) {
 }
 }
 
+// Validate
 $inputUsername = validate($_POST['username']);
 $inputPassword = validate($_POST['login_password']);
+// Sanitize
+$sql = "SELECT * FROM users WHERE username = ?";
+$stmt = $link->prepare($sql);
+$stmt->bind_param("s", $inputUsername);
+$usernameexists = $stmt->execute();
+$usernameexists = $stmt->get_result();
 
-$sql = "SELECT * FROM users WHERE username = '$inputUsername'";
-$result = $link->query($sql);
-
-if ($result->num_rows == 1) {
-    $row = $result->fetch_assoc();
+if ($usernameexists->num_rows == 1) {
+    $row = $usernameexists->fetch_assoc();
 
     if (password_verify($inputPassword, $row["pwd"])) {
         $_SESSION['username'] = $inputUsername;

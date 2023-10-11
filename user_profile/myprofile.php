@@ -2,6 +2,7 @@
 <html>
 
 <?php
+// Validated and sanitized -- assuming sessions variables can't be edited.
 include "../footer.php";
 ?>
 

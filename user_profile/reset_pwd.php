@@ -15,16 +15,22 @@
     <h3> Forgot password </h3>
     <p>
     <?php
+    // Validated and sanitized 11-10-2023
+
+    // ends up here once the side reloads when the form has been filled in
     if (isset($_POST['email']) && isset($_POST['pwd'])) {
-        $email = $_POST['email'];
-        $sql1 = "SELECT * FROM users WHERE email='$email'";
+        $resetemail = $_POST['email'];
+        $resetemail = filter_var($resetemail, FILTER_SANITIZE_EMAIL);
+        $resetemail = filter_var($resetemail, FILTER_VALIDATE_EMAIL);
+        
+        $sql1 = "SELECT * FROM users WHERE email='$resetemail'";
         $result1 = $link->query($sql1);
 
         $row = $result1->fetch_assoc();
         
         if (!password_verify($_POST['pwd'], $row["pwd"])) { // new pwd
             $newpwd = password_hash($_POST['pwd'], $PASSWORD_BCRYPT);
-            $sql2 = "UPDATE users SET pwd='$newpwd' WHERE email='$email'";
+            $sql2 = "UPDATE users SET pwd='$newpwd' WHERE email='$resetemail'";
             
             if ($link->query($sql2)) {
                 $message = urlencode("Password updated successfully");
@@ -41,23 +47,29 @@
             die;
         }
     }
+    // If there is no token
     elseif (!isset($_GET["token"])) {
         $message = urlencode("You do not have a password token.");
         header("Location:reset_pwd.php?Message=".$message);
         die; // shouldn't be able to reset pwd
     }
-    else { // if token is ok
+    // If they have a token
+    else {
         $token = $_GET["token"];
-        $sql = "SELECT * FROM password_reset_temp WHERE token='$token'";
-        $result = $link->query($sql);
+
+        $sql = "SELECT * FROM password_reset_temp WHERE token=?";        
+        $stmt = $link->prepare($sql);
+        $stmt->bind_param("s", $token);
+        $tokenexists = $stmt->execute();
+        $tokenexists = $stmt->get_result();
         
-        if ($result) { // token in table
-            $row = $result->fetch_assoc();
+        if ($tokenexists->num_rows == 1) { // token in table
+            $row = $tokenexists->fetch_assoc();
 
             // check that the token is valid
             $dateTimeFormat = mktime(date("H"), date("i"), date("s"), date("m") ,date("d"), date("Y"));
             $currentDateTime = date("Y-m-d H:i:s", $dateTimeFormat);
-            $email = $row["email"];
+            $email = $row["email"]; // save for form
 
             if ($currentDateTime <= $row['expiry']) { // valid token
                 // remove token

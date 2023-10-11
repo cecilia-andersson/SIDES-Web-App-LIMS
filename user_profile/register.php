@@ -32,7 +32,7 @@
         </p>
         <p>
             <input type="text" name="personnmr" placeholder="Personal Identity Number (YYYYMMDDXXXX)"
-                pattern="(19[0-9]{2}|20[0-1][0-9])[0-9]{8}" required>
+                pattern="(19[0-9]{2}|20[0-9][0-9])[0-9]{8}" required>
         </p>
         <p>
             <input size="50" type="email" name="email" placeholder="E-mail (example@email.com)" required>

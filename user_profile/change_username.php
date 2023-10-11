@@ -30,7 +30,6 @@ $stmt2 = $link->prepare($sql);
 $stmt2->bind_param("ss", $newUsername, $userid);
 $result = $stmt2->execute();
 
-
 if ($result) {
     $message = urlencode("Username changed successfully");
     header("Location:edit_myprofile.php?Message=" . $message);
