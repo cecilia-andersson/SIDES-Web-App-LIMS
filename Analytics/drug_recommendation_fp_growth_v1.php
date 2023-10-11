@@ -276,31 +276,23 @@
 
                         // Calculate the "Satisfaction Confidence" in terms of stars
                         $starRating = '';
-                        $percentage = 0;
-
                         if ($satisfactionConfidence >= 1 && $satisfactionConfidence < 10) {
                             $starRating = '☆☆☆☆☆'; // 0 stars
-                            $percentage = 5; // Set the percentage based on your criteria
                         } elseif ($satisfactionConfidence >= 10 && $satisfactionConfidence < 30) {
                             $starRating = '★☆☆☆☆'; // 1 star
-                            $percentage = 15; // Set the percentage based on your criteria
                         } elseif ($satisfactionConfidence >= 30 && $satisfactionConfidence < 50) {
                             $starRating = '★★☆☆☆'; // 2 stars
-                            $percentage = 40; // Set the percentage based on your criteria
                         } elseif ($satisfactionConfidence >= 50 && $satisfactionConfidence < 70) {
                             $starRating = '★★★☆☆'; // 3 stars
-                            $percentage = 60; // Set the percentage based on your criteria
                         } elseif ($satisfactionConfidence >= 70 && $satisfactionConfidence < 90) {
                             $starRating = '★★★★☆'; // 4 stars
-                            $percentage = 80; // Set the percentage based on your criteria
                         } elseif ($satisfactionConfidence >= 90) {
                             $starRating = '★★★★★'; // 5 stars
-                            $percentage = 100; // Set the percentage based on your criteria
                         } else {
                             $starRating = '☆☆☆☆☆'; // 0 stars
                         }
 
-                        echo $starRating . ' ' . $percentage . '%';
+                        echo $starRating . ' ' . $satisfactionConfidence . '%';
                         echo ')</span></li>';
 
                         // Mark this rule as seen in the uniqueRules array
