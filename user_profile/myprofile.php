@@ -90,10 +90,11 @@ include "../footer.php";
                         $sql = "SELECT * FROM user_drug WHERE userid = $userid";
                         $result = $link->query($sql);
                         if ($result->num_rows > 0) {
+                            $noDrug = False;
                             while ($row = $result->fetch_assoc()) {
-                                $EndDate=NULL;
+                                $EndDate = NULL;
                                 $drug_id = $row["drug_id"];
-                                $date = $row["reg_date"];
+                                $date = $row["startdate"];
                                 $Date = date("Y-m-d", strtotime($date));
                                 if ($row["enddate"] != NULL) {
                                     $enddate = $row["enddate"];
@@ -104,7 +105,7 @@ include "../footer.php";
                                 if ($result1->num_rows > 0) {
                                     $row = $result1->fetch_assoc();
                                     $drug_brand = $row["drug_brand"];
-                                    if ($EndDate==NULL) {
+                                    if ($EndDate == NULL) {
                                         echo "<p><a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a><br>since $Date</p>";
                                     } else {
                                         echo "<p><a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a><br>ended $EndDate</p>";
@@ -114,11 +115,17 @@ include "../footer.php";
                                 }
                             }
 
-
                         } else {
-                            echo "<p>No reported contraceptives</p>";
+                            $noDrug = True;
+                            ?>
+                            <p>No reported contraceptives</p>
+                            <form action="../Forms/add_drug_form.php" method="POST">
+                                <input type="submit" value="Add contraceptive">
+                            </form>
+                            <?php
                         }
                         ?>
+
                     </div> <!-- Contraceptives -->
                     <?php
                     // PROFILE INFO
@@ -146,10 +153,16 @@ include "../footer.php";
                 <br>
                 <p>
                     <strong>Something doesn't look right?</strong> <br>
-                <form action="../Forms/changedrug_form.php" method="POST">
-                    <input type="submit" value="Update my contraceptive">
-                </form>
-                <p>
+                    <?php
+                    if ($noDrug==False) { ?>
+                    <form action="../Forms/changedrug_form.php" method="POST">
+                        <input type="submit" value="Update my contraceptive">
+                    </form>
+
+                    <?php
+                    }
+                    ?>
+
                 <p>
                 <form action="../Forms/changesides_form.php" method="POST">
                     <input type="submit" value="Change my top SIDES">
