@@ -44,8 +44,8 @@ $stmt1->bind_param("sssss", $birthdate, $uniquefour, $inputUsername, $hashedAndS
 $result1 = $stmt1->execute();
 
 if ($result1) {
-    $message = urlencode("New account created successfully");
-    header("Location:register.php?Message=".$message);
+    $message = urlencode("New account created successfully. You can now sign in.");
+    header("Location:login_page.php?Message=".$message);
     die;
 } else {
     $message = urlencode("Error: Account could not be created");
