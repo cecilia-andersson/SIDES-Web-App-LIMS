@@ -78,7 +78,7 @@ include "../footer.php";
                 ?>
                 <div class="left_content"> <!-- Left content -->
                     <div class='contraceptives'> <!-- Contraceptives -->
-                        <h4>Current contraceptives</h4>
+                        <h4>Contraceptives</h4>
                         <?php
                         $sql = "SELECT userid FROM users WHERE username = '$loggedInUser'";
                         $result = $link->query($sql);
@@ -91,19 +91,30 @@ include "../footer.php";
                         $result = $link->query($sql);
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
+                                $EndDate=NULL;
                                 $drug_id = $row["drug_id"];
                                 $date = $row["reg_date"];
                                 $Date = date("Y-m-d", strtotime($date));
+                                if ($row["enddate"] != NULL) {
+                                    $enddate = $row["enddate"];
+                                    $EndDate = date("Y-m-d", strtotime($enddate));
+                                }
                                 $sql1 = "SELECT drug_brand FROM drugs WHERE drug_id = $drug_id";
                                 $result1 = $link->query($sql1);
                                 if ($result1->num_rows > 0) {
                                     $row = $result1->fetch_assoc();
                                     $drug_brand = $row["drug_brand"];
-                                    echo "<p><a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a> since $Date</p>";
+                                    if ($EndDate==NULL) {
+                                        echo "<p><a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a><br>since $Date</p>";
+                                    } else {
+                                        echo "<p><a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a><br>ended $EndDate</p>";
+                                    }
                                 } else {
                                     echo "<p>Drug_id does not exist in the drug table</p>";
                                 }
                             }
+
+
                         } else {
                             echo "<p>No reported contraceptives</p>";
                         }
