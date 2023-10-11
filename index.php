@@ -45,7 +45,7 @@
     <section style="margin-top: 10vh;">
         <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..? </h4>
         <p>
-        <form action="Drug_profile/s_p.php" method="POST">
+        <form action="Drug_profile/s_p.php" method="GET">
             <input type="text" name="search_query" placeholder="Search">
         </form>
         </p>

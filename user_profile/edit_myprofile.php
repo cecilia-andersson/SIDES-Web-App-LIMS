@@ -54,20 +54,18 @@
     <p>
     <form action="change_username.php" method="POST">
         <input type="text" name="new_username" placeholder="New Username" required>
-        <input type="submit" value="Change username"><br>
+        <input type="submit" value="Change username">
     </form>
-    </p>
-    <p>
     <form action="change_email.php" method="POST">
         <input size="50" type="email" name="new_email" placeholder="New Email Adress (example@email.com)" required>
-        <input type="submit" value="Change email"><br>
+        <input type="submit" value="Change email">
     </form>
     </p>
     <?php
     if (isset($_GET['Message'])) {
         echo $_GET['Message'];
     }
-    
+
     include "../footer.php";
     ?>
 </body>
