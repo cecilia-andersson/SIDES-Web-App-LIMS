@@ -1,25 +1,32 @@
-// Sample data: Replace this with your actual data retrieval logic
-const reviews = [
-    { userId: 1, drugId: 'X', rating: 3 },
-    { userId: 1, drugId: 'Y', rating: 2 },
-    { userId: 1, drugId: 'Z', rating: 5 },
-    // ... more reviews
-];
+// Import the apriori library
+const Apriori = require('apriori-js');
 
-// Function to find frequent itemsets using Apriori (you can use a library or implement it)
-function findFrequentItemsets(reviews) {
-    // Implement your Apriori algorithm here
-    // Return frequent itemsets
+// JavaScript code to mine association rules using Apriori
+function mineRules() {
+    // Get user input from the form
+    const userInput = document.getElementById('userInput').value;
+
+    // Split the user input into an array of items (e.g., drugs)
+    const items = userInput.split(',');
+
+    // Perform Apriori rule mining
+    const apriori = new Apriori();
+    const transactions = [items]; // Create a transaction from user input
+    const { rules } = apriori.analyze(transactions, { support: 0.2, confidence: 0.6 });
+
+    // Display the mined rules (you can customize this part)
+    const ruleList = document.getElementById('ruleList');
+    ruleList.innerHTML = '';
+    rules.forEach((rule) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${rule.antecedent.join(', ')} => ${rule.consequent.join(', ')} (Support: ${rule.support}, Confidence: ${rule.confidence})`;
+        ruleList.appendChild(listItem);
+    });
 }
 
-// Function to generate drug recommendations based on rules
-function generateRecommendations(frequentItemsets, userId) {
-    // Implement recommendation logic using frequent itemsets and user data
-    // For example, find rules like `{X, Y} -> {Z}` and recommend Z to the user
-}
-
-// Usage example
-const frequentItemsets = findFrequentItemsets(reviews);
-const userId = 1; // Replace with the user's actual ID
-const recommendations = generateRecommendations(frequentItemsets, userId);
-console.log('Recommendations for User ' + userId + ':', recommendations);
+// Add an event listener to the form submission
+const userInputForm = document.getElementById('userInputForm');
+userInputForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the form from submitting and reloading the page
+    mineRules(); // Call mineRules when the form is submitted
+});

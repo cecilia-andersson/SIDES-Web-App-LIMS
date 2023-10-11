@@ -4,15 +4,16 @@
     <title>Analytics Page</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
 
-    <!-- Include Chart.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-
 </head>
 <body>
     <header>
         <?php
         include "../navigation.php";
         ?>
+        <!-- Include apriori.js library -->
+        <script src="../Analytics/apriori.js"></script>
+
+       
     </header>
     <h2 id="header"></h2>
     <?php
@@ -23,7 +24,7 @@
     $username = "root";
     $password = "root";
     $dbname = "sides";
-    $side_effect = $_GET['side_effect']; // Get user input
+    // $side_effect = $_GET['side_effect']; // Get user input
     //$side_effect = 'Dizziness';
     //$side_effect = 'Headache';
     // Create connection
@@ -33,21 +34,38 @@
         die("Connection failed: " . mysqli_connect_error());
     }
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // ~~ Retrieving user input of the side effect that the histogram should be based on ~~
+    // ~~ Fetch user reviews and sort by review date ~~
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // PHP code to retrieve user reviews and sort them by review date
+    function getUserReviews($userId) {
+        global $link;
+        $query = "SELECT drug_id, rating, review_date FROM review WHERE userid = $userId ORDER BY review_date ASC";
+        $result = mysqli_query($link, $query);
+        $reviews = array();
 
-// Function to retrieve user reviews from the database
-function getUserReviews($userId) {
-    global $db;
-    $query = "SELECT drug_id, rating FROM review WHERE userid = :userId";
-    $stmt = $db->prepare($query);
-    $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $reviews[] = $row;
+            }
+            mysqli_free_result($result);
+        } else {
+            echo "Error fetching user reviews: " . mysqli_error($link);
+        }
 
-// Usage example
-$userId = 1; // Replace with the user's actual ID
+        return $reviews;
+    }
+   ?>
+</body>
+<html>
+<?php
+// Example: Retrieve and sort reviews for a user
+$userId = 1;
 $userReviews = getUserReviews($userId);
 print_r($userReviews);
 ?>
+<h2>Mined Association Rules:</h2>
+<ul id="ruleList"></ul>
+
+
+
+
