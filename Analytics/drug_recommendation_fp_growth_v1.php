@@ -74,7 +74,7 @@
     $transactions = array();
 
     // Set the minimum support and confidence thresholds
-    $minSupport = 1;
+    $minSupport = 2;
     $minConfidence = 0.1;
 
     // Fetching unique user IDs
