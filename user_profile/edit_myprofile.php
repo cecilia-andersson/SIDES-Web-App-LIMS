@@ -39,12 +39,18 @@
         $loggedInUser = $_SESSION['username'];
         $userid = $_SESSION['id'];
 
-        $sql = "SELECT * FROM users WHERE userid = '$userid'";
-        $result = $link->query($sql);
+        $sql = "SELECT * FROM users WHERE userid=? AND username=?";
+        $stmt = $link->prepare($sql);
+        $stmt->bind_param("ss", $userid, $loggedInUser);
+        $result = $stmt->execute();
 
-        if ($result->num_rows == 1) {
+        if ($result) {
+            $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             $email = $row['email'];
+        } 
+        else {
+            die;
         }
 
         echo "<section> <p> <b> Username:</b> $loggedInUser </p>";
@@ -59,6 +65,11 @@
     <form action="change_email.php" method="POST">
         <input size="50" type="email" name="new_email" placeholder="New Email Adress (example@email.com)" required>
         <input type="submit" value="Change email">
+    </form>
+    </p>
+    <p>
+    <form action="myprofile.php">
+        <input type="submit" value="Back to My profile" style="background-color:#1A3038" />
     </form>
     </p>
     <?php
