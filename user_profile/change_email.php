@@ -1,4 +1,5 @@
 <?php
+// Sanitized 11-10-2023
 
 include "../DB_connect.php";
 session_start();
@@ -8,7 +9,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
-    $userid = $_SESSION['id']; // can this be changed?
+    $userid = $_SESSION['id'];
 }
 
 
@@ -21,9 +22,9 @@ $newEmail = filter_var($newEmail, FILTER_VALIDATE_EMAIL);
 $sql_newEmail = "SELECT * FROM users WHERE email = ?";
 $stmt = $link->prepare($sql_newEmail);
 $stmt->bind_param("s", $newEmail);
-$result = $stmt->execute();
+$no_new_email = $stmt->execute();
 
-if ($result->num_rows > 0) {
+if ($no_new_email->num_rows > 0) {
     $message = urlencode("Error: Email is already connected to an account");
     header("Location:edit_myprofile.php?Message=" . $message);
     die;

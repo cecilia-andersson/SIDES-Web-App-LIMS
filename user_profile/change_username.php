@@ -1,12 +1,8 @@
 <?php
+// Sanitized 11-10-2023
 
 include "../DB_connect.php";
 session_start();
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 
 if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
     $userid = $_SESSION['id'];
@@ -27,11 +23,10 @@ if ($no_newUsername->num_rows > 0) {
 }
 $stmt->close(); // allow for more sql queries to run
 
-$sql = "UPDATE users SET username=? WHERE userid=$userid"; // issue with id integer. Not fully prepared
+$sql = "UPDATE users SET username=? WHERE userid=?"; // issue with id integer. Not fully prepared
 $stmt2 = $link->prepare($sql);
-$stmt2->bind_param("s", $newUsername);
+$stmt2->bind_param("ss", $newUsername, $userid);
 $result = $stmt2->execute();
-
 
 if ($result) {
     $message = urlencode("Username changed successfully");
