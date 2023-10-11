@@ -17,6 +17,7 @@
     </header>
     <h2 id="header"></h2>
     <?php
+    phpinfo();
 
         
     // Connecting to the database
@@ -54,6 +55,43 @@
 
         return $reviews;
     }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~ Sample function to preprocess ratings to binary values ~~
+    // ~~ ( Either Good (4-5) or Bad(1-3) )                  ~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    // 
+    function preprocessRatings($rating) {
+        // Convert ratings to binary (e.g., 0 for ratings 4 and 5, 1 otherwise)
+        return ($rating >= 4) ? 0 : 1;
+    }
+    // Include the library
+    require 'path/to/fp-growth.php';
+
+    // Sample dataset (replace with your data)
+    $transactions = [
+        ['item1', 'item2', 'item3'],
+        ['item2', 'item3', 'item4'],
+        // Add more transactions
+    ];
+
+    // Create an FP-Growth instance
+    $fpGrowth = new FpGrowth();
+
+    // Generate frequent itemsets
+    $frequentItemsets = $fpGrowth->findFrequentItemsets($transactions, $minSupport);
+
+    // Generate association rules
+    $associationRules = $fpGrowth->generateRules($frequentItemsets, $minConfidence);
+
+    // Filter or prune rules as necessary
+    // For example, remove rules with low confidence
+
+    // Return association rules as JSON
+    echo json_encode($associationRules);
+
+
    ?>
 </body>
 <html>
