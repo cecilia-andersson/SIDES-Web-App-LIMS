@@ -75,7 +75,9 @@ $result = $link->query($sql);
 
 if($result->num_rows > 0){
     while ($row = $result->fetch_assoc()){
-        echo '<div class="forum-post">';
+        $postID = $row['postID'];
+            echo '<a href="/LIMS-Flubber/user_profile/post_w_comments.php' . $postID . '">';
+            echo '<div class="forum-post">';
             echo '<div>';
             echo '<p><strong>User:</strong> ' . $row['username'] . '</p>';
             echo '<p><strong>Post Text:</strong> ' . $row['post_text'] . '</p>';
@@ -86,6 +88,7 @@ if($result->num_rows > 0){
             echo '<p><strong>Post Date:</strong> ' . $row['post_date'] . '</p>';
             echo '</div>';
             echo '</div>';
+            echo '</a>';
 
     }
 } else {

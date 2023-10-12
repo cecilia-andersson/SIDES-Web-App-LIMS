@@ -20,7 +20,6 @@
     </header>
     <h2> Register </h2>
 
-    <!-- POST / PUT? Urlencode? -->
     <form action="insertdata.php" method="POST">
         <p>
             <input type="text" name="username" placeholder="Username" required>
@@ -36,6 +35,10 @@
         </p>
         <p>
             <input size="50" type="email" name="email" placeholder="E-mail (example@email.com)" required>
+        </p>
+        <?php echo 'I have read and accept SIDES <a href="http://localhost:443/user_profile/privacypolicy.php">privacy policy</a>.';?>
+        <p>
+            <input type="checkbox" name="acceptGDPR" value="I accept" required> 
         </p>
         <input type="submit" value="Submit"><br>
     </form>

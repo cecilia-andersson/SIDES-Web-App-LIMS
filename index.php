@@ -44,11 +44,16 @@
 
     <section style="margin-top: 10vh;">
         <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..? </h4>
+        <p> Search for a contraceptive to see our user's experienced side effects and ratings, 
+            as well as FASS official side effects for a range of contraceptives. <p>
         <p>
         <form action="Drug_profile/s_p.php" method="GET">
             <input type="text" name="search_query" placeholder="Search">
         </form>
         </p>
+        <p style="color: #757CB3; font-size: 14px "> *Search for a contraceptive to see our user's 
+        experienced side effects and ratings, as well as FASS official side effects for a range of 
+        contraceptives. </p>
     </section>
 
     <footer>
