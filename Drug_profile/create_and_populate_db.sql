@@ -82,8 +82,20 @@ CREATE TABLE forum_posts (
     user_drug_id INT, -- Reference to the user_drug table
     post_text VARCHAR(255) NOT NULL,
     post_date TIMESTAMP,
+    post_likes INT,
     FOREIGN KEY (userid) REFERENCES users(userid),
     FOREIGN KEY (user_drug_id) REFERENCES user_drug(user_drug_id)
+);
+
+CREATE TABLE comments (
+	commentid INT PRIMARY KEY AUTO_INCREMENT,
+	user_id INT,
+	post_id INT,
+	comment_text VARCHAR(255) NOT NULL,
+	comment_likes INT,
+	comment_date TIMESTAMP,
+	FOREIGN KEY (user_id) REFERENCES users(userid)
+	FOREIGN KEY (post_id) REFERENCES forum_posts(post_id)
 );
 
 -- R as in Report

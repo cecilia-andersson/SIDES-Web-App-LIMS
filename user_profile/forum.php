@@ -33,6 +33,8 @@
 
 <?php
 
+
+session_start();
 echo '<div style = "text-align:center;">';
 echo '<h1  a </h1>';
 echo '<form method="GET" action="searchpost.php">';
@@ -71,7 +73,11 @@ $result = $link->query($sql);
 
 if($result->num_rows > 0){
     while ($row = $result->fetch_assoc()){
-        echo '<div class="forum-post">';
+        $post_likes = $row['post_likes'];
+        $postID = $row['post_id'];
+        $userID = $row['userid'];
+            echo '<a href ="post_w_comments.php?postID=' . $postID . '">';
+            echo '<div class="forum-post">';
             echo '<div>';
             echo '<p><strong>User:</strong> ' . $row['username'] . '</p>';
             echo '<p><strong>Post Text:</strong> ' . $row['post_text'] . '</p>';
@@ -82,6 +88,14 @@ if($result->num_rows > 0){
             echo '<p><strong>Post Date:</strong> ' . $row['post_date'] . '</p>';
             echo '</div>';
             echo '</div>';
+            echo '</a>';
+
+            echo '<form action="/LIMS-Flubber/user_profile/likes_post.php" method="POST">'; /*?postID=' . $postID . '*/
+            echo '<input type="hidden" name="postID" value="' . $postID . '">';
+            echo '<input type="hidden" name="userID" value="' . $userID . '">';
+            echo '<input type="submit" value="&#x1F44D" />' . " " . $post_likes . " " . "likes" . '' ;
+            echo '</form>';
+            /*echo '<a href="/LIMS-Flubber/likes.php?postID=' . $postID . '">&#x1F44D; Like</a>';*/
 
     }
 }
