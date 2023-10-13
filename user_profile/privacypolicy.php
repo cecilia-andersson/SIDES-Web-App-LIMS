@@ -123,19 +123,21 @@
                     </table>
                 </p>
                 </li>
-                <li>How do we collect your data?</li>
+                <li>How do we collect your data?
                 <p style="color: #8f8f8f";> You directly provide SIDES with all the personal data we collect. This occurs during actions on our website, such as:
                 <ol style="color: #8f8f8f";> 
                     <li>Account registration (username, personnummer, password, email address)</li>
                     <li>Submitting information forms (“Add contraceptive,” “Report symptoms”)</li>
                 </ol>
                 </p>
-                <li>How do we store your data?</li>
+                </li>
+                <li>How do we store your data?
                 <p style="color: #8f8f8f";> 
                 SIDES stores your data securely on a local server. Unless you request that SIDES remove your data (see section 3.1), 
                 your personal data is stored in this location for up to 80 years. Some categories of data are stored for less time, as 
                 listed in section 1.1. After this time period expires, your personal data is automatically deleted.
                 </p>
+                </li>
             </ol>
         </li>
         <li> <b>Cookies</b>
