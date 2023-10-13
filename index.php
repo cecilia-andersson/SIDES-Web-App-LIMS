@@ -53,9 +53,11 @@
         contraceptives. </p>
     </section>
 
-    <?php
-    include "footer.php";
-    ?>
+    <footer>
+        <a href="user_profile/contact.php">Contact</a>
+        <a href="user_profile/aboutus.php">About us</a>
+        <a href="user_profile/privacypolicy.php">About us</a>
+    </footer>
 
 </body>
 
