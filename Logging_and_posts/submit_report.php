@@ -6,12 +6,17 @@
         $userid = $_SESSION['id'];
     }
 
+    $userid = 1;// for testing without session
+
+
+
     if(isset($_POST['selectDate'])) {
         $review_date = mysqli_real_escape_string($link, $_POST['selectDate']); //sanitize? 
     } else {
     }
 
-    if (isset($_POST['side_effects']) && is_array($_POST['side_effects'])) {
+    
+//    if (isset($_POST['side_effects']) && is_array($_POST['side_effects'])) {
         $sideEffects = $_POST['side_effects'];
         $sideEffectsIntensities = $_POST['side_effects_intensity'];
 
@@ -27,10 +32,10 @@
             $stmt->execute();
         }
 
-        echo "Report submitted successfully!"; // this should be printed over the screen for a second 
-    } else {
-        echo "No side effects selected!";
-    }
+       // echo "Report submitted successfully!"; // this should be printed over the screen for a second 
+  //  } else {
+      //  echo "No side effects selected!";
+    //}
 
 
 

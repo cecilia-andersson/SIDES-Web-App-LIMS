@@ -113,6 +113,7 @@
     <h2>Search contraceptives </h2>
 
     <?php
+    include "../Logging_and_posts/process_form.php";
     $servername = "localhost";
     $username = "root";
     $password = "root";
@@ -235,88 +236,80 @@
 
 
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $dbname = "sides";
+        include "../DB_connect.php";
+        session_start();
+        
+        // Initialize filter variables
+        $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
 
-    // Create connection
-    $link = mysqli_connect($servername, $username, $password, $dbname);
-
-    if (mysqli_connect_error()) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    // Initialize filter variables
-    $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
-
-    if (isset($_GET['search_query']) && !empty(trim($_GET['search_query']))) {
-        $search_query = trim($_GET['search_query']);
-        echo '<div class="search-results">Search results for "' . htmlspecialchars($search_query) . '":</div>';
-    } else {
-        $search_query = "";
-        echo '<div class="search-results">Search results:</div>';
-    }
-
-    $filter_brand = isset($_GET['filter_brand']) ? $_GET['filter_brand'] : '';
-    $filter_class = isset($_GET['filter_class']) ? $_GET['filter_class'] : '';
-    $filter_active_ingredient = isset($_GET['filter_active_ingredient']) ? $_GET['filter_active_ingredient'] : '';
-
-    // Build the SQL query based on filter criteria
-    $sql = "SELECT drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, drugs.drug_id
-        FROM drugs
-        WHERE (drug_brand LIKE '%$search_query%'
-            OR drug_class LIKE '%$search_query%'
-            OR drug_active_ingredient LIKE '%$search_query%'
-            OR drug_inactive_ingredient LIKE '%$search_query%')";
-
-    // code to implement filtering here - need to make them connected to the actual attribute names. 
-    
-
-    if (!empty($filter_brand)) {
-        $sql .= " AND drug_brand = '$filter_brand'";
-    }
-
-    if (!empty($filter_class)) {
-        $sql .= " AND drug_class = '$filter_class'";
-    }
-
-    if (!empty($filter_active_ingredient)) {
-        $sql .= " AND drug_active_ingredient = '$filter_active_ingredient'";
-    }
-
-    if (!empty($sort_by)) {
-        $sql .= " ORDER BY $sort_by";
-    }
-
-    $result = $link->query($sql); // is it ok that I am concatenating this`? I I am input validating the search input. Could not get this to work with prepared sql statements
-    
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $drug_id = $row["drug_id"];
-            $drug_brand = $row["drug_brand"];
-            $drug_class = $row["drug_class"];
-            $drug_active_ingredient = $row["drug_active_ingredient"];
-            $drug_inactive_ingredient = $row["drug_inactive_ingredient"];
-
-            // Generate collapsible elements for each result
-            echo "<button class='collapsible'>$drug_brand</button>";
-            echo "<div class='content'>";
-            echo "<p><a href='nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a></p>";
-            echo "<p>Drug Class: $drug_class</p>";
-            echo "<p>Active Ingredient: $drug_active_ingredient</p>";
-            echo "<p>Inactive Ingredient: $drug_inactive_ingredient</p>";
-            echo "</div>";
+        if (isset($_GET['search_query']) && !empty(trim($_GET['search_query']))) {
+            $search_query = trim($_GET['search_query']);
+            echo '<div class="search-results">Search results for "' . htmlspecialchars($search_query) . '":</div>';
+        } else {
+            $search_query = "";
+            echo '<div class="search-results">Search results:</div>';
         }
-    } else {
-        echo "0 results";
-    }
 
-    // Close the database connection
-    mysqli_close($link);
-    ?>
-    <?php
-    include "../footer.php";
+        $filter_brand = isset($_GET['filter_brand']) ? $_GET['filter_brand'] : '';
+        $filter_class = isset($_GET['filter_class']) ? $_GET['filter_class'] : '';
+        $filter_active_ingredient = isset($_GET['filter_active_ingredient']) ? $_GET['filter_active_ingredient'] : '';
+
+        // Build the SQL query based on filter criteria
+        $sql = "SELECT drugs.drug_class, drugs.drug_brand, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, drugs.drug_id
+            FROM drugs
+            WHERE (drug_brand LIKE '%$search_query%'
+                OR drug_class LIKE '%$search_query%'
+                OR drug_active_ingredient LIKE '%$search_query%'
+                OR drug_inactive_ingredient LIKE '%$search_query%')";
+
+        // code to implement filtering here - need to make them connected to the actual attribute names. 
+        
+
+        if (!empty($filter_brand)) {
+            $sql .= " AND drug_brand = '$filter_brand'";
+        }
+
+        if (!empty($filter_class)) {
+            $sql .= " AND drug_class = '$filter_class'";
+        }
+
+        if (!empty($filter_active_ingredient)) {
+            $sql .= " AND drug_active_ingredient = '$filter_active_ingredient'";
+        }
+
+        if (!empty($sort_by)) {
+            $sql .= " ORDER BY $sort_by";
+        }
+
+        $result = $link->query($sql); // is it ok that I am concatenating this`? I I am input validating the search input. Could not get this to work with prepared sql statements
+        
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $drug_id = $row["drug_id"];
+                $drug_brand = $row["drug_brand"];
+                $drug_class = $row["drug_class"];
+                $drug_active_ingredient = $row["drug_active_ingredient"];
+                $drug_inactive_ingredient = $row["drug_inactive_ingredient"];
+
+                // Generate collapsible elements for each result
+                echo "<button class='collapsible'>$drug_brand</button>";
+                echo "<div class='content'>";
+                echo "<p><a href='nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a></p>";
+                echo "<p>Drug Class: $drug_class</p>";
+                echo "<p>Active Ingredient: $drug_active_ingredient</p>";
+                echo "<p>Inactive Ingredient: $drug_inactive_ingredient</p>";
+                echo "</div>";
+            }
+        } else {
+            echo "0 results";
+        }
+
+        // Close the database connection
+        mysqli_close($link);
+        ?>
+        <?php
+        include "../footer.php";
+        //include "../Logging_and_posts/side_effect_logging.php";
     ?>
 </body>
 
