@@ -6,14 +6,10 @@ session_start();
 if (isset($_SESSION['id']) && isset($_POST['comment_text'])) {
     $comment_text = $_POST['comment_text'];
     $user_id = $_SESSION['id'];
-    $user_drug_id = getUserDrugIdForUser($link, $userid);
+    $user_drug_id = getUserDrugIdForUser($link, $user_id);
     $comment_date = date("Y-m-d H:i:s");
     $comment_likes = 0;
     $post_id = $_GET['postID'];
-
-
-
-
 
     $sql = "INSERT INTO comments (user_id, post_id, comment_text, comment_likes, comment_date) VALUES (?, ?, ?, ?, ?)";
     $stmt1 = $link->prepare($sql);

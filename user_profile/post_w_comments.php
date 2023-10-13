@@ -30,8 +30,6 @@
 
 <?php
 
-session_start();
-
 if (isset($_SESSION['username']) && isset($_SESSION["id"]) && isset($_GET['postID'])) {
     echo 'Comment:';
     $postID = $_GET['postID'];
