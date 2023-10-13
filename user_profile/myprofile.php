@@ -22,16 +22,15 @@ include "../footer.php";
 
         p {
             margin: 3px;
-            font-weight: 300;
+        }
+        i{
+            font-style: normal;
+            color:grey; 
         }
 
         h4 {
             color: #757CB3;
             margin: 3px;
-        }
-
-        b {
-            font-weight: normal;
         }
 
         .contraceptives {
@@ -132,15 +131,15 @@ include "../footer.php";
                     // PROFILE INFO
                     echo "<br><section>
         <p> <h4> About you </h4> <p>
-        <p> <b> Username </b> <br> $loggedInUser </p>
-        <p> <b> Age </b> <br> $agerange </p>
-        <p> <b> Email </b> <br> $email </p>
+        <p> Username <br><i> $loggedInUser</i> </p>
+        <p> Age <br><i> $agerange </i></p>
+        <p> Email <br><i> $email </i></p>
         "; // this cannot be displayed if salted and hashed
             
             }
             ?>
                 <form action="edit_myprofile.php">
-                    <input type="submit" value="Edit info" style="background-color:#1A3038" />
+                    <input type="submit" value="Edit info" />
                 </form>
                 </section> <!--Profile info-->
             </div><!-- Left content -->
