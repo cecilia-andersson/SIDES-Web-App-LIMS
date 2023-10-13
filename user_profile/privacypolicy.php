@@ -32,8 +32,9 @@
             <li>How do we collect your data?</li>
             <li>How do we store your data?</li>
         </ol>
-    </ol>
         <li> <b>Cookies</b>
+    </ol>
+        
 
     
     <?php
