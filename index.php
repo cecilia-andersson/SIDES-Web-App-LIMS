@@ -43,7 +43,7 @@
         others to <b>collectively feel better</b>.</p>
 
     <section style="margin-top: 10vh;">
-        <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..? </h4>
+        <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..?* </h4>
         <form action="Drug_profile/s_p.php" method="GET">
             <input type="text" name="search_query" placeholder="Search">
         </form>
