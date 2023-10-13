@@ -10,10 +10,15 @@ CREATE TABLE drugs (
     drug_class VARCHAR(30) NOT NULL,
     drug_format VARCHAR(30) NOT NULL,
     drug_active_ingredient VARCHAR(70) NOT NULL,
-    drug_inactive_ingredient VARCHAR(255) NOT NULL, 
+    drug_inactive_ingredient VARCHAR(255) NOT NULL,
     CONSTRAINT drug_name UNIQUE (drug_brand, drug_active_ingredient, drug_inactive_ingredient)
 
 );
+
+-- new attribute for descriptions 
+ALTER TABLE drugs
+ADD COLUMN drug_description VARCHAR(500);
+
 
 CREATE TABLE users (
     userid INT PRIMARY KEY AUTO_INCREMENT,
@@ -166,6 +171,23 @@ VALUES
     ('Lybrel', 'Extended-Cycle', 'Injectable Suspension', 'Levonorgestrel, Ethinyl Estradiol', 'Polyethylene Glycol, Benzyl Alcohol, Sodium Chloride, Other Inactive Ingredients'),
     ('Plan B One-Step', 'Emergency Contraceptive', 'Tablet', 'Levonorgestrel', 'Croscarmellose Sodium, Colloidal Silicon Dioxide, Magnesium Stearate, Other Inactive Ingredients'),
     ('Ella', 'Emergency Contraceptive', 'Tablet', 'Ulipristal Acetate', 'Croscarmellose Sodium, Lactose Monohydrate, Magnesium Stearate, Other Inactive Ingredients');
+
+-- NEW data for drug descriptions 
+UPDATE drugs 
+SET drug_description = 
+CASE 
+    WHEN drug_brand = 'Ortho Tri-Cyclen' THEN 'Ortho Tri-Cyclen is a combination oral contraceptive containing norgestimate and ethinyl estradiol. It works by preventing ovulation and changing the cervical mucus and uterine lining, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus.'
+    WHEN drug_brand = 'Yasmin' THEN 'Yasmin is a combination birth control pill containing drospirenone and ethinyl estradiol. It works by preventing ovulation, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus. Yasmin is also used to treat premenstrual dysphoric disorder (PMDD) and moderate acne in women seeking oral contraception.'
+    WHEN drug_brand = 'Lo Loestrin Fe' THEN 'Lo Loestrin Fe is a combination birth control pill containing norethindrone and ethinyl estradiol. It works by preventing ovulation, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus. Lo Loestrin Fe also contains iron supplements to help prevent iron deficiency anemia during menstruation.'
+    WHEN drug_brand = 'Alesse' THEN 'Alesse is a combination birth control pill containing levonorgestrel and ethinyl estradiol. It works by preventing ovulation, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus.'
+    WHEN drug_brand = 'Seasonique' THEN 'Seasonique is a combination birth control pill designed for extended-cycle use. It contains levonorgestrel and ethinyl estradiol, allowing women to have fewer periods throughout the year. It works by preventing ovulation and altering the uterine lining, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus.'
+    WHEN drug_brand = 'Micronor' THEN 'Micronor, also known as the mini-pill, is a progestin-only birth control pill containing norethindrone. It works primarily by thickening cervical mucus, making it harder for sperm to reach the uterus. Micronor also alters the uterine lining, making it less receptive to implantation in case fertilization occurs.'
+    WHEN drug_brand = 'Norethindrone' THEN 'Norethindrone is a progestin-only contraceptive pill that works by thickening cervical mucus, making it difficult for sperm to reach the uterus. It also alters the uterine lining, making it less receptive to implantation. Norethindrone is a reliable option for women who cannot take estrogen-containing contraceptives.'
+    WHEN drug_brand = 'Seasonale' THEN 'Seasonale is an extended-cycle birth control pill containing levonorgestrel and ethinyl estradiol. It is designed to reduce the number of menstrual periods to four per year. Seasonale works by preventing ovulation and altering the uterine lining, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus.'
+    WHEN drug_brand = 'Lybrel' THEN 'Lybrel is a continuous-cycle birth control pill containing levonorgestrel and ethinyl estradiol. Unlike traditional birth control pills, Lybrel is taken without any breaks, eliminating monthly periods. It works by preventing ovulation and altering the cervical mucus, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus.'
+    WHEN drug_brand = 'Plan B One-Step' THEN 'Plan B One-Step, also known as the morning-after pill, is an emergency contraceptive tablet containing levonorgestrel. It is used to prevent pregnancy after unprotected sex or contraceptive failure (e.g., condom breakage). Plan B One-Step works primarily by preventing ovulation and altering the cervical mucus, making it harder for sperm to reach the uterus.'
+    WHEN drug_brand = 'Ella' THEN 'Ella is an emergency contraceptive tablet containing ulipristal acetate. It is used to prevent pregnancy after unprotected sex or contraceptive failure (e.g., condom breakage). Ella works primarily by delaying or inhibiting ovulation, making it harder for sperm to reach the uterus and for a fertilized egg to attach to the uterus.'
+END;
 
 
 INSERT INTO drug_association_fass (F_drug_fk_id, F_se_fk_id)
