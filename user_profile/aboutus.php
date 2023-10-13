@@ -12,7 +12,7 @@
         include "../navigation.php";
         ?>
     </header>
-    <h3> About us </h3>
+    <h2> About us </h2>
 
     <p> We are a group of students at Uppsala University that has developed SIDES to help individuals that are using or
         considering to use contraceptives, with a focus on side

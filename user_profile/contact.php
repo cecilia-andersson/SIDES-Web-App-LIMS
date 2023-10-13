@@ -12,7 +12,7 @@
     include "../navigation.php";
     ?>
     </header>
-    <h3> Welcome to SIDES! </h3>
+    <h2> Welcome to SIDES! </h2>
     <p> Feel free to contact us on our email: </p>
     <p>
     <a href=mailto:sideslims@gmail.com>sideslims@gmail.com</a>
