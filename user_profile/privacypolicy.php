@@ -20,14 +20,22 @@
     </header>
     <h2> Privacy Policy </h2>
 
-    <?php
-    echo "<br><section>
-    <p> <h4> GDPR Privacy policy </h4> <p>
-    <p> Personal security number <br> </p>
-    <p> Email address <br> </p>
-    <p> IP address <br> </p>";
+    <br><section>
+    <p> This privacy policy aims to explain how SIDES uses the personal 
+    data we collect from you when we use your website, as well as your 
+    rights to your data and how to exercise them. Below is a schema of 
+    the policy. <p>
+    <ol> 
+        <li> <b>Data Collection & Use</b> </li>
+        <ol>
+            <li>What data do we collect? How will we use this data?</li>
+            <li>How do we collect your data?</li>
+            <li>How do we store your data?</li>
+        </ol>
+    </ol>
+        <li> <b>Cookies</b>
 
-    ?>
+    
     <?php
     include "../footer.php";
     ?>
