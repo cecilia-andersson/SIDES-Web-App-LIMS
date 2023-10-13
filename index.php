@@ -43,10 +43,7 @@
         others to <b>collectively feel better</b>.</p>
 
     <section style="margin-top: 10vh;">
-        <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..? </h4>
-        <p> Search for a contraceptive to see our user's experienced side effects and ratings, 
-            as well as FASS official side effects for a range of contraceptives. <p>
-        <p>
+        <h4 style="font-size: 16px; margin-bottom: 0;"> Looking for contraceptives..?* </h4>
         <form action="Drug_profile/s_p.php" method="GET">
             <input type="text" name="search_query" placeholder="Search">
         </form>
@@ -59,6 +56,7 @@
     <footer>
         <a href="user_profile/contact.php">Contact</a>
         <a href="user_profile/aboutus.php">About us</a>
+        <a href="user_profile/privacypolicy.php">Privacy policy</a>
     </footer>
 
 </body>

@@ -94,7 +94,7 @@ CREATE TABLE comments (
 	comment_text VARCHAR(255) NOT NULL,
 	comment_likes INT,
 	comment_date TIMESTAMP,
-	FOREIGN KEY (user_id) REFERENCES users(userid)
+	FOREIGN KEY (user_id) REFERENCES users(userid),
 	FOREIGN KEY (post_id) REFERENCES forum_posts(post_id)
 );
 
