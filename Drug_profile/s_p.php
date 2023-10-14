@@ -5,7 +5,11 @@
 
     <title>Drug Search</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <style>
+        .checked {
+        color: orange;
+        }
         /* filtering */
         .filter-container {
             margin-top: 5vh;
@@ -87,15 +91,25 @@
             overflow: hidden;
             transition: max-height 0.2s ease-out;
             background-color: #f1f1f1;
+            clear: both; /* Clear the floats */
         }
 
+        .description {
+            float: left; /* Align description to the left */
+            width: 45%; /* Set width to 50% to allow for the drug info to be on the right */
+                   }
+
+        .drug-info {
+            float: right; /* Align drug info to the right */
+            width: 45%; /* Set width to 50% to allow for the description to be on the left */
+        }
         /* results */
         .search-results {
             background-color: #256e8a;
             color: white;
             padding: 10px 20px;
             font-size: 24px;
-            border-radius: 5px;
+            border-radius: 0px;
             margin-top: 10px;
             text-align: left;
             margin-top: 0;
@@ -183,22 +197,22 @@
                     <th>Sort By:</th>
                     <th>
                         <select class="filter-select" name="sort_by" id="sort_by">
-                            <option value="drug_brand">Brand</option>
-                            <option value="drug_active_ingredient">Active Ingredient</option>
-                            <option value="drug_class">Type</option>
+                            <option value="drug_brand" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_brand') echo 'selected'; ?>>Brand</option>
+                            <option value="drug_active_ingredient" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_active_ingredient') echo 'selected'; ?>>Active Ingredient</option>
+                            <option value="drug_class" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_class') echo 'selected'; ?>>Class</option>
                         </select>
                     </th>
                     <th>Active Ingredient:</th>
                     <th>
-                        <select class="filter-select" name="filter_active_ingredient" id="filter_active_ingredient">
-                            <option value=""></option>
-                            <?php
-                            foreach ($act_list as $ingredient) {
-                                $selected = ($filter_active_ingredient == $ingredient) ? 'selected' : '';
-                                echo "<option value='$ingredient'>$ingredient</option>";
-                            }
-                            ?>
-                        </select>
+                    <select class="filter-select" name="filter_active_ingredient" id="filter_active_ingredient">
+                        <option value=""></option>
+                        <?php
+                        foreach ($act_list as $ingredient) {
+                            $selected = ($filter_active_ingredient == $ingredient) ? 'selected' : '';
+                            echo "<option value='$ingredient' " . (isset($_GET['filter_active_ingredient']) && $_GET['filter_active_ingredient'] == $ingredient ? 'selected' : '') . ">$ingredient</option>";
+                        }
+                        ?>
+                    </select>
                     </th>
                     <th>Brand:</th>
                     <th>
@@ -208,7 +222,7 @@
                             <?php
                             foreach ($brand_list as $brand) {
                                 $selected = ($filter_brand == $brand) ? 'selected' : '';
-                                echo "<option value='$brand'>$brand</option>";
+                                echo "<option value='$brand' " . (isset($_GET['filter_brand']) && $_GET['filter_brand'] == $brand ? 'selected' : '') . ">$brand</option>";
                             }
                             ?>
                         </select>
@@ -220,13 +234,16 @@
                             <?php
                             foreach ($class_list as $class) {
                                 $selected = ($filter_class == $class) ? 'selected' : '';
-                                echo "<option value='$class'>$class</option>";
+                                echo "<option value='$class'  " . (isset($_GET['filter_class']) && $_GET['filter_class'] == $class ? 'selected' : '') . ">$class</option>";
                             }
                             ?>
                         </select>
                     </th>
                     <th>
+                            
                         <input type="submit" class="filter-button" value="Filter Search">
+                        <a href="http://localhost/Drug_profile/s_p.php">Clear Filters</a>
+
                     </th>
                 </tr>
             </table>
@@ -291,13 +308,95 @@
                 $drug_active_ingredient = $row["drug_active_ingredient"];
                 $drug_inactive_ingredient = $row["drug_inactive_ingredient"];
 
+
+                // ratings
+                $rating_sql = 'SELECT rating FROM review WHERE drug_id=?';
+                $rating_stmt = $link->prepare($rating_sql);
+                $rating_stmt->bind_param("i", $drug_id); // Assuming drug_id is defined somewhere in your code
+                $rating_stmt->execute();
+                $rating_result = $rating_stmt->get_result();
+
+                $total_ratings = 0;
+                $rating_count = 0;
+                while ($row = $rating_result->fetch_assoc()) {
+                    $total_ratings += $row['rating'];
+                    $rating_count++;
+                }
+
+                $rating_mean = $rating_count > 0 ? $total_ratings / $rating_count : 0;
+                $rounded_rating = round($rating_mean);
+                // comments
+
+                $comment_sql = 'SELECT COUNT(post_text) AS comment_count FROM forum_posts WHERE user_drug_id=?';
+                $comment_stmt = $link->prepare($comment_sql);
+                $comment_stmt->bind_param("i", $drug_id);
+                $comment_stmt->execute();
+            
+                $comment_result = $comment_stmt->get_result();
+
+
+            
+               
+
                 // Generate collapsible elements for each result
-                echo "<button class='collapsible'>$drug_brand</button>";
+                echo "<button class='collapsible'><p><a href='nice_drug_page.php?drug_id=$drug_id' style='color: #ffff'>$drug_brand</a></p> ";
+                echo "";
+
+                echo '<div id="rating-comment">';
+                echo "<a href='../Forms/rating_form.php' style='color: #ffff;'>";
+                if ($rating_count > 0) {
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $rounded_rating) {
+                                echo '<span class="fa fa-star checked"></span>';
+                            } else {
+                                echo '<span class="fa fa-star"></span>';
+                            }
+                        }
+                        }
+                echo "</a>";
+                // Output number of ratings
+                echo " $rating_count ratings, </a>";
+                if ($comment_result->num_rows > 0) {
+                    $row = $comment_result->fetch_assoc();
+                    $comment_count = $row['comment_count'];
+                    echo "<a href='..\user_profile\forum.php' style='color: #ffff;'>$comment_count comments</a>";
+                } else {
+                    echo "No comments";
+                }
+                echo '</div>'; 
+                
+                
+                echo "</button>";
+
+
                 echo "<div class='content'>";
-                echo "<p><a href='nice_drug_page.php?drug_id=$drug_id'>$drug_brand</a></p>";
-                echo "<p>Drug Class: $drug_class</p>";
-                echo "<p>Active Ingredient: $drug_active_ingredient</p>";
-                echo "<p>Inactive Ingredient: $drug_inactive_ingredient</p>";
+
+                    echo '<div class="description">';
+                        echo '<h3>Description</h3>';
+                        $description_sql = "SELECT drug_description FROM drugs WHERE drug_id = ?";
+                        $description_stmt = $link->prepare($description_sql);
+                        $description_stmt->bind_param("i", $drug_id);
+                        $description_stmt->execute();
+                        $description_result = $description_stmt->get_result();
+                        $description_row = $description_result->fetch_assoc();
+                        $drug_description = $description_row['drug_description'];
+                    
+                        // Get preview description (first 50 characters)
+                        $preview_description = substr($drug_description, 0, 150);
+                    
+                        // Output preview description
+                        echo $preview_description . "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>...</a>";
+                    echo "</div>";
+   
+                
+
+                    echo "<div class='drug-info'>";
+                        echo '<h3>Drug information </h3>';
+                        echo "<p>Drug Class: $drug_class</p>";
+                        echo "<p>Active Ingredient: $drug_active_ingredient</p>";
+                        echo "<p>Inactive Ingredient: $drug_inactive_ingredient</p>";
+                        echo "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>Read more</a>";
+                    echo "</div>";
                 echo "</div>";
             }
         } else {
