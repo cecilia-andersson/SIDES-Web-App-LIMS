@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<?php
-// Validated and sanitized -- assuming sessions variables can't be edited.
-include "../footer.php";
-?>
+
+ <!-- Validated and sanitized -- assuming sessions variables can't be edited. -->
+
 
 <head>
     <title>My Profile</title>
@@ -23,9 +22,10 @@ include "../footer.php";
         p {
             margin: 3px;
         }
-        i{
+
+        i {
             font-style: normal;
-            color:grey; 
+            color: grey;
         }
 
         h4 {
@@ -144,17 +144,22 @@ include "../footer.php";
                 </section> <!--Profile info-->
             </div><!-- Left content -->
 
+            <div class="calendar">
+                <?php
+                if (isset($_GET['Message'])) {
+                    echo $_GET['Message'];
+                }
 
-            <?php
-            include "calendar.php";
-            ?>
+                include "calendar.php";
+                ?>
+            </div>
 
             <div class="forms"><!--Forms-->
                 <br>
                 <p>
                     <strong>Something doesn't look right?</strong> <br>
                     <?php
-                    if ($noDrug==False) { ?>
+                    if ($noDrug == False) { ?>
                     <form action="../Forms/changedrug_form.php" method="POST">
                         <input type="submit" value="Update my contraceptive">
                     </form>
@@ -185,5 +190,8 @@ include "../footer.php";
     </main>
     </div><!-- All content -->
 </body>
+<?php
+include "../footer.php";
+?>
 
 </html>

@@ -160,7 +160,7 @@
                 }
 
                 dayLink.textContent = day; // Set the day as the anchor text
-                dayLink.href = 'your-link-here'; // Set the link for each day
+                dayLink.href = '../calendarlink.php/?day='+day+'&month='+(currentMonth+1)+'&year='+currentYear; // Set the link for each day
 
                 listItem.appendChild(dayLink); // Append the anchor element to the list item
                 daysListElement.appendChild(listItem); // Append the list item to the days list
