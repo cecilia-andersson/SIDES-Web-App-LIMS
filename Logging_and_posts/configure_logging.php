@@ -39,7 +39,6 @@
         $userid = $_SESSION['id'];
     }
 
-    $userid = 1;
 
 
     include "../DB_connect.php";

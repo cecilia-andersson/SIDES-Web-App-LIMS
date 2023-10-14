@@ -41,7 +41,6 @@
 //
 
 
-$userid = 1; //REMOVE
 
 $updatedSides = ''; 
 

@@ -274,7 +274,6 @@
     if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
         $userid = $_SESSION['id'];
     }
-    $userid = 1;// for testing without session
     
 //Fetching the sides
     $user_sides_sql = 'SELECT users.chosensides FROM users WHERE userid = ?';
@@ -294,6 +293,7 @@
     $sql_all_sE = "SELECT se_name, se_id FROM side_effects";
     $result_all_sE = $link->query($sql_all_sE);
 
+    
 //getting the current drug 
     $sql_drug = "SELECT * FROM user_drug WHERE userid = $userid";
     $result_drug = $link->query($sql_drug);
@@ -363,7 +363,7 @@ echo '<div id="overlay">'; // create the overlay effect
         echo '<div class="bottom-buttons">';
                 
     echo '<button type="button" onclick="overlay_off()">Close</button>';
-    echo '<button type="button" onclick="window.location.href=\'\user_profile\myprofile.php\'">Configure side effects</button>';
+    echo '<button type="button" onclick="window.location.href=\'../Forms/changesides_form.php\'">Configure side effects</button>';
     echo '<input type="submit" value="Submit"></form>';
         
     echo '</div>'; 

@@ -6,7 +6,6 @@
         $userid = $_SESSION['id'];
     }
 
-    $userid = 1;// for testing without session
 
 
 
