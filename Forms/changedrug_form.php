@@ -27,7 +27,7 @@
         }
     }
 ?>
-<form action="/change_drug.php" method="POST">
+<form action="/Forms/change_current_drug.php" method="POST">
     <label for "enddate">When did you STOP using your previous birth control method? </label>
     <br>
     <input type="date" id="end" name="end" value="2023-01-01" min="2022-01-01" max="2024-12-31" />
@@ -41,7 +41,7 @@
         <option value=""></option>
             <?php
                 foreach ($drug_list as $new_drug) {
-                    $selected = ($drug == $new_drug) ? 'selected' : '';
+                    $selected = ($_POST['drug'] == $new_drug) ? 'selected' : '';
                     echo "<option value='$new_drug'>$new_drug</option>";
                 }
             ?>
@@ -50,7 +50,11 @@
     <br>  
     <input type="submit" value="Update contraceptive">
 </form>
-
+<?php
+if (isset($_GET['Message'])) {
+    echo $_GET['Message'];
+}
+?>
 <?php
         include "../footer.php";
     ?>

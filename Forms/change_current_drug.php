@@ -1,63 +1,51 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Update Contraceptive</title>
-    <link href="../images/SIDES_head_icon.png" rel="icon">
-</head>
-
-<body>
-    <header>
-    <?php
-    include "../navigation.php";
-    ?>
-    </header>
-
 <?php
-// Connect to database
 include "../DB_connect.php";
-?>
-
-<p> Form to update current contraceptive in database will go here. <br>
-Action should: <br>
-1. Add current drug_id, current start date, and current timestamp (by default,
-or inputted date preferrably) to the user's "past drugs" table (not yet created).
-
-<strong>2. Replace current drug_id with newly selected drug_id, record inputted date (mandatory field?) </p>
-</strong>
-
-<!-- DROPDOWN FORM -->
-<?php
 session_start();
-//this works to get userid!
-if(isset($_SESSION['username'])) {
+
+if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
     $userid = $_SESSION['id'];
-    echo $userid; 
-} else {
-    echo "didnt work";
 }
 
+$startdate = $_POST['start'];
+$enddate= $_POST['end'];
+$contraceptive = $_POST['drug'];
+
+$sql_drug = "SELECT drug_id FROM drugs WHERE drug_brand = '$contraceptive'";
+$result = $link->query($sql_drug);
+
+if ($result->num_rows >= 0) {
+    $row = $result->fetch_assoc();
+    $drug_id = $row["drug_id"];
+} else {
+    $message = urlencode("Error:No such drug found");
+    header("Location:change_current_drug.php?Message=" . $message);
+    die;
+}
+
+$sql = "INSERT INTO user_drug(userid, drug_id, startdate, enddate) VALUES (?,?,?,?)";
+$stmt2 = $link->prepare($sql);
+$stmt2->bind_param("iiss", $userid, $drug_id, $startdate, $enddate);
+$result = $stmt2->execute();
+
+if ($result) {
+    $message = urlencode("Contraceptive updated successfully");
+    header("Location:change_current_drug.php?Message=" . $message);
+    die;
+}
 
 ?>
-
-<?php
-// Print current drug
-
-// Use input from form to update current drug; add change to change log
-$sql_first = "UPDATE users(current_drug)
-SET current_drug = $FETCHEDFROMDROPDOWN ,
-WHERE userid = userid";
-
-//$sql_second = "INSERT INTO change_drug_tracker(userid, drug_id, operation, datestamp)
-//VALUES ($USERID, $NEWDRUG, 'Update', CURDATE() ),
-//";
-
-
-// Footer
-include "../footer.php";
-
-// Close the database connection
-mysqli_close($link);
-?>
-</body>
+<!DOCTYPE html>
+<html>
+    <header>
+        <?php
+            include "../navigation.php";
+            include "../DB_connect.php";
+        ?>
+    </header>
+<h3>Contraceptive updated successfully!</h3>
+<footer>
+        <?php
+            include "../footer.php";
+        ?>
+    </footer>
 </html>
