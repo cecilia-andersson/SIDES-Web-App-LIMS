@@ -138,9 +138,15 @@
             
             }
             ?>
-                <form action="edit_myprofile.php">
-                    <input type="submit" value="Edit info" />
-                </form>
+                <div class="myprofilebuttons">
+                        <form action="edit_myprofile.php">
+                            <input type="submit" value="Edit info" />
+                        </form>
+                    
+                        <form action="delete_account.php">
+                            <input type="submit" value="Delete account" />
+                        </form>
+                </div>
                 </section> <!--Profile info-->
             </div><!-- Left content -->
 
