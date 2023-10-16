@@ -2,7 +2,7 @@
 <html>
 
 
- <!-- Validated and sanitized -- assuming sessions variables can't be edited. -->
+<!-- Validated and sanitized -- assuming sessions variables can't be edited. -->
 
 
 <head>
@@ -16,7 +16,6 @@
             padding: 1rem;
             text-align: left;
             max-width: fit-content;
-            max-height: 210px;
         }
 
         p {
@@ -138,15 +137,15 @@
             
             }
             ?>
-                <div class="myprofilebuttons">
-                        <form action="edit_myprofile.php">
-                            <input type="submit" value="Edit info" />
-                        </form>
-                    
-                        <form action="delete_account.php">
-                            <input type="submit" value="Delete account" />
-                        </form>
-                </div>
+
+                <form action="edit_myprofile.php" style="display:inline">
+                    <input type="submit" value="Edit info" />
+                </form>
+
+                <form action="delete_account.php" style="display:inline">
+                    <input type="submit" value="Delete account"/>
+                </form>
+
                 </section> <!--Profile info-->
             </div><!-- Left content -->
 
