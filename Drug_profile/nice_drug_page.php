@@ -129,12 +129,9 @@
     <form action="../Analytics/analytics.php" method="POST">
     <input type="submit" value="See more about this drug">
     </form>
-    <form action="../Analytics/self_and_compare_analytics.php" method="POST">
-    <input type="submit" value="Compare this drug with another drug">
-    </form>
-    <form action="../Analytics/compare_analytics.php" method="POST">
+   <!-- <form action="../Analytics/compare_analytics.php" method="POST">
     <input type="submit" value="Compare any two drugs">
-    </form>
+    </form> -->
 
 <?php
     // Close the database connection
