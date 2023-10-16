@@ -254,7 +254,7 @@
 
     <?php
         include "../DB_connect.php";
-        session_start();
+        
         
         // Initialize filter variables
         $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';

@@ -269,7 +269,7 @@
 
 //setting up
     include "../DB_connect.php";
-    session_start();
+    
 
     if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
         $userid = $_SESSION['id'];
