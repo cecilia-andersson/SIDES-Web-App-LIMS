@@ -49,7 +49,7 @@
         $date = $year . '-' . $month . '-' . $day . ' ' . '00:00:00';
 
         if (isset($_SESSION['id'])) {
-            $loggedInUser = 1; #CHANGE THIS LATER
+            $loggedInUser = $_SESSION['id'];
             $sql = "SELECT * FROM report WHERE userid = ? AND review_date = ?";
             $stmt = $link->prepare($sql);
             $stmt->bind_param("ss", $loggedInUser, $date);
@@ -73,9 +73,9 @@
                 }
                 echo "</table>";
                 ?>
-                <form action='/user_profile/delete_log.php' method='POST'>
+                <form action='/LIMS-Flubber/user_profile/delete_log.php' method='POST'>
                     <input type='hidden' name='date' value='<?php echo $date; ?>'>
-                    <input type='submit' name='delete_log' value='Delete daily log'> <br>
+                    <input type='submit' name='delete_log' value='Delete daily log' style="background-color:#C43B39; border: 1px solid #C43B39;"> <br>
                 </form>
                 <?php
 
@@ -92,7 +92,7 @@
         echo "<p>The 'date' parameter is not specified</p>";
     }
     ?>
-    <form action='/user_profile/myprofile.php' method='POST'>
+    <form action='/LIMS-Flubber/user_profile/myprofile.php' method='POST'>
         <input type='submit' name='return' value='Go back'> <br>
     </form>
     <?php

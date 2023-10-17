@@ -43,12 +43,13 @@
 
         /* Trying to make it orange. Doesnt work */
         .delete_button {
-            background-color: #f5733a;
+            /* background-color: #f5733a;*/
+            background-color: #C43B39;
             color: white;
             border-radius: 0.375rem;
             padding: 0.625rem;
             cursor: pointer;
-            border: 1px solid #f5733a;
+            border: 1px solid #C43B39;
             font-size: 0.875rem;
             text-align: center;
             margin-top:5px;
@@ -109,9 +110,8 @@
         -ms-transform: translate(-50%,-50%);
         }
 
-        /* needs to be centered */
         #buttonContainer{
-        margin: 0 auto;
+        text-align: center;
         }
     </style>
 </head>
@@ -215,8 +215,8 @@
                     <h4> Are you sure you want to delete your account and all its data?</h4>
 
                         <div id="buttonContainer">
-                            <form action="delete_account.php" action="overlay_on()" style="display:inline">
-                                <input type="submit" value="Yes"/>
+                            <form action="delete_account.php" action="overlay_on()" style="display:inline;">
+                                <input type="submit" value="Yes" style="background-color: #C43B39; border: 1px solid #C43B39;" />
                             </form>
                             <button type="button" class="no_button" onclick="overlay_off()">No</button>
                         </div>
