@@ -5,32 +5,54 @@
     <title>SIDES</title>
     <link href="images/SIDES_head_icon.png" rel="icon">
     <style>
-        .headers{
-            margin:auto;
+        p {
+            color: #757CB3;
+            font-size: 20px;
+            line-height: 35px;
+
+        }
+
+        .headers {
+            margin: auto;
             max-width: fit-content;
-            padding: 9%;
+            padding: 8%;
             background-color: white;
             border-radius: 300px;
-            text-align:center; 
+            text-align: center;
             margin-top: 5vh;
         }
 
-        .search{
-            margin:auto;
-            margin-top: 5vh; 
+        .search {
+            margin: auto;
+            margin-top: 10vh;
+            background-color: white;
+            padding: 8%;
+            padding-top: 2%;
+            padding-bottom: 4%;
+            background-color: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .about {
+            margin: auto;
+            margin-top: 10vh;
             background-color: white;
             max-width: fit-content;
             padding: 8%;
-            padding-top:4%;
-            padding-bottom: 4%;
+            padding-top: 1%;
+            padding-bottom: 2%;
             background-color: white;
-            border-radius: 10px;
-            text-align:center; 
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 10vh;
+            display: flex;
+            justify-content: space-evenly;
         }
     </style>
 </head>
 
-<body style="background-color: rgba(100,167,172,0.2)">
+<body style="background-color: rgba(100,167,172,0.15)">
     <header>
         <link rel="stylesheet" type="text/css" href="stylesheet/styles.css"> <!-- Link to CSS file -->
         <nav style="border-radius: 5px;">
@@ -55,13 +77,11 @@
             ?>
         </nav>
     </header>
-    <!-- <img src="images/SIDES_head.png" alt="SIDES logo" style="width: 15vw; margin-right: 9vw; margin-top: 5vh;"
-        align="right"> -->
     <div class="headers">
         <h1 style="color: #1A3038; font-size: 60px;"> Real people</h1>
         <h1 style="color: #9510AC; font-size: 60px; line-height: 50px;">Real side effects </h1>
 
-        <p style="color: #757CB3; font-size: 20px; line-height: 35px; "> We keep track of how your
+        <p> We keep track of how your
             contraceptives <br> affect
             you. <br> Share experiences anonymously with
             others to <br><b>collectively feel better</b>.</p>
@@ -69,12 +89,24 @@
 
     <div class="search">
         <h2> Search for a contraceptive </h2>
-        <p style="color: #757CB3; font-size: 20px "> ..to see our user's
+        <p> ..to see our user's
             experienced side effects and ratings, <br> as well as FASS official side effects</p>
         <form action="Drug_profile/s_p.php" method="GET">
-            <input type="text" name="search_query" placeholder="Search" style="min-width:80%; margin-top: 20px;">
+            <input type="text" name="search_query" placeholder="Search" style="min-width:50%;">
         </form>
-        </div>
+    </div>
+    <div class="about">
+        <p style="max-width: 50%; margin-right:5%;">
+            We are a group of students at Uppsala University that has
+            developed <b>SIDES</b> to help individuals
+            that
+            are using
+            or considering to use contraceptives, with a focus on side
+            effects. </p>
+
+        <img src="images/SIDES_head.png" alt="SIDES logo"
+            style="width:20%; height:20%; margin-right:-10%;">
+    </div>
 
     <footer>
         <a href="user_profile/contact.php">Contact</a>
