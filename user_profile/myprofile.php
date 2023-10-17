@@ -40,6 +40,79 @@
             display: flex;
             justify-content: space-between;
         }
+
+        /* Trying to make it orange. Doesnt work */
+        .delete_button {
+            background-color: #f5733a;
+            color: white;
+            border-radius: 0.375rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            border: 1px solid #f5733a;
+            font-size: 0.875rem;
+            text-align: center;
+            margin-top:5px;
+            margin-bottom:5px;
+        }
+        .delete_button:hover {
+            background-color: #1A3038; 
+            border: 1px solid #1A3038;
+        }
+
+        .no_button {
+            background-color: #246f8a;
+            color: white;
+            border-radius: 0.375rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            border: 1px solid #246f8a;
+            font-size: 0.875rem;
+            text-align: center;
+            margin-top:5px;
+            margin-bottom:5px;
+        }
+        
+        .no_button:hover {
+            background-color: #1A3038;
+        }
+
+        #overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color:  rgba(0,0,10, 0.5); /*this is 757CB3 */
+        z-index: 2;
+        cursor: pointer;
+        }
+
+        #outerContainer{
+        background-color: #ffffff; 
+        border: 2px solid #256e8a;
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+
+        max-height: 95vh; /* Set maximum height for the container */
+        overflow-y: auto; /* Enable vertical scrolling if content overflows */
+
+    
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        }
+
+        /* needs to be centered */
+        #buttonContainer{
+        margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -137,13 +210,23 @@
             
             }
             ?>
+                <div id="overlay">
+                    <div id="outerContainer">
+                    <h4> Are you sure you want to delete your account and all its data?</h4>
+
+                        <div id="buttonContainer">
+                            <form action="delete_account.php" action="overlay_on()" style="display:inline">
+                                <input type="submit" value="Yes"/>
+                            </form>
+                            <button type="button" class="no_button" onclick="overlay_off()">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="delete_button" onclick="overlay_on()" style="display:inline">Delete account</button>
 
                 <form action="edit_myprofile.php" style="display:inline">
                     <input type="submit" value="Edit info" />
-                </form>
-
-                <form action="delete_account.php" style="display:inline">
-                    <input type="submit" value="Delete account"/>
                 </form>
 
                 </section> <!--Profile info-->
@@ -194,9 +277,27 @@
             </div><!-- Forms -->
     </main>
     </div><!-- All content -->
+
+    <script>
+        function overlay_on() {
+        document.getElementById("overlay").style.display = "block";
+        }
+
+        function overlay_off() {
+        document.getElementById("overlay").style.display = "none";
+        }
+
+        document.addEventListener("keydown", function(event) {// to allow for esc closing 
+        if (event.key === "Escape") {
+            overlay_off(); y
+        }
+        });
+    </script>
+
 </body>
 <?php
 include "../footer.php";
 ?>
 
 </html>
+
