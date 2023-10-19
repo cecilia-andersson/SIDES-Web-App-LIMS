@@ -44,8 +44,8 @@
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
             padding: 20px;
 
-            max-height: 95vh; /* Set maximum height for the container */
-            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+            max-height: 95vh; 
+            overflow-y: auto; /*  vertical scrolling if content overflows */
 
         
             position: absolute;
@@ -244,7 +244,7 @@
 
         .logging-button:hover,
         .logged-button:hover {
-            background-color: #1A3038; /* Darker blue on hover */
+            background-color: #1A3038; 
         }
 
         .logged-button {
@@ -255,9 +255,9 @@
 
         .checkbox-slider-row {
             display: flex;
-            justify-content: space-between; /* Align items with space between them */
-            align-items: center; /* Vertically center the items */
-            margin-bottom: 10px; /* Adjust the margin as needed */
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 10px; 
         }
 
 
@@ -269,7 +269,7 @@
 
 //setting up
     include "../DB_connect.php";
-    
+    session_start();
 
     if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
         $userid = $_SESSION['id'];
@@ -349,6 +349,7 @@ echo '<div id="overlay">'; // create the overlay effect
             echo '<div class="search-dropdown">';
                 echo '<label for="options">Add more side effects:</label>';
                 echo '<select id="options" name="options">';
+                echo '<option value="" disabled selected style="color: gray;">- - Select an option - -</option>';
                 while ($row = $result_all_sE->fetch_assoc()) {
                     echo '<option value="' . $row['se_id'] . '">' . $row['se_name'] . '</option>';
                 }
@@ -383,10 +384,14 @@ $row = $result->fetch_assoc();
 $loggedToday = $row['count'] > 0;
 //echo '<div class="Logging-button">';
 
-if ($loggedToday) {
-    echo '<button type="button" class="logged-button" onclick="overlay_on()">You have logged today!</button>'; //Moa add a link to the editing page here!
-} else {
-    echo '<button type="button" class="logging-button" onclick="overlay_on()">Log your side effects</button>';
+
+if ($userid != null) {
+    // Check if the user has logged today
+    if ($loggedToday) {
+        echo '<button type="button" class="logged-button" onclick="overlay_on()">You have logged today!</button>'; //Moa add a link to the editing page here!
+    } else {
+        echo '<button type="button" class="logging-button" onclick="overlay_on()">Log your side effects</button>';
+    }
 }
 //echo '</div>';
 
@@ -422,7 +427,7 @@ function addOptionToCheckboxList() {
 
     // div element for checkbox, label, slider, and remove button, then append to the checkbox list
     var checkboxDiv = document.createElement('div');
-    checkboxDiv.className = 'checkbox-slider-row'; // Add the class here
+    checkboxDiv.className = 'checkbox-slider-row'; // class here
     checkboxDiv.appendChild(checkbox);
     checkboxDiv.appendChild(label);
     checkboxDiv.appendChild(intensitySlider);
@@ -430,11 +435,11 @@ function addOptionToCheckboxList() {
     // Create remove button
     var removeButton = document.createElement('span');
     removeButton.className = 'remove-option';
-    removeButton.style.fontSize = '18px'; // Set font size to make it larger
-    removeButton.style.color = '#C43B39'; // Set color to red
+    removeButton.style.fontSize = '18px'; // font size larger
+    removeButton.style.color = '#C43B39'; //red
     removeButton.appendChild(document.createTextNode('  x'));
 
-    // Add click event to remove the option when the remove button is clicked
+    // remove the option when the remove button is clicked
     removeButton.addEventListener('click', function () {
         checkboxDiv.remove();
     });
