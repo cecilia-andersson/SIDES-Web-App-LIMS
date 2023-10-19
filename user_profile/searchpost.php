@@ -76,7 +76,7 @@ $result = $link->query($sql);
 if($result->num_rows > 0){
     while ($row = $result->fetch_assoc()){
         $postID = $row['postID'];
-            echo '<a href="/LIMS-Flubber/user_profile/post_w_comments.php' . $postID . '">';
+            /*echo '<a href="/LIMS-Flubber/user_profile/post_w_comments.php' . $postID . '">';
             echo '<div class="forum-post">';
             echo '<div>';
             echo '<p><strong>User:</strong> ' . $row['username'] . '</p>';
@@ -88,7 +88,29 @@ if($result->num_rows > 0){
             echo '<p><strong>Post Date:</strong> ' . $row['post_date'] . '</p>';
             echo '</div>';
             echo '</div>';
+            echo '</a>';*/
+            $post_likes = $row['post_likes'];
+        $postID = $row['post_id'];
+        $userID = $_SESSION["id"];
+            echo '<a href ="post_w_comments.php?postID=' . $postID . '">';
+            echo '<div class="forum-post">';
+            echo '<div>';
+            echo '<p><strong>User:</strong> ' . $row['username'] . '</p>';
+            echo '<p><strong>Post Text:</strong> ' . $row['post_text'] . '</p>';
+            echo '</div>';
+            echo '<div>';
+            echo '<p><strong>Drug:</strong> ' .  $row['drug_brand'] . '</p>';
+            echo '</div>';
+            echo '<p><strong>Post Date:</strong> ' . $row['post_date'] . '</p>';
+            echo '</div>';
+        
             echo '</a>';
+
+            echo '<form action="/LIMS-Flubber/user_profile/likes_post.php" method="POST">'; /*?postID=' . $postID . '*/
+            echo '<input type="hidden" name="postID" value="' . $postID . '">';
+            echo '<input type="hidden" name="userID" value="' . $userID . '">';
+            echo '<input type="submit" value="&#x1F44D" />' . " " . $post_likes . " " . "likes" . '' ;
+            echo '</form>';
 
     }
 } else {

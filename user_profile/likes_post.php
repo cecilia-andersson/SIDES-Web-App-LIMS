@@ -1,32 +1,71 @@
 <?php
-
-
 include "../DB_connect.php";
 
 session_start();
 
-$postID = $_POST['postID'];
-$userID = $_POST['userID']; // Assuming you have the user ID available
+if (isset($_POST['postID']) && isset($_POST['userID'])) {
+    // Get data from the form
+    $postID = $_POST['postID'];
+    $userID = $_POST['userID'];
 
-// Check if the user has already liked the post
-$checkQuery = "SELECT * FROM forum_likes WHERE userid = $userID AND post_id = $postID";
-$checkResult = $conn->query($checkQuery);
+   
 
-if ($checkResult->num_rows === 0) {
-    // The user has not liked the post yet, proceed to update likes
+    // Prepare the SELECT query to check if the user has already liked the post
+    $checkLikedQuery = "SELECT * FROM post_likes WHERE post_id = ? AND user_id = ?";
+    $checkLikedStmt = $link->prepare($checkLikedQuery);
+    $checkLikedStmt->bind_param("ii", $postID, $userID);
+    $checkLikedStmt->execute();
+    $checkLikedResult = $checkLikedStmt->get_result();
 
-    // Insert a record into the forum_likes table
-    $insertQuery = "INSERT INTO forum_likes (userid, post_id) VALUES ($userID, $postID)";
-    $conn->query($insertQuery);
+    if ($checkLikedResult->num_rows == 0) {
+        // User has not liked the post, insert a new like
+        $insertLikeQuery = "INSERT INTO post_likes (post_id, user_id) VALUES (?, ?)";
+        $insertLikeStmt = $link->prepare($insertLikeQuery);
+        $insertLikeStmt->bind_param("ii", $postID, $userID);
+        $insertLikeStmt->execute();
+        //if ($insertLikeStmt->error) {
+        //    echo "Error inserting like: " . $insertLikeStmt->error;
+       // }
 
-    // Update the likes for the post
-    $updateQuery = "UPDATE forum_posts SET post_likes = post_likes + 1 WHERE post_id = $postID";
-    $conn->query($updateQuery);
-    header("Location:/LIMS-Flubber/user_profile/forum.php"); /*?postID=$postID*/
-    exit();
+        // Update the likes count in the forum_posts table
+        $updateLikesQuery = "UPDATE forum_posts SET post_likes = post_likes + 1 WHERE post_id = ?";
+        $updateLikesStmt = $link->prepare($updateLikesQuery);
+        $updateLikesStmt->bind_param("i", $postID);
+        $updateLikesStmt->execute();
 
-} else {
-    header("Location:/LIMS-Flubber/user_profile/forum.php");
+        
+
+        // Close the prepared statements
+        $insertLikeStmt->close();
+        $updateLikesStmt->close();
+
+    }
+
+    else{
+        $deleteLikeQuery = "DELETE FROM post_likes WHERE post_id = ? AND user_id = ?";
+        $deleteLikeStmt = $link->prepare($deleteLikeQuery);
+        $deleteLikeStmt->bind_param("ii", $postID, $userID);
+        $deleteLikeStmt->execute();
+
+        $updateLikesQuery = "UPDATE forum_posts SET post_likes = post_likes - 1 WHERE post_id = ?";
+        $updateLikesStmt = $link->prepare($updateLikesQuery);
+        $updateLikesStmt->bind_param("i", $postID);
+        $updateLikesStmt->execute();
+
+        $deleteLikeStmt->close();
+        $updateLikesStmt->close();
+        
+    }
+
+    // Close the prepared statement
+    $checkLikedStmt->close();
+
+    // Close the database connection
+    $link->close();
 }
 
+$previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'default_page.php';
+header("Location: $previousPage");
+
+exit();
 ?>

@@ -103,6 +103,24 @@ CREATE TABLE comments (
 	FOREIGN KEY (post_id) REFERENCES forum_posts(post_id)
 );
 
+CREATE TABLE post_likes(
+    like_id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT,
+    user_id INT,
+    UNIQUE(post_id, user_id),
+    FOREIGN KEY (user_id) REFERENCES users(userid),
+    FOREIGN KEY (post_id) REFERENCES forum_posts(post_id)
+);
+
+CREATE TABLE likes_comments(
+    like_id INT PRIMARY KEY AUTO_INCREMENT,
+    comment_id INT,
+    user_id INT,
+    UNIQUE(comment_id, user_id),
+    FOREIGN KEY (user_id) REFERENCES users(userid),
+    FOREIGN KEY (comment_id) REFERENCES comments(commentid)
+);
+
 -- R as in Report
 CREATE TABLE drug_association_report (
     R_association_id INT PRIMARY KEY AUTO_INCREMENT,
