@@ -12,6 +12,10 @@
     include "../navigation.php";
     ?>
     </header>
+<!-- Add a button to navigate to side_effect_drug_frequency.php -->
+<form action="../Analytics/side_effect_drug_frequency.php" method="GET">
+    <button type="submit">View Side Effect Drug Frequency, for the SIDES Community </button>
+</form>
 
 <!-- 0. Define variables -->
 <!-- form to get time period and side effect -->
