@@ -197,6 +197,16 @@
                             <?php
                         }
                         ?>
+                        <?php
+                        $sql = "SELECT userid FROM users WHERE username = '$loggedInUser'";
+                        $result = $link->query($sql);
+                        if ($result->num_rows == 1) {
+                            $row = $result->fetch_assoc();
+                            $user_id = $row["userid"];
+                        }
+                        ?>
+                        <!-- Add the "Drug Recommendation" button -->
+                        <a href="../Analytics/user_drug_recommendation.php?userid=<?php echo $userid; ?>">Drug Recommendation</a>
 
                     </div> <!-- Contraceptives -->
                     <?php

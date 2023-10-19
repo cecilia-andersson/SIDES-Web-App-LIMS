@@ -146,13 +146,58 @@ CREATE TABLE drug_association_fass (
 );
 
 
-
+--   ¤¤¤¤ Populate userid = 1 & 2 ¤¤¤¤ 
 -- Populating the tables
 -- First create the db and tables. Then manually add at least two users. Then pupulate the rest (since we dont know what hashfunction is being used).
 -- These are the sample users I am creating: 
 -- User1, 199901011234, pwd: Abc123, user1@uu.se
 -- User2, 199912314321, pwd: 123Abc, user2@uu.se
 -- only 1999 seems to work 
+
+
+--   ¤¤¤¤ Populate userid = 10 to 40 ¤¤¤¤ 
+-- Also first run this block of code to populate the database with 30 users (from userid 10 to 40)
+INSERT INTO users (userid, birthdate, uniquefour, username, pwd, email)
+VALUES
+    (10, '20070320', SUBSTRING('$2y$10$ABCDEFGHI1234567890ABCDEFGHI1234567890ABCDEFGHI12345', 1, 60), 'female1', SUBSTRING('$2y$10$ABCDEFGHI1234567890ABCDEFGHI1234567890', 1, 60), 'female1@email.com'),
+    (11, '20040815', SUBSTRING('$2y$10$JKLMNOPQRST1234567890JKLMNOPQRST1234567890JKLMNOPQRST', 1, 60), 'female2', SUBSTRING('$2y$10$JKLMNOPQRST1234567890JKLMNOPQRST1234567890', 1, 60), 'female2@email.com'),
+    (12, '20031128', SUBSTRING('$2y$10$UVWXYZ01234567890UVWXYZ01234567890UVWXYZ01234567890', 1, 60), 'female3', SUBSTRING('$2y$10$UVWXYZ01234567890UVWXYZ01234567890', 1, 60), 'female3@email.com'),
+    (13, '20000403', SUBSTRING('$2y$10$12345abcdeABCDEfghij12345abcdeABCDEfghij12345', 1, 60), 'female4', SUBSTRING('$2y$10$12345abcdeABCDEfghij12345abcdeABCDEfghij12345abcde', 1, 60), 'female4@email.com'),
+    (14, '19980514', SUBSTRING('$2y$10$fghijABCDE67890klmno12345fghijABCDE67890klmno12345', 1, 60), 'female5', SUBSTRING('$2y$10$fghijABCDE67890klmno12345fghijABCDE67890klmno12345', 1, 60), 'female5@email.com'),
+    (15, '19970702', SUBSTRING('$2y$10$klmnopqrstuABCDEFGHIJKLMNOPQRSTUVWklmnopqrstuABCDEFGHIJKLMNOPQRSTUVWklmnopqrstu', 1, 60), 'female6', SUBSTRING('$2y$10$klmnopqrstuABCDEFGHIJKLMNOPQRSTUVWklmnopqrstuABCDEFGHIJKLMNOPQRSTUVWklmnopqrstu', 1, 60), 'female6@email.com'),
+    (16, '19960830', SUBSTRING('$2y$10$XYZ1234567890abcdefghijklmnopqrstuvwxyzXYZ1234567890abcdefghijklmnopqrstuvwxyz', 1, 60), 'female7', SUBSTRING('$2y$10$XYZ1234567890abcdefghijklmnopqrstuvwxyzXYZ1234567890abcdefghijklmnopqrstuvwxyz', 1, 60), 'female7@email.com'),
+    (17, '19950315', SUBSTRING('$2y$10$1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1, 60), 'female8', SUBSTRING('$2y$10$1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1, 60), 'female8@email.com'),
+    (18, '19941224', SUBSTRING('$2y$10$mnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 1, 60), 'female9', SUBSTRING('$2y$10$mnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 1, 60), 'female9@email.com'),
+    (19, '19931011', SUBSTRING('$2y$10$testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest', 1, 60), 'female10', SUBSTRING('$2y$10$testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest', 1, 60), 'female10@email.com'),
+    (20, '19921010', SUBSTRING('$2y$10$testing123testing123testing123testing123testing123testing123testing123', 1, 60), 'female11', SUBSTRING('$2y$10$testing123testing123testing123testing123testing123testing123testing123', 1, 60), 'female11@email.com'),
+    (21, '19910922', SUBSTRING('$2y$10$password123password123password123password123password123password123password123', 1, 60), 'female12', SUBSTRING('$2y$10$password123password123password123password123password123password123password123', 1, 60), 'female12@email.com'),
+    (22, '19900105', SUBSTRING('$2y$10$security123security123security123security123security123security123security123', 1, 60), 'female13', SUBSTRING('$2y$10$security123security123security123security123security123security123security123', 1, 60), 'female13@email.com'),
+    (23, '19890508', SUBSTRING('$2y$10$database123database123database123database123database123database123database123', 1, 60), 'female14', SUBSTRING('$2y$10$database123database123database123database123database123database123database123', 1, 60), 'female14@email.com'),
+    (24, '19880301', SUBSTRING('$2y$10$engineer123engineer123engineer123engineer123engineer123engineer123engineer123', 1, 60), 'female15', SUBSTRING('$2y$10$engineer123engineer123engineer123engineer123engineer123engineer123engineer123', 1, 60), 'female15@email.com'),
+    (25, '19870314', SUBSTRING('$2y$10$developer123developer123developer123developer123developer123developer123developer123', 1, 60), 'female16', SUBSTRING('$2y$10$developer123developer123developer123developer123developer123developer123developer123', 1, 60), 'female16@email.com'),
+    (26, '19860227', SUBSTRING('$2y$10$designer123designer123designer123designer123designer123designer123designer123', 1, 60), 'female17', SUBSTRING('$2y$10$designer123designer123designer123designer123designer123designer123designer123', 1, 60), 'female17@email.com'),
+    (27, '19850210', SUBSTRING('$2y$10$artist123artist123artist123artist123artist123artist123artist123', 1, 60), 'female18', SUBSTRING('$2y$10$artist123artist123artist123artist123artist123artist123artist123', 1, 60), 'female18@email.com'),
+    (28, '19840123', SUBSTRING('$2y$10$musician123musician123musician123musician123musician123musician123', 1, 60), 'female19', SUBSTRING('$2y$10$musician123musician123musician123musician123musician123musician123', 1, 60), 'female19@email.com'),
+    (29, '19830207', SUBSTRING('$2y$10$athlete123athlete123athlete123athlete123athlete123athlete123', 1, 60), 'female20', SUBSTRING('$2y$10$athlete123athlete123athlete123athlete123athlete123athlete123', 1, 60), 'female20@email.com'),
+    (30, '19820120', SUBSTRING('$2y$10$gamer123gamer123gamer123gamer123gamer123gamer123', 1, 60), 'female21', SUBSTRING('$2y$10$gamer123gamer123gamer123gamer123gamer123gamer123', 1, 60), 'female21@email.com'),
+    (31, '19910613', SUBSTRING('$2y$10$writer123writer123writer123', 1, 60), 'female22', '$2y$10$writer123writer123writer123', 'female22@email.com'),
+    (32, '19900726', SUBSTRING('$2y$10$photographer123photographer123photographer', 1, 60), 'female23', '$2y$10$photographer123photographer123photographer', 'female23@email.com'),
+    (33, '19890509', SUBSTRING('$2y$10$filmmaker123filmmaker123filmmaker', 1, 60), 'female24', '$2y$10$filmmaker123filmmaker123filmmaker', 'female24@email.com'),
+    (34, '19880221', SUBSTRING('$2y$10$scientist123scientist123scientist', 1, 60), 'female25', '$2y$10$scientist123scientist123scientist', 'female25@email.com'),
+    (35, '19870204', SUBSTRING('$2y$10$teacher123teacher123teacher', 1, 60), 'female26', '$2y$10$teacher123teacher123teacher', 'female26@email.com'),
+    (36, '19860117', SUBSTRING('$2y$10$lawyer123lawyer123lawyer', 1, 60), 'female27', '$2y$10$lawyer123lawyer123lawyer', 'female27@email.com'),
+    (37, '19850130', SUBSTRING('$2y$10$engineer123engineer123engineer', 1, 60), 'female28', '$2y$10$engineer123engineer123engineer', 'female28@email.com'),
+    (38, '19840112', SUBSTRING('$2y$10$developer123developer123developer', 1, 60), 'female29', '$2y$10$developer123developer123developer', 'female29@email.com'),
+    (39, '19830025', SUBSTRING('$2y$10$designer123designer123designer', 1, 60), 'female30', '$2y$10$designer123designer123designer', 'female30@email.com'),
+    (40, '19820208', SUBSTRING('$2y$10$artist123artist123artist', 1, 60), 'female31', '$2y$10$artist123artist123artist', 'female31@email.com');
+
+
+
+-- ¤¤¤¤¤¤¤¤¤¤¤¤¤¤ 
+-- Populating the rest of the database 
+-- ¤¤¤¤¤¤¤¤¤¤¤¤¤¤
+
+
 
 
 INSERT INTO side_effects (se_name)
@@ -232,7 +277,7 @@ VALUES
     -- Drug 11: Ella
     (11, 1), (11, 2), (11, 3), (11, 4), (11, 5), (11, 6), (11, 7), (11, 8), (11, 9), (11, 10);
 
--- not relevant anymore
+-- 
 INSERT INTO drug_association_report (R_drug_fk_id, R_se_fk_id, R_user_fk_id ,intensity, report_date)
 VALUES
     (1, 1, 1, 5, '2023-09-19 10:00:00'),  -- Drug 1, Side Effect 1, User 1, Intensity 5, reported on 2023-09-19
@@ -242,6 +287,8 @@ VALUES
 INSERT INTO review (userid, drug_id, rating, text_review, review_date)
 VALUES
     (1, 1, 4, 'Works well for me!', '2023-09-18 15:30:00'),
+    (1, 2, 1, 'Experienced massive side effects.', '2023-09-19 14:45:00'),
+    (1, 3, 1, 'Experienced massive side effects.', '2023-09-19 14:45:00'),
     (2, 3, 3, 'Experienced some side effects.', '2023-09-19 14:45:00');
 
 INSERT INTO user_drug (userid, drug_id, reg_date, startdate, enddate)
@@ -249,6 +296,117 @@ VALUES
     (1, 1, '2023-09-18 10:00:00', '2023-09-18', '2023-09-25'),
     (1, 2, '2023-09-18 10:00:00', '2023-09-18', NULL),
     (2, 3, '2023-09-18 10:30:00', '2023-09-18', NULL);
+
+-- Create 74 new reviews by users 10 to 40
+
+INSERT INTO review (userid, drug_id, rating, text_review, review_date)
+VALUES
+(10, 1, 4, 'This drug worked well for me. Mild side effects.', '2023-10-09 14:16:32'),
+(10, 4, 1, 'Not satisfied with the results. Experienced severe side effects.', '2023-10-09 14:16:32'),
+(10, 3, 5, 'This is the best drug I have ever taken.', '2023-10-09 14:16:32'),
+-- User 11
+(11, 2, 5, 'Amazing results! No side effects at all.', '2023-10-09 14:16:32'),
+-- User 12
+(12, 1, 2, 'Experienced side effects. Not satisfied with the results.', '2023-10-09 14:16:32'),
+(12, 6, 3, 'Effective treatment with minor side effects.', '2023-10-09 14:16:32'),
+-- User 13
+(13, 2, 4, 'Effective treatment with minimal side effects.', '2023-10-09 14:16:32'),
+(13, 8, 1, 'Seasonale caused severe side effects. Do not recommend.', '2023-10-09 14:16:32'),
+(13, 5, 5, 'Great results with no side effects.', '2023-10-09 14:16:32'),
+-- User 14
+(14, 3, 2, 'Not recommended. Terrible side effects.', '2023-10-09 14:16:32'),
+(14, 7, 4, 'It helped relieve my symptoms.', '2023-10-09 14:16:32'),
+(14, 10, 3, 'Average results.', '2023-10-09 14:16:32'),
+-- User 15
+(15, 1, 5, 'This drug worked well for me.', '2023-10-09 14:16:32'),
+-- User 16
+(16, 4, 3, 'Satisfied with the results. Mild side effects.', '2023-10-09 14:16:32'),
+(16, 5, 4, 'Effective treatment with minimal side effects.', '2023-10-09 14:16:32'),
+(16, 6, 2, 'Experienced side effects. Could be better.', '2023-10-09 14:16:32'),
+-- User 17
+(17, 6, 4, 'OMG, this is the best drug I have ever had!!', '2023-10-09 14:16:32'),
+(17, 1, 3, 'Effective treatment with minor side effects.', '2023-10-09 14:16:32'),
+(17, 7, 1, 'Not recommended. Terrible side effects.', '2023-10-09 14:16:32'),
+-- User 18
+(18, 8, 2, 'Seasonale caused severe side effects. Do not recommend.', '2023-10-09 14:16:32'),
+(18, 3, 5, 'Great results with no side effects.', '2023-10-09 14:16:32'),
+-- User 19
+(19, 10, 3, 'Average results.', '2023-10-09 14:16:32'),
+(19, 1, 5, 'This drug worked well for me.', '2023-10-09 14:16:32'),
+(19, 2, 4, 'Effective treatment with minimal side effects.', '2023-10-09 14:16:32'),
+-- User 20
+(20, 3, 1, 'Did not work as I hoped. Terrible side effects.', '2023-10-09 14:16:32'),
+(20, 4, 3, 'Effective treatment with minor side effects.', '2023-10-09 14:16:32'),
+(20, 5, 4, 'It helped relieve my symptoms.', '2023-10-09 14:16:32'),
+(20, 2, 2, 'Experienced side effects. Could be better.', '2023-10-09 14:16:32'),
+-- User 21
+(21, 1, 4, 'This drug worked well for me.', '2023-10-09 14:16:32'),
+(21, 2, 2, 'Experienced side effects. Could be better.', '2023-10-09 14:16:32'),
+(21, 3, 3, 'Effective treatment with minor side effects.', '2023-10-09 14:16:32'),
+(21, 4, 5, 'Loved this drug! No side effects.', '2023-10-09 14:16:32'),
+-- User 22
+(22, 3, 1, 'Not recommended. Terrible side effects.', '2023-10-09 14:16:32'),
+(22, 5, 3, 'It helped relieve my symptoms.', '2023-10-09 14:16:32'),
+(22, 6, 4, 'Effective treatment with minimal side effects.', '2023-10-09 14:16:32'),
+-- User 23
+(23, 6, 4, 'Great results with no side effects.', '2023-10-09 14:16:32'),
+(23, 7, 2, 'Seasonale caused severe side effects. Do not recommend.', '2023-10-09 14:16:32'),
+-- User 24
+(24, 8, 3, 'Satisfied with the results. Mild side effects.', '2023-10-09 14:16:32'),
+(24, 10, 4, 'Effective treatment with no side effects.', '2023-10-09 14:16:32'),
+(24, 11, 1, 'Did not work as I hoped. Terrible side effects.', '2023-10-09 14:16:32'),
+-- User 25
+(25, 10, 2, 'Experienced side effects. Could be better.', '2023-10-09 14:16:32'),
+(25, 9, 1, 'Not satisfied with the results. Terrible side effects.', '2023-10-09 14:16:32'),
+-- User 26
+(26, 1, 4, 'Very effective drug. Minimal side effects.', '2023-10-09 14:16:32'),
+(26, 2, 3, 'Good results with minor side effects.', '2023-10-09 14:16:32'),
+(26, 3, 2, 'Experienced side effects. Could be better.', '2023-10-09 14:16:32'),
+-- User 27
+(27, 4, 2, 'Not satisfied with the results.', '2023-10-09 14:16:32'),
+(27, 5, 5, 'This drug is a miracle! No side effects at all.', '2023-10-09 14:16:32'),
+-- User 28
+(28, 7, 3, 'Effective treatment with minor side effects.', '2023-10-09 14:16:32'),
+(28, 8, 5, 'Seasonale is amazing! No side effects, great results.', '2023-10-09 14:16:32'),
+-- User 29
+(29, 10, 4, 'Great results with minimal side effects.', '2023-10-09 14:16:32'),
+(29, 11, 1, 'Not recommended.', '2023-10-09 14:16:32'),
+-- User 30
+(30, 7, 4, 'Satisfactory results with minor side effects.', '2023-10-09 14:16:32'),
+(30, 9, 3, 'Average results.', '2023-10-09 14:16:32'),
+-- User 31
+(31, 1, 4, 'Very effective drug. Minimal side effects.', '2023-10-09 14:16:32'),
+(31, 2, 3, 'Good results with minor side effects.', '2023-10-09 14:16:32'),
+(31, 3, 2, 'Experienced side effects. Could be better.', '2023-10-09 14:16:32'),
+-- User 32
+(32, 4, 2, 'Not satisfied with the results.', '2023-10-09 14:16:32'),
+(32, 5, 5, 'This drug is a miracle! No side effects at all.', '2023-10-09 14:16:32'),
+-- User 33
+(33, 7, 3, 'Effective treatment with minor side effects.', '2023-10-09 14:16:32'),
+(33, 8, 5, 'Seasonale is amazing! No side effects, great results.', '2023-10-09 14:16:32'),
+-- User 34
+(34, 10, 4, 'Great results with minimal side effects.', '2023-10-09 14:16:32'),
+(34, 11, 1, 'Not recommended.', '2023-10-09 14:16:32'),
+-- User 35
+(35, 7, 4, 'Satisfactory results with minor side effects.', '2023-10-09 14:16:32'),
+(35, 9, 3, 'Average results.', '2023-10-09 14:16:32'),
+-- User 36
+(36, 1, 3, 'Average results with minor side effects.', '2023-10-09 14:16:32'),
+(36, 2, 5, 'Yasmin is fantastic! No side effects and great results.', '2023-10-09 14:16:32'),
+-- User 37
+(37, 3, 2, 'Disappointed with the results.', '2023-10-09 14:16:32'),
+(37, 4, 5, 'Alesse is a life-saver! No side effects and excellent results.', '2023-10-09 14:16:32'),
+-- User 38
+(38, 5, 4, 'Satisfied with the results and no significant side effects.', '2023-10-09 14:16:32'),
+(38, 6, 1, 'Micronor did not work well for me.', '2023-10-09 14:16:32'),
+-- User 39
+(39, 7, 3, 'Effective treatment with minimal side effects.', '2023-10-09 14:16:32'),
+(39, 8, 5, 'Seasonale is amazing! No side effects, great results.', '2023-10-09 14:16:32'),
+-- User 40
+(40, 10, 4, 'Great results with minimal side effects.', '2023-10-09 14:16:32'),
+(40, 11, 3, 'Could be better.', '2023-10-09 14:16:32');
+
+
 
 -- Additional 50 entries for forum_posts table
 INSERT INTO forum_posts (userid, user_drug_id, post_text, post_date)
@@ -313,3 +471,6 @@ VALUES
     (2, 2, 'Feeling loss of strength in muscles. It\'s affecting my ability to exercise.', '2023-11-15 08:45:00'),
     (1, 2, 'Experiencing hair thinning. It\'s making my hair look sparse.', '2023-11-16 09:30:00'),
     (2, 3, 'Feeling joint swelling. It\'s making it difficult to bend my joints.', '2023-11-17 10:15:00');
+
+
+
