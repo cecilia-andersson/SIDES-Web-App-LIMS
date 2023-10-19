@@ -254,7 +254,7 @@
 
     <?php
         include "../DB_connect.php";
-        
+        session_start();
         
         // Initialize filter variables
         $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
@@ -355,7 +355,7 @@
                         }
                 echo "</a>";
                 // Output number of ratings
-                echo " $rating_count ratings, </a>";
+                echo "<a href='nice_drug_page.php?drug_id=$drug_id' style='color: #ffff'>$rating_count ratings, </a>";
                 if ($comment_result->num_rows > 0) {
                     $row = $comment_result->fetch_assoc();
                     $comment_count = $row['comment_count'];
