@@ -6,5 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'drupol\\phpermutations\\Tests\\' => array($vendorDir . '/drupol/phpermutations/tests/src'),
+    'drupol\\phpermutations\\' => array($vendorDir . '/drupol/phpermutations/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
+    'EnzoMC\\PhpFPGrowth\\' => array($vendorDir . '/enzomc/php-fpgrowth/src'),
 );

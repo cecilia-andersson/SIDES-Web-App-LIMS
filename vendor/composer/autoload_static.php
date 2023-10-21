@@ -7,16 +7,37 @@ namespace Composer\Autoload;
 class ComposerStaticInit99b0b1243909d2f75ec489a5fca1136e
 {
     public static $prefixLengthsPsr4 = array (
+        'd' => 
+        array (
+            'drupol\\phpermutations\\Tests\\' => 28,
+            'drupol\\phpermutations\\' => 22,
+        ),
         'P' => 
         array (
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'E' => 
+        array (
+            'EnzoMC\\PhpFPGrowth\\' => 19,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'drupol\\phpermutations\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/drupol/phpermutations/tests/src',
+        ),
+        'drupol\\phpermutations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/drupol/phpermutations/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'EnzoMC\\PhpFPGrowth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/enzomc/php-fpgrowth/src',
         ),
     );
 

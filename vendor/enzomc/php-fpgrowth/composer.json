@@ -1,0 +1,20 @@
+{
+  "name": "enzomc/php-fpgrowth",
+  "description": "PHP implementation of the Frequent Pattern Growth algorithm",
+  "type": "isc",
+  "authors": [
+    {
+      "name": "Ivan Rebrov",
+      "email": "rebrvivan95@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "drupol/phpermutations": "^1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "EnzoMC\\PhpFPGrowth\\": "src/"
+    }
+  }
+}
