@@ -100,7 +100,7 @@
     <!-- start for the presentation -->
     <div id="overlay">
         <div id="outerContainer">
-            <h4> Registering an account </h4>
+            <h4> Signing in </h4>
             <ul>
                 <li> Password verified against the stored salted and hashed one connected to the username </li>
                 <li> Block user 5 failed login attempts </li>
