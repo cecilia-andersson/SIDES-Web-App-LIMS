@@ -5,20 +5,7 @@
     <title>Login</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
-                /* START PRESENTATION SLIDES */
-        /* Start column division */
-        .column {
-        float: left;
-        width: 50%;
-        }
-
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-        /* End column division */
-
+        /* START PRESENTATION SLIDES */
         .slides_button {
             background-color: #9510AC;
             border: none;
@@ -88,61 +75,59 @@
         include "../navigation.php";
         ?>
     </header>
-    <div class="row">
-        <div class="column">
-            <h2> Sign in </h2>
-            <p>
-            <form action="login.php" method="POST">
-                <p>
-                    <input type="text" name="username" placeholder="Username" required> <br>
-                </p>
-                <p>
-                    <input type="password" name="login_password" placeholder="Password" required> <br>
-                </p>
-                <input type="submit" value="Sign in"> <br>
-            </form>
-            <p>
-                <a href="forgot_pwd.php">I forgot my password</a> <br><br>
-            </p>
-            <?php
-            if (isset($_GET['Message'])) {
-                echo $_GET['Message'];
-            }
-            ?>
-            </p>
-        </div>
-        <div class="column">
-            <div id="overlay">
-                <div id="outerContainer">
-                    <h4> Registering an account </h4>
-                    <ul>
-                        <li> Password verified against the stored salted and hashed one connected to the username </li>
-                        <li> Block user 5 failed login attempts </li>
-                        <ul> 
-                            <li> Blocked IP address </li>
-                            <li> Blocked for 1 hour </li>
-                            <li> Message with time left </li>
-                        </ul>
-                        <li> Sent to My profile-page </li>
-                        <li> User ID, birthdate and username are stored in sessions variables after sign in </li>                
-                    </ul>
-                </div>
-            </div>
-            <div id="overlay2">
-                <div id="outerContainer">
-                    <h4> Resetting password </h4>
-                    <ul>
-                        <li> Email with token in link sent to user </li>
-                        <li> Token is a string of 16 random bytes → hexadecimal </li> 
-                        <li> Token, email and expiry stored in temporary table </li> 
-                        <li> Token deleted after use or renewed if reset is requested again </li>
-                    </ul>
-                </div>
-            </div>
-            <button type="button" class="slides_button" onclick="overlay_on()">SLIDES</button>
-            <button type="button" class="slides_button" style="right:30%" onclick="overlay2_on()">SLIDES2</button>
+
+    <h2> Sign in </h2>
+    <p>
+    <form action="login.php" method="POST">
+        <p>
+            <input type="text" name="username" placeholder="Username" required> <br>
+        </p>
+        <p>
+            <input type="password" name="login_password" placeholder="Password" required> <br>
+        </p>
+        <input type="submit" value="Sign in"> <br>
+    </form>
+    <p>
+        <a href="forgot_pwd.php">I forgot my password</a> <br><br>
+    </p>
+    <?php
+    if (isset($_GET['Message'])) {
+        echo $_GET['Message'];
+    }
+    ?>
+    </p>
+
+    <!-- start for the presentation -->
+    <div id="overlay">
+        <div id="outerContainer">
+            <h4> Registering an account </h4>
+            <ul>
+                <li> Password verified against the stored salted and hashed one connected to the username </li>
+                <li> Block user 5 failed login attempts </li>
+                <ul> 
+                    <li> Blocked IP address </li>
+                    <li> Blocked for 1 hour </li>
+                    <li> Message with time left </li>
+                </ul>
+                <li> Sent to My profile-page </li>
+                <li> User ID, birthdate and username are stored in sessions variables after sign in </li>                
+            </ul>
         </div>
     </div>
+    <div id="overlay2">
+        <div id="outerContainer">
+            <h4> Resetting password </h4>
+            <ul>
+                <li> Email with token in link sent to user </li>
+                <li> Token is a string of 16 random bytes → hexadecimal </li> 
+                <li> Token, email and expiry stored in temporary table </li> 
+                <li> Token deleted after use or renewed if reset is requested again </li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="slides_button" style="right:30%" onclick="overlay_on()">SLIDE 1</button>
+    <button type="button" class="slides_button" style="right:20%" onclick="overlay2_on()">SLIDE 2</button>
+        
     <script>
         function overlay_on() {
         document.getElementById("overlay").style.display = "block";
@@ -168,6 +153,7 @@
         });
 
     </script>
+    <!-- end for the presentation -->
 
     <?php
     include "../footer.php";
