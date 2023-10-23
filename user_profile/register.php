@@ -94,7 +94,7 @@
                 <input type="text" name="username" placeholder="Username" required>
             </p>
             <p>
-                <input type="password" name="pwd" pattern="^(?=.*[A-Z])(?=.*\d).+$"
+                <input type="password" name="pwd" pattern="^((?=.*[A-Z])(?=.*\d).+)([a-zA-Z1-9]){7,}$"
                     title="Password must contain at least one capital letter and one number." placeholder="Password"
                     required>
             </p>
