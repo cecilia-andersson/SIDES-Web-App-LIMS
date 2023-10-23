@@ -19,6 +19,12 @@
         $loggedInUser = $_SESSION['username'];
         $userid = $_SESSION['id'];
 
+        $sql_likes_comments = "DELETE FROM likes_comments WHERE user_id=$userid";
+        $result_likes_comments = $link->query($sql_likes_comments);
+
+        $sql_post_likes = "DELETE FROM post_likes WHERE user_id=$userid";
+        $result_post_likes = $link->query($sql_post_likes);
+
         $sql_comments = "DELETE FROM comments WHERE user_id=$userid";
         $result_comments = $link->query($sql_comments);
 
@@ -41,7 +47,7 @@
         $result_user = $link->query($sql_user);
 
 
-        if ($result_comments && $result_posts && $result_reviews && $result_reports && $result_drug_association_reports && $result_user_drug && $result_user) {
+        if ($result_likes_comments && $result_post_likes && $result_comments && $result_posts && $result_reviews && $result_reports && $result_drug_association_reports && $result_user_drug && $result_user) {
             $message = urlencode("Your account was successfully deleted");
             //log out
             session_start();
