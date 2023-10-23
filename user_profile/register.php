@@ -9,7 +9,7 @@
 
         .register-button {}
 
-        /* START PRESENTATION SLIDES */
+        /* START PRESENTATION SLIDES STYLE */
         .slides_button {
             background-color: #9510AC;
             border: none;
@@ -69,7 +69,7 @@
         -ms-transform: translate(-50%,-50%);
         }
         /* End slide overlay */
-        /* END PRESENTATION SLIDES */
+        /* END PRESENTATION SLIDES STYLE */
     </style>
 </head>
 
@@ -111,7 +111,7 @@
     }
     ?>
         
-    <!-- start for the presentation -->
+    <!-- start stuff for the presentation -->
     <div id="overlay">
         <div id="outerContainer">
             <h4> Registering an account </h4>
@@ -131,8 +131,7 @@
                     <li> Can't use BankID </li> 
                 </ul>
                 <li> Email address (unique) </li>
-                <!-- Say this here?? -->
-                <li> Account and all associated data can be deleted at any point by a user </li>
+                <li> Need to accept privacy policy </li>
             </ul>
         </div>
     </div>
@@ -180,7 +179,7 @@
         }
         });
     </script>
-    <!-- end for the presentation -->
+    <!-- end stuff for the presentation -->
 
     <?php
     include "../footer.php";

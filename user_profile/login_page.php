@@ -5,7 +5,7 @@
     <title>Login</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
-        /* START PRESENTATION SLIDES */
+        /* START STYLE PRESENTATION SLIDES */
         .slides_button {
             background-color: #9510AC;
             border: none;
@@ -65,7 +65,7 @@
         -ms-transform: translate(-50%,-50%);
         }
         /* End slide overlay */
-        /* END PRESENTATION SLIDES */
+        /* END STYLE PRESENTATION SLIDES */
     </style>
 </head>
 
@@ -97,7 +97,7 @@
     ?>
     </p>
 
-    <!-- start for the presentation -->
+    <!-- start stuff for the presentation -->
     <div id="overlay">
         <div id="outerContainer">
             <h4> Signing in </h4>
@@ -153,7 +153,7 @@
         });
 
     </script>
-    <!-- end for the presentation -->
+    <!-- end stuff for the presentation -->
 
     <?php
     include "../footer.php";
