@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Drug Recommendations</title>
-    <!-- <link href="../images/SIDES_head_icon.png" rel="icon"> -->
+    <link href="../images/SIDES_head_icon.png" rel="icon">
     <style>
         /* Reset default list styles */
         ul {
             list-style-type: none;
             padding: 0;
-            margin-top: 10px; /* Adjust the margin as needed */
+            margin-top: 10px;
+            /* Adjust the margin as needed */
         }
 
         /* Spacing between list items */
@@ -27,26 +29,23 @@
             color: green;
             font-weight: bold;
         }
-            /* Styles for cursive text */
+
+        /* Styles for cursive text */
         .cursive {
-               font-style: italic;
+            font-style: italic;
         }
 
         /* Common style for confidence */
         .confidence {
             font-weight: bold;
         }
-
-
     </style>
 </head>
+
 <body>
     <header>
-        <?php
-        include "../navigation.php";
-        ?>
     </header>
-    <h2 id="header">Drug Recommendation</h2>
+    <h2>Drug Recommendation</h2>
     <?php
     // error_reporting(E_ALL);
     // ini_set('display_errors', 1);
@@ -137,18 +136,20 @@
             } else {
                 $starRating = '☆☆☆☆☆'; // 0 stars 
             }
-// LHS (dislike in lhs class, $LHSItems in lhs and cursive classes)
-echo '<li>If you <span class="lhs">dislike</span> <span class="lhs cursive">' . implode(', ', $LHSItems) . '</span>,';
+            // LHS (dislike in lhs class, $LHSItems in lhs and cursive classes)
+            echo '<li>If you <span class="lhs">dislike</span> <span class="lhs cursive">' . implode(', ', $LHSItems) . '</span>,';
 
 
-// RHS (dislike in rhs class, $RHSItems in rhs and cursive classes)
-echo ' you may <span class="rhs">like</span> <span class="rhs cursive">' . implode(', ', $RHSItems) . '</span>,';
+            // RHS (dislike in rhs class, $RHSItems in rhs and cursive classes)
+            echo ' you may <span class="rhs">like</span> <span class="rhs cursive">' . implode(', ', $RHSItems) . '</span>,';
 
-// Add the Satisfaction Confidence
-echo ' <span class="confidence">(Satisfaction Confidence: ' . $starRating . ' ' . $satisfactionConfidence . '%)</span></li>';
-            
-} }
-echo '</ul>';
-?>
+            // Add the Satisfaction Confidence
+            echo ' <span class="confidence">(Satisfaction Confidence: ' . $starRating . ' ' . $satisfactionConfidence . '%)</span></li>';
+
+        }
+    }
+    echo '</ul>';
+    ?>
 </body>
+
 </html>

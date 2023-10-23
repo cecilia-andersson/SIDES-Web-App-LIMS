@@ -2,14 +2,14 @@
 <html>
 
 <head>
-
     <title>Drug Search</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
         .checked {
-        color: orange;
+            color: orange;
         }
+
         /* filtering */
         .filter-container {
             margin-top: 5vh;
@@ -91,18 +91,24 @@
             overflow: hidden;
             transition: max-height 0.2s ease-out;
             background-color: #f1f1f1;
-            clear: both; /* Clear the floats */
+            clear: both;
+            /* Clear the floats */
         }
 
         .description {
-            float: left; /* Align description to the left */
-            width: 45%; /* Set width to 50% to allow for the drug info to be on the right */
-                   }
+            float: left;
+            /* Align description to the left */
+            width: 45%;
+            /* Set width to 50% to allow for the drug info to be on the right */
+        }
 
         .drug-info {
-            float: right; /* Align drug info to the right */
-            width: 45%; /* Set width to 50% to allow for the description to be on the left */
+            float: right;
+            /* Align drug info to the right */
+            width: 45%;
+            /* Set width to 50% to allow for the description to be on the left */
         }
+
         /* results */
         .search-results {
             background-color: #256e8a;
@@ -117,14 +123,12 @@
     </style>
 </head>
 
-<body>
-
+<body style="background-color: rgba(100,167,172,0.15);">
     <header>
         <?php
         include "../navigation.php";
         ?>
     </header>
-    <h2>Search contraceptives </h2>
 
     <?php
     include "../Logging_and_posts/process_form.php";
@@ -184,78 +188,76 @@
     $link->close();
 
     ?>
+    <div class="white" style="background-color:white;">
+        <h2>Search contraceptives </h2>
+        <div class="filter-container">
+            <form action="s_p.php" method="GET">
+                <input type="text" name="search_query" placeholder="Search for contraceptives">
+                <table>
+                    <tr>
+                        <th>Sort By:</th>
+                        <th>
+                            <select class="filter-select" name="sort_by" id="sort_by">
+                                <option value="drug_brand" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_brand')
+                                    echo 'selected'; ?>>Brand</option>
+                                <option value="drug_active_ingredient" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_active_ingredient')
+                                    echo 'selected'; ?>>Active Ingredient
+                                </option>
+                                <option value="drug_class" <?php if (isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_class')
+                                    echo 'selected'; ?>>Class</option>
+                            </select>
+                        </th>
+                        <th>Active Ingredient:</th>
+                        <th>
+                            <select class="filter-select" name="filter_active_ingredient" id="filter_active_ingredient">
+                                <option value=""></option>
+                                <?php
+                                foreach ($act_list as $ingredient) {
+                                    $selected = ($filter_active_ingredient == $ingredient) ? 'selected' : '';
+                                    echo "<option value='$ingredient' " . (isset($_GET['filter_active_ingredient']) && $_GET['filter_active_ingredient'] == $ingredient ? 'selected' : '') . ">$ingredient</option>";
+                                }
+                                ?>
+                            </select>
+                        </th>
+                        <th>Brand:</th>
+                        <th>
+                            <select class="filter-select" name="filter_brand" id="filter_brand">
 
+                                <option value=""></option>
+                                <?php
+                                foreach ($brand_list as $brand) {
+                                    $selected = ($filter_brand == $brand) ? 'selected' : '';
+                                    echo "<option value='$brand' " . (isset($_GET['filter_brand']) && $_GET['filter_brand'] == $brand ? 'selected' : '') . ">$brand</option>";
+                                }
+                                ?>
+                            </select>
+                        </th>
+                        <th>Class:</th>
+                        <th>
+                            <select class="filter-select" name="filter_class" id="filter_class">
+                                <option value=""></option>
+                                <?php
+                                foreach ($class_list as $class) {
+                                    $selected = ($filter_class == $class) ? 'selected' : '';
+                                    echo "<option value='$class'  " . (isset($_GET['filter_class']) && $_GET['filter_class'] == $class ? 'selected' : '') . ">$class</option>";
+                                }
+                                ?>
+                            </select>
+                        </th>
+                        <th>
 
+                            <input type="submit" class="filter-button" value="Filter Search">
+                            <a href="http://localhost/Drug_profile/s_p.php" style="color:#757CB3; margin-left:5px">Clear Filters</a>
 
+                        </th>
+                    </tr>
+                </table>
+            </form>
+            <br>
+        </div>
 
-
-    <div class="filter-container">
-        <form action="s_p.php" method="GET">
-            <input type="text" name="search_query" placeholder="Search for contraceptives">
-            <table>
-                <tr>
-                    <th>Sort By:</th>
-                    <th>
-                        <select class="filter-select" name="sort_by" id="sort_by">
-                            <option value="drug_brand" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_brand') echo 'selected'; ?>>Brand</option>
-                            <option value="drug_active_ingredient" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_active_ingredient') echo 'selected'; ?>>Active Ingredient</option>
-                            <option value="drug_class" <?php if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'drug_class') echo 'selected'; ?>>Class</option>
-                        </select>
-                    </th>
-                    <th>Active Ingredient:</th>
-                    <th>
-                    <select class="filter-select" name="filter_active_ingredient" id="filter_active_ingredient">
-                        <option value=""></option>
-                        <?php
-                        foreach ($act_list as $ingredient) {
-                            $selected = ($filter_active_ingredient == $ingredient) ? 'selected' : '';
-                            echo "<option value='$ingredient' " . (isset($_GET['filter_active_ingredient']) && $_GET['filter_active_ingredient'] == $ingredient ? 'selected' : '') . ">$ingredient</option>";
-                        }
-                        ?>
-                    </select>
-                    </th>
-                    <th>Brand:</th>
-                    <th>
-                        <select class="filter-select" name="filter_brand" id="filter_brand">
-
-                            <option value=""></option>
-                            <?php
-                            foreach ($brand_list as $brand) {
-                                $selected = ($filter_brand == $brand) ? 'selected' : '';
-                                echo "<option value='$brand' " . (isset($_GET['filter_brand']) && $_GET['filter_brand'] == $brand ? 'selected' : '') . ">$brand</option>";
-                            }
-                            ?>
-                        </select>
-                    </th>
-                    <th>Class:</th>
-                    <th>
-                        <select class="filter-select" name="filter_class" id="filter_class">
-                            <option value=""></option>
-                            <?php
-                            foreach ($class_list as $class) {
-                                $selected = ($filter_class == $class) ? 'selected' : '';
-                                echo "<option value='$class'  " . (isset($_GET['filter_class']) && $_GET['filter_class'] == $class ? 'selected' : '') . ">$class</option>";
-                            }
-                            ?>
-                        </select>
-                    </th>
-                    <th>
-                            
-                        <input type="submit" class="filter-button" value="Filter Search">
-                        <a href="http://localhost/Drug_profile/s_p.php">Clear Filters</a>
-
-                    </th>
-                </tr>
-            </table>
-        </form>
-        <br>
-    </div>
-
-
-    <?php
+        <?php
         include "../DB_connect.php";
-        session_start();
-        
         // Initialize filter variables
         $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : '';
 
@@ -326,17 +328,17 @@
                 $rating_mean = $rating_count > 0 ? $total_ratings / $rating_count : 0;
                 $rounded_rating = round($rating_mean);
                 // comments
-
+        
                 $comment_sql = 'SELECT COUNT(post_text) AS comment_count FROM forum_posts WHERE user_drug_id=?';
                 $comment_stmt = $link->prepare($comment_sql);
                 $comment_stmt->bind_param("i", $drug_id);
                 $comment_stmt->execute();
-            
+
                 $comment_result = $comment_stmt->get_result();
 
 
-            
-               
+
+
 
                 // Generate collapsible elements for each result
                 echo "<button class='collapsible'><p><a href='nice_drug_page.php?drug_id=$drug_id' style='color: #ffff'>$drug_brand</a></p> ";
@@ -345,14 +347,14 @@
                 echo '<div id="rating-comment">';
                 echo "<a href='../Forms/rating_form.php' style='color: #ffff;'>";
                 if ($rating_count > 0) {
-                        for ($i = 1; $i <= 5; $i++) {
-                            if ($i <= $rounded_rating) {
-                                echo '<span class="fa fa-star checked"></span>';
-                            } else {
-                                echo '<span class="fa fa-star"></span>';
-                            }
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $rounded_rating) {
+                            echo '<span class="fa fa-star checked"></span>';
+                        } else {
+                            echo '<span class="fa fa-star"></span>';
                         }
-                        }
+                    }
+                }
                 echo "</a>";
                 // Output number of ratings
                 echo "<a href='nice_drug_page.php?drug_id=$drug_id' style='color: #ffff'>$rating_count ratings, </a>";
@@ -363,74 +365,75 @@
                 } else {
                     echo "No comments";
                 }
-                echo '</div>'; 
-                
-                
+                echo '</div>';
+
+
                 echo "</button>";
 
 
                 echo "<div class='content'>";
 
-                    echo '<div class="description">';
-                        echo '<h3>Description</h3>';
-                        $description_sql = "SELECT drug_description FROM drugs WHERE drug_id = ?";
-                        $description_stmt = $link->prepare($description_sql);
-                        $description_stmt->bind_param("i", $drug_id);
-                        $description_stmt->execute();
-                        $description_result = $description_stmt->get_result();
-                        $description_row = $description_result->fetch_assoc();
-                        $drug_description = $description_row['drug_description'];
-                    
-                        // Get preview description (first 50 characters)
-                        $preview_description = substr($drug_description, 0, 150);
-                    
-                        // Output preview description
-                        echo $preview_description . "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>...</a>";
-                    echo "</div>";
-   
-                
+                echo '<div class="description">';
+                echo '<h3>Description</h3>';
+                $description_sql = "SELECT drug_description FROM drugs WHERE drug_id = ?";
+                $description_stmt = $link->prepare($description_sql);
+                $description_stmt->bind_param("i", $drug_id);
+                $description_stmt->execute();
+                $description_result = $description_stmt->get_result();
+                $description_row = $description_result->fetch_assoc();
+                $drug_description = $description_row['drug_description'];
 
-                    echo "<div class='drug-info'>";
-                        echo '<h3>Drug information </h3>';
-                        echo "<p>Drug Class: $drug_class</p>";
-                        echo "<p>Active Ingredient: $drug_active_ingredient</p>";
-                        echo "<p>Inactive Ingredient: $drug_inactive_ingredient</p>";
-                        echo "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>Read more</a>";
-                    echo "</div>";
+                // Get preview description (first 50 characters)
+                $preview_description = substr($drug_description, 0, 150);
+
+                // Output preview description
+                echo $preview_description . "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>...</a>";
+                echo "</div>";
+
+
+
+                echo "<div class='drug-info'>";
+                echo '<h3>Drug information </h3>';
+                echo "<p>Drug Class: $drug_class</p>";
+                echo "<p>Active Ingredient: $drug_active_ingredient</p>";
+                echo "<p>Inactive Ingredient: $drug_inactive_ingredient</p>";
+                echo "<a href='../Drug_profile/nice_drug_page.php?drug_id=$drug_id'>Read more</a>";
+                echo "</div>";
                 echo "</div>";
             }
         } else {
             echo "0 results";
         }
 
+
+
         // Close the database connection
         mysqli_close($link);
         ?>
-        <?php
-        include "../footer.php";
-        //include "../Logging_and_posts/side_effect_logging.php";
+    </div>
+
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    </div>
+
+    <?php
+    include "../footer.php";
+    //include "../Logging_and_posts/side_effect_logging.php";
     ?>
 </body>
-
-
-<script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-</script>
-
-
-
 
 </html>

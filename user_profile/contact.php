@@ -12,11 +12,13 @@
         include "../navigation.php";
         ?>
     </header>
-    <h2> Welcome to SIDES! </h2>
-    <p> Feel free to contact us on our email: </p>
-    <p>
-        <a href=mailto:sideslims@gmail.com>sideslims@gmail.com</a>
-    </p>
+    <div class="white">
+        <h2> Welcome to SIDES! </h2>
+        <p> Feel free to contact us on our email: </p>
+        <p>
+            <a href=mailto:sideslims@gmail.com>sideslims@gmail.com</a>
+        </p>
+    </div>
     <?php
     include "../footer.php";
     ?>

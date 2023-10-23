@@ -9,7 +9,6 @@ Orange #F5733A
 */
 
 body {
-    background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     color: #1a3038; 
@@ -18,6 +17,7 @@ body {
     margin: auto;
     padding: 2em;
     z-index: 1;
+    background-color: rgba(100,167,172,0.15);
     /*border:1px solid #828282;*/
 }
 
@@ -55,7 +55,8 @@ a:focus {
 }
 
 nav {
-    width: 90vw;
+    /* change back to 90 */
+    width: 95vw;
     position: fixed;
     top: 0;
     background-color: #ffffff;
@@ -79,6 +80,12 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1.25rem;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
 }
 
 table,
@@ -159,4 +166,14 @@ fieldset {
     margin-bottom: 2em;
 }
 
-
+.white{
+    background-color: white;
+    padding-left:50px;
+    padding-right:50px;
+    padding-top:1px;
+    padding-bottom:40px;
+    border-radius: 8px;
+    margin-left:-50px;
+    margin-right:-50px;
+    
+}

@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Configure SIDES</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
     <?php
-        include "../navigation.php";
-        ?>
-<style>
-    .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        overflow-y: auto; /* Enable vertical scrolling if content overflows */
-        margin-top: 5%;
-    }
+    include "../navigation.php";
+    ?>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow-y: auto;
+            /* Enable vertical scrolling if content overflows */
+            margin-top: 5%;
+        }
 
-    .list {
-        width: 45%; 
-    }
+        .list {
+            width: 45%;
+        }
 
-    .dropdown {
-        width: 45%; 
-    }
-
-</style>
+        .dropdown {
+            width: 45%;
+        }
+    </style>
 
 </head>
 
 
 <body>
 
-<!-- connection and getting variables -->
-<?php
+    <!-- connection and getting variables -->
+    <?php
     include "../DB_connect.php";
     session_start();
 
@@ -48,7 +49,7 @@
         $userid = $_SESSION['id'];
     }
 
-    $userid = 1;// for testing without session
+    $userid = 1; // for testing without session
     
     $user_sides_sql = 'SELECT users.chosensides FROM users WHERE userid = ?';
     $stmt = $link->prepare($user_sides_sql);
@@ -74,47 +75,48 @@
         $sideEffectsData[] = $row;
     }
 
-?>
-<?php 
+    ?>
+    <?php
 
-echo '<form action="submit_configure_log.php" method="post">';
-echo '<div class="container">';
-        //current chosen side effects
-        echo '<div class="list">';
-            if ($result->num_rows > 0) {
-                echo '<h2>Chosen side effects:</h2>'; 
-                echo '<ul>'; // Start unordered list
-                while ($row = $result->fetch_assoc()) {
-                    echo '<li><h3>' . $row['se_name'] . '</h2></li>';
-                }
-                echo '</ul>'; 
-            } else {
-                echo 'No side effects found, add some below!.'; 
-            }
-        echo '</div>';
-
-        //the dropdowns 
-
-        echo '<div class="dropdowns">';
-            echo '<label for="options"><h2>Update chosen side effects:</h2></label><br><br>';
-
-            for ($i = 0; $i < 10; $i++) {
-                echo '<select id="options' . $i . '" name="options' . $i . '">';
-                foreach ($sideEffectsData as $sideEffect) {
-                    echo '<option value="' . $sideEffect['se_id'] . '">' . $sideEffect['se_name'] . '</option>';
-                }
-                echo '</select><br><br>';
-            }
-            echo '<input type="submit" value="Submit"></form>';
-
-        echo '</div>';
+    echo '<form action="submit_configure_log.php" method="post">';
+    echo '<div class="container">';
+    //current chosen side effects
+    echo '<div class="list">';
+    if ($result->num_rows > 0) {
+        echo '<h2>Chosen side effects:</h2>';
+        echo '<ul>'; // Start unordered list
+        while ($row = $result->fetch_assoc()) {
+            echo '<li><h3>' . $row['se_name'] . '</h2></li>';
+        }
+        echo '</ul>';
+    } else {
+        echo 'No side effects found, add some below!.';
+    }
     echo '</div>';
 
-?>
+    //the dropdowns 
+    
+    echo '<div class="dropdowns">';
+    echo '<label for="options"><h2>Update chosen side effects:</h2></label><br><br>';
+
+    for ($i = 0; $i < 10; $i++) {
+        echo '<select id="options' . $i . '" name="options' . $i . '">';
+        foreach ($sideEffectsData as $sideEffect) {
+            echo '<option value="' . $sideEffect['se_id'] . '">' . $sideEffect['se_name'] . '</option>';
+        }
+        echo '</select><br><br>';
+    }
+    echo '<input type="submit" value="Submit"></form>';
+
+    echo '</div>';
+    echo '</div>';
+
+    ?>
 
 
 </body>
 <?php
-    include "../footer.php";
-    ?>
+include "../footer.php";
+?>
+
 </html>

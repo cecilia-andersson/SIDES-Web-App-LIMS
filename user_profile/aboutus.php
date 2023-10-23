@@ -12,14 +12,17 @@
         include "../navigation.php";
         ?>
     </header>
-    <h2> About us </h2>
+    <div class="white">
+        <h2> About us </h2>
 
-    <p> We are a group of students at Uppsala University that has developed SIDES to help individuals that are using or
-        considering to use contraceptives, with a focus on side
-        effects.
-    </p>
+        <p> We are a group of students at Uppsala University that has developed SIDES to help individuals that are using
+            or
+            considering to use contraceptives, with a focus on side
+            effects.
+        </p>
 
-    <p> We love snus here in our group </p>
+        <p> We love snus here in our group </p>
+    </div>
     <?php
     include "../footer.php";
     ?>
