@@ -11,12 +11,13 @@
             background-color: #9510AC;
             border: none;
             color: white;
-            position: absolute;
-            top: 15%;
+            position: fixed; /* So it does not scroll when you scroll */
+            top: 15%; /* Positioning */
             border-radius: 50%;
             padding: 25px;
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
+            z-index: 10;  /* On top of everything else */         
         }
 
         .slides_button:hover {
@@ -123,12 +124,18 @@
             </ul>
             </div>
         </div>
-        <button type="button" class="slides_button" style="right:30%" onclick="overlay1_on()">SLIDE 1</button>
-        <button type="button" class="slides_button" style="right:20%" onclick="overlay2_on()">SLIDE 2</button>
+
+        <button type="button" class="slides_button" style="right:30%" onclick="overlay1_on()"> <b>SLIDE 1</b></button>
+        <button type="button" class="slides_button" style="right:20%" onclick="overlay2_on()"><b>SLIDE 2</b></button>
 
         <script>
             function overlay1_on() {
-                document.getElementById("overlay1").style.display = "block";
+                var overlay = document.getElementById("overlay2");
+                if (overlay.style.display === "block") {
+                    overlay.style.display = "none";
+                } else {
+                    overlay.style.display = "block";
+                }
             }
 
             function overlay1_off() {
@@ -136,7 +143,12 @@
             }
 
             function overlay2_on() {
-                document.getElementById("overlay2").style.display = "block";
+                  var overlay = document.getElementById("overlay2");
+                  if (overlay.style.display === "block") {
+                      overlay.style.display = "none";
+                  } else {
+                      overlay.style.display = "block";
+                  }
             }
 
             function overlay2_off() {
