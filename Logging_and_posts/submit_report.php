@@ -18,10 +18,11 @@
 //    if (isset($_POST['side_effects']) && is_array($_POST['side_effects'])) {
         $sideEffects = $_POST['side_effects'];
         $sideEffectsIntensities = $_POST['side_effects_intensity'];
+        $drug_id = $_POST['drugid'];
 
         // Prepare the statement outside the loop
-        $stmt = $link->prepare("INSERT INTO report (userid, side_effect, intensity, review_date) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("iids", $userid, $sideEffectId, $sideEffectInt, $review_date);
+        $stmt = $link->prepare("INSERT INTO report (userid, drugid, side_effect, intensity, review_date) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiids", $userid, $drug_id, $sideEffectId, $sideEffectInt, $review_date);
 
         // Iterate through side effects and their intensities simultaneously
         foreach ($sideEffects as $index => $sideEffectId) {

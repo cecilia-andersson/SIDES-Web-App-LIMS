@@ -3,7 +3,9 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../stylesheet/styles.css"> <!-- Link to CSS file -->
-
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
 <style>
 
        /* START STYLE PRESENTATION SLIDES */
@@ -85,41 +87,24 @@
         <!-- start stuff for the presentation -->
         <div id="overlay1">
             <div id="outerContainer">
-            <h3> Searching for contraceptives </h3>
-            <ul>
-              <li> Filtering </li>
-                <ul>
-                  <li>Sort and filter on active ingredients, brand and class</li>
-                </ul>
-                <li> Collapsibles </li>
-                <ul>
-                  <li>Closed</li>
-                    <ul>
-                      <li>Ratings - ☆ and absolute number</li>
-                      <li>Comments - User interaction</li>
-                    </ul>
-                  <li>Open</li>
-                    <ul>
-                      <li>Information - Class, format, active and inactive ingredients.</li>
-                      <li>Description</li>
-                    </ul>                
-            </ul>
+            <h3> The equation for satisfaction confidence </h3>
+            \( SC = \left(\frac{\text{Users who liked the recommended drug and fulfilled LHS}}{\text{Users who fulfilled LHS and tried RHS}}\right) \times 100\% \)
+
             </div>
         </div>
 
         <div id="overlay2">
             <div id="outerContainer">
-            <h3> Logging side effects </h3>
+            <h3> Doing cool analytics stuff </h3>
             <ul>
-              <li> Checkbox and intensity slider </li>
-              <li> Customisable list </li>
+              <li> Wow! </li>
+              <li> Cool! </li>
               <ul>
-                  <li>Quick access to your most logged side effects</li>
+                  <li>Datamining!</li>
               </ul>
-              <li> Dynamic list </li>
+              <li> Big brain </li>
               <ul>
-                  <li>Logging less common side effects through dropdown list</li>
-                  <li>Options to opt out</li>
+                  <li>its even got star animations</li>
               </ul>
             </ul>
             </div>

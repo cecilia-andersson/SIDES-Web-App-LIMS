@@ -327,6 +327,7 @@
         echo '<div id="formContainer">';
         echo $currentDrug;
         echo '<form id="reportForm" action="../Logging_and_posts/submit_report.php" method="post">';
+        echo '<input type="hidden" name="drugid" value="' . $drug_id . '">';
 
         $currentDate = date("Y-m-d"); // maybe time is not interesting? 
         echo '<label><input type="date" id="selectDate" name="selectDate" value="' . $currentDate . '"></label>';

@@ -56,6 +56,9 @@ CREATE TABLE report (
     FOREIGN KEY (side_effect) REFERENCES side_effects(se_id)
 );
 
+ALTER TABLE report
+ADD COLUMN drugid INT;
+
 CREATE TABLE user_drug (
     user_drug_id INT PRIMARY KEY AUTO_INCREMENT,
     userid INT NOT NULL,
