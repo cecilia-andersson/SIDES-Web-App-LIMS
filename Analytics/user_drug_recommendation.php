@@ -111,7 +111,7 @@
     // Display the personalized recommendations or a message if no recommendations are found
     echo '<ul>';
     if (empty($user_rules)) {
-        echo '<li>No drug recommendations found. Feel free to explore our forum and review page for inspiration.</li>';
+        echo '<li>No drug recommendations found. Feel free to explore our forum and drug review pages for inspiration.</li>';
     } else {
         foreach ($user_rules as $ruleData) {
             list($LHS, $RHS, $satisfactionConfidence) = $ruleData;
