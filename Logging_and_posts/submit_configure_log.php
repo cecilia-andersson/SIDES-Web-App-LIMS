@@ -4,9 +4,6 @@
 <head>
     <title>SIDES configured!</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
-    <?php
-    include "../navigation.php";
-    ?>
     <style>
         .container {
             display: flex;
@@ -29,20 +26,21 @@
 </head>
 
 <body>
+    <header>
+        <?php
+        include "../navigation.php";
+        ?>
+    </header>
     <div class="white">
-
         <?php
         //DB connect
         include "../DB_connect.php";
-        session_start();
 
         if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
             $userid = $_SESSION['id'];
         }
         //
         
-
-
         $updatedSides = '';
 
         for ($i = 0; $i < 10; $i++) {
@@ -51,18 +49,15 @@
         $updatedSides = rtrim($updatedSides, ',');
 
 
-        echo $updatedSides;
-
-
         $sql = "UPDATE users SET chosensides=? WHERE userid=?";
         $stmt2 = $link->prepare($sql);
         $stmt2->bind_param("ss", $updatedSides, $userid);
         $result = $stmt2->execute();
 
         if ($result) {
-            echo "Update successful!";
+            echo "<h3>Your SIDES have been updated!</h3>";
         } else {
-            echo "Error: " . $stmt2->error;
+            echo "<h4>Error: " . $stmt2->error.". No update</h4>";
         }
 
 
@@ -84,18 +79,16 @@
 
         ?>
 
-        <br>
-        <h2>Your SIDES have been updated!</h2>
-        <br>
+        
 
         <?php
 
         echo '<div class="list">';
         if ($result->num_rows > 0) {
-            echo '<h2>Chosen side effects:</h2>';
+            echo "<h3 style='color:#757CB3;'>Chosen side effects:</h3>";
             echo '<ul>'; // Start unordered list
             while ($row = $result->fetch_assoc()) {
-                echo '<li><h3>' . $row['se_name'] . '</h2></li>';
+                echo '<li><h4>' . $row['se_name'] . '</h4></li>';
             }
             echo '</ul>';
         } else {

@@ -22,7 +22,6 @@
             width: 45%;
         }
     </style>
-
 </head>
 
 
@@ -37,17 +36,12 @@
         <!-- connection and getting variables -->
         <?php
         include "../DB_connect.php";
-        session_start();
 
         if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
             $userid = $_SESSION['id'];
         }
 
         $userid = 1;
-
-
-        include "../DB_connect.php";
-        session_start();
 
         if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
             $userid = $_SESSION['id'];

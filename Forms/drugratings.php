@@ -42,7 +42,7 @@ WHERE drug_brand = '$drugtorate'";
             if ($update_review) {
                 $update_review->bind_param("issi", $rating, $textreview, $UserID, $DrugID);
                 if ($update_review->execute()) {
-                    echo "Review of $drugtorate successfully updated.";
+                    echo "<h3>Review of $drugtorate successfully updated.</h3>";
                 } else {
                     echo "Error:" . $update_review->error;
                 }

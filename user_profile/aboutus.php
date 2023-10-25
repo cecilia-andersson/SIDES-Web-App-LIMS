@@ -12,7 +12,7 @@
         include "../navigation.php";
         ?>
     </header>
-    <div class="white">
+    <div class="white" style="max-width:fit-content;">
         <h2> About us </h2>
 
         <p> We are a group of students at Uppsala University that has developed SIDES to help individuals that are using
@@ -20,8 +20,6 @@
             considering to use contraceptives, with a focus on side
             effects.
         </p>
-
-        <p> We love snus here in our group </p>
     </div>
     <?php
     include "../footer.php";
