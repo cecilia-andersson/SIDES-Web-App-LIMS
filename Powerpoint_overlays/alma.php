@@ -130,7 +130,7 @@
 
         <script>
             function overlay1_on() {
-                var overlay = document.getElementById("overlay2");
+                var overlay = document.getElementById("overlay1");
                 if (overlay.style.display === "block") {
                     overlay.style.display = "none";
                 } else {
