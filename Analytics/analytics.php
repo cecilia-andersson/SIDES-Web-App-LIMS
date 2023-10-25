@@ -4,6 +4,20 @@
 <head>
     <title>Analytics for DRUG X</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
+    <style>
+        button {
+            background-color: #9510AC;
+            color: white;
+            border-radius: 0.375rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            border: 1px solid #757CB3;
+            font-size: 0.875rem;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,7 +36,7 @@
         <!-- form to get time period and side effect -->
         <?php
         include "../DB_connect.php";
-        session_start();
+        
 
         if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
             $userid = $_SESSION['id'];
@@ -41,15 +55,12 @@
         ?>
 
         <form action="analytics.php" method="POST">
-            <label for "startdate">Side effects between: </label>
-            <br>
+            <label for "startdate"><h4 style="color:#757CB3; margin-bottom:0px;">Side effects between:</h4></label>
             <input type="date" id="start" name="start" value="2023-01-01" min="2022-01-01" max="2024-12-31" />
-            <br>
             <label for "enddate"> and </label>
-            <br>
             <input type="date" id="end" name="end" value="2023-01-01" min="2000-01-01" max="2024-12-31" />
             <br>
-            <label for "side_effect">Side effect: </label>
+            <label for "side_effect"><h4 style="color:#757CB3; margin-bottom:0px;">Side effect: </h4></label>
             <select name="sides" id="sides">
                 <option value=""></option>
                 <?php
