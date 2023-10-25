@@ -43,7 +43,7 @@ CREATE TABLE block_ip (
 
 CREATE TABLE side_effects (
     se_id INT PRIMARY KEY AUTO_INCREMENT, 
-    se_name VARCHAR(50) NOT NULL
+    se_name VARCHAR(80) NOT NULL
 );
 
 CREATE TABLE report (
@@ -52,12 +52,13 @@ CREATE TABLE report (
     side_effect INT,
     intensity BOOLEAN NOT NULL,
     review_date Timestamp,
+    drugid INT,
     FOREIGN KEY (userid) REFERENCES users(userid),
-    FOREIGN KEY (side_effect) REFERENCES side_effects(se_id)
+    FOREIGN KEY (side_effect) REFERENCES side_effects(se_id),
+    FOREIGN KEY (drugid) REFERENCES drugs(drug_id)
 );
 
-ALTER TABLE report
-ADD COLUMN drugid INT;
+
 
 CREATE TABLE user_drug (
     user_drug_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -123,20 +124,6 @@ CREATE TABLE likes_comments(
     FOREIGN KEY (user_id) REFERENCES users(userid),
     FOREIGN KEY (comment_id) REFERENCES comments(commentid)
 );
-
--- R as in Report
-CREATE TABLE drug_association_report (
-    R_association_id INT PRIMARY KEY AUTO_INCREMENT,
-    R_drug_fk_id INT,
-    R_se_fk_id INT,
-    R_user_fk_id INT,
-    intensity INT CHECK (intensity >= 1 AND intensity <= 5), -- This did not work last time, but idk how to otherwise
-    report_date Timestamp, -- fk from when user makes a report. How do we trigger this? 
-    FOREIGN KEY (R_user_fk_id) REFERENCES users(userid),
-    FOREIGN KEY (R_drug_fk_id) REFERENCES drugs(drug_id),
-    FOREIGN KEY (R_se_fk_id) REFERENCES side_effects(se_id)  
-);
-
 
 -- F as in FASS
 CREATE TABLE drug_association_fass (
@@ -280,12 +267,40 @@ VALUES
     -- Drug 11: Ella
     (11, 1), (11, 2), (11, 3), (11, 4), (11, 5), (11, 6), (11, 7), (11, 8), (11, 9), (11, 10);
 
--- 
-INSERT INTO drug_association_report (R_drug_fk_id, R_se_fk_id, R_user_fk_id ,intensity, report_date)
+-- Inserting 30 new entries into the report table. 1 made from each user from userid 10 to 39
+INSERT INTO report (userid, side_effect, intensity, review_date, drugid)
 VALUES
-    (1, 1, 1, 5, '2023-09-19 10:00:00'),  -- Drug 1, Side Effect 1, User 1, Intensity 5, reported on 2023-09-19
-    (1, 2, 1, 3, '2023-09-19 11:30:00'),
-    (2, 1, 2, 1, '2023-09-20 09:45:00');
+    (10, 1, 3, NOW(), 1),
+    (11, 5, 4, NOW(), 2),
+    (12, 10, 2, NOW(), 3),
+    (13, 15, 5, NOW(), 4),
+    (14, 20, 1, NOW(), 5),
+    (15, 25, 3, NOW(), 6),
+    (16, 3, 4, NOW(), 7),
+    (17, 8, 2, NOW(), 8),
+    (18, 13, 5, NOW(), 9),
+    (19, 18, 1, NOW(), 10),
+    (20, 1, 3, NOW(), 1),
+    (21, 5, 4, NOW(), 2),
+    (22, 10, 2, NOW(), 3),
+    (23, 15, 5, NOW(), 4),
+    (24, 20, 1, NOW(), 5),
+    (25, 25, 3, NOW(), 6),
+    (26, 3, 4, NOW(), 7),
+    (27, 8, 2, NOW(), 8),
+    (28, 13, 5, NOW(), 9),
+    (29, 18, 1, NOW(), 10),
+    (30, 1, 3, NOW(), 1),
+    (31, 1, 4, NOW(), 2),
+    (32, 1, 2, NOW(), 3),
+    (33, 1, 5, NOW(), 4),
+    (34, 1, 1, NOW(), 5),
+    (35, 1, 3, NOW(), 6),
+    (36, 1, 4, NOW(), 7),
+    (37, 1, 2, NOW(), 8),
+    (38, 1, 5, NOW(), 9),
+    (39, 1, 1, NOW(), 10);
+
 
 INSERT INTO review (userid, drug_id, rating, text_review, review_date)
 VALUES
