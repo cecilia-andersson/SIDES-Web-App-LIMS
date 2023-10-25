@@ -10,7 +10,6 @@
     <header>
         <?php
         include "../navigation.php";
-        include "../Powerpoint_overlays/login_slides.php";
         ?>
     </header>
     <div class="white">
@@ -39,7 +38,9 @@
 
     <?php
     include "../footer.php";
+    include "../Powerpoint_overlays/login_slides.php";
     ?>
 </body>
+
 
 </html>

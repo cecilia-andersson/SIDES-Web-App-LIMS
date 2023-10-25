@@ -17,7 +17,6 @@
     <header>
         <?php
         include "../navigation.php";
-        include "../Powerpoint_overlays/register_slides.php";
         ?>
     </header>
     <div class="white">
@@ -54,6 +53,7 @@
 
     <?php
     include "../footer.php";
+    include "../Powerpoint_overlays/register_slides.php";
     ?>
 </body>
 
