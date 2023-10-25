@@ -40,7 +40,7 @@ if (isset($_POST['commentID']) && isset($_POST['userID'])) {
         $updateLikesQuery = "UPDATE comments SET comment_likes = comment_likes + 1 WHERE commentid = ?";
         $updateLikesStmt = $link->prepare($updateLikesQuery);
         $updateLikesStmt->bind_param("i", $commentID);
-        echo 'Update Query: ' . $updateLikesQuery;
+        //echo 'Update Query: ' . $updateLikesQuery;
         
 
         if (!$updateLikesStmt->execute()) {
