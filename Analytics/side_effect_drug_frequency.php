@@ -82,20 +82,20 @@
         
         // Create a temporary table to store the frequency of R_se_fk_id for each R_drug_fk_id
         $query1 = "CREATE TEMPORARY TABLE drug_side_effect_frequency AS
-    SELECT drug_association_report.R_drug_fk_id, drug_association_report.R_se_fk_id, COUNT(*) AS frequency
-    FROM drug_association_report 
-    INNER JOIN side_effects ON drug_association_report.R_se_fk_id = side_effects.se_id
-    WHERE side_effects.se_name = '$side_effect'
-    GROUP BY drug_association_report.R_drug_fk_id, drug_association_report.R_se_fk_id;";
+        SELECT report.drugid, report.side_effect, COUNT(*) AS frequency
+        FROM report 
+        INNER JOIN side_effects ON report.side_effect = side_effects.se_id
+        WHERE side_effects.se_name = '$side_effect'
+        GROUP BY report.drugid, report.side_effect;";
 
         // Executing the first SQL query that gathers frequencies of the side effect for each drug
         if ($link->query($query1) === TRUE) {
             $side_effect_drug_frequencies = $link->query($query1);
 
             // Fetch the drug information and frequency
-            $query2 = "SELECT drugs.drug_brand, drugs.drug_class, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, drug_side_effect_frequency.R_se_fk_id, drug_side_effect_frequency.frequency
-        FROM drug_side_effect_frequency 
-        INNER JOIN drugs ON drug_side_effect_frequency.R_drug_fk_id = drugs.drug_id;";
+            $query2 = "SELECT drugs.drug_brand, drugs.drug_class, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, drug_side_effect_frequency.side_effect, drug_side_effect_frequency.frequency
+            FROM drug_side_effect_frequency 
+            INNER JOIN drugs ON drug_side_effect_frequency.drugid = drugs.drug_id;";
 
             // Executing the second SQL query that gathers drug information and frequency
             $result_se_frequency_and_drug_information = $link->query($query2);
