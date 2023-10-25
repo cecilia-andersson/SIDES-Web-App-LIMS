@@ -202,7 +202,7 @@ VALUES
 
 INSERT INTO side_effects (se_name)
 VALUES
-    ('Headache'), ('Nausea'),('Dizziness'),('Fatigue'),('Insomnia'),('Dry mouth'),('Constipation'),('Diarrhea'),('Vomiting'),
+    ('No side effects today'), ("Experiencing side effects, but too tired to document/don't want to"), ('Headache'), ('Nausea'),('Dizziness'),('Fatigue'),('Insomnia'),('Dry mouth'),('Constipation'),('Diarrhea'),('Vomiting'),
     ('Blurred vision'),('Rash'),('Swelling'),('Heart palpitations'),('Anxiety'),('Depression'),('Irritability'),('Weight gain'),
     ('Weight loss'),('Loss of appetite'),('Muscle pain'),('Joint pain'),('Back pain'),('Fever'),('Chills'),('Cough'),
     ('Shortness of breath'),('Chest pain'),('Abdominal pain'),('Indigestion'),('Gas'),('Bloating'),('Frequent urination'),
