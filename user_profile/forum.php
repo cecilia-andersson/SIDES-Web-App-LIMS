@@ -45,6 +45,8 @@
             </form>
         </div>
         <?php
+        } else {
+            echo '</div>';
         }
         ?>
 
@@ -66,8 +68,10 @@
                 <?php
                 $post_likes = $row['post_likes'];
                 $postID = $row['post_id'];
-                $userID = $_SESSION["id"];
-                $isCurrentUserPost = ($_SESSION["id"] == $row['userid']);
+                if (isset($_SESSION["id"])) {
+                    $userID = $_SESSION["id"];
+                    $isCurrentUserPost = ($_SESSION["id"] == $row['userid']);
+                }
                 echo '<a href ="post_w_comments.php?postID=' . $postID . '">';
                 echo '<div class="forum-post">';
                 echo '<div>';
@@ -86,16 +90,14 @@
                     echo '<input type="hidden" name="postID" value="' . $postID . '">';
                     echo '<input type="hidden" name="userID" value="' . $userID . '">';
                     echo '<input type="submit" value="&#x1F44D" />' . " " . $post_likes . " " . "likes" . '';
-                    echo '</form>';
+                    echo '</form></div>';
                 } else {
                     echo '<form action="/LIMS-Flubber/user_profile/login_page.php" method = "POST">';
                     echo '<input type="submit" value="&#x1F44D" />' . " " . $post_likes . " " . "likes" . '';
-                    echo '</form>';
+                    echo '</form></div>';
                 }
-                ?>
-            </div>
-            <?php
-            echo '<br>';
+
+                echo '<br>';
 
 
             //echo '</div>';
