@@ -53,27 +53,27 @@
         // Fetching top user-reported side effects
         // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
         $query1 = "CREATE TEMPORARY TABLE occurrences AS
-    SELECT side_effects.se_name, side_effects.se_id, drug_association_report.R_drug_fk_id
-    FROM drug_association_report
-    INNER JOIN side_effects ON side_effects.se_id=drug_association_report.R_se_fk_id";
+    SELECT side_effects.se_name, side_effects.se_id, report.drugid
+    FROM report
+    INNER JOIN side_effects ON side_effects.se_id=report.side_effect";
 
         // Creating a temp table with drug IDs, side effect names, and count of identical occurrences of that unique combo (drug ID+side effect name)
         $query2 = "CREATE TEMPORARY TABLE running_tallies AS
-    SELECT R_drug_fk_id, se_name, COUNT(*) AS occurrence_count
+    SELECT drugid, se_name, COUNT(*) AS occurrence_count
     FROM occurrences
-    GROUP BY R_drug_fk_id, se_name
-    ORDER BY R_drug_fk_id, occurrence_count DESC";
+    GROUP BY drugid, se_name
+    ORDER BY drugid, occurrence_count DESC";
 
         // Temporary table of just the top 3 side effects for each drug, listed by drug ID
         $query3 = "CREATE TEMPORARY TABLE top_reported_sides AS
-    SELECT R_drug_fk_id, se_name
+    SELECT drugid, se_name
     FROM running_tallies 
     LIMIT 3";
 
         // Fetching drug info and the top side effects
         $query4 = "SELECT drugs.drug_brand, drugs.drug_class, drugs.drug_active_ingredient, drugs.drug_inactive_ingredient, GROUP_CONCAT(top_reported_sides.se_name SEPARATOR ', ') AS user_side_effects
     FROM top_reported_sides
-    INNER JOIN drugs ON drugs.drug_id=top_reported_sides.R_drug_fk_id
+    INNER JOIN drugs ON drugs.drug_id=top_reported_sides.drugid
     WHERE drug_id = $drug_id -- from a click, made to align with 'drug_page' syntax";
 
 
