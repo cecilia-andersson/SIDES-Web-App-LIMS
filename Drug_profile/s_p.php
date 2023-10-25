@@ -362,7 +362,7 @@
                 if ($comment_result->num_rows > 0) {
                     $row = $comment_result->fetch_assoc();
                     $comment_count = $row['comment_count'];
-                    echo "<a href='..\user_profile\forum.php' style='color: #ffff;'>$comment_count comments</a>";
+                    echo "<a href='../user_profile/forum.php' style='color: #ffff;'>$comment_count comments</a>";
                 } else {
                     echo "No comments";
                 }
