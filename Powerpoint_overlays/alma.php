@@ -6,132 +6,148 @@
 
 <style>
 
-#text {
-    height: 70%;
-    width: 70%;
-    background-color: #256e8a;
-    border: 2px solid #256e8a;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    color: #ffffff;
-    font-size: 2rem;
-    overflow-y: auto;
-    font-family: 'Roboto', sans-serif;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-}
-
-#text ul {
-    padding: 0;
-    
-}
-
-#text ul li {
-    margin-bottom: 10px; 
-    margin-left: 50px;
-    list-style-type: disc; 
-
-}
-
-
-
-
-#overlay {
-        position: fixed;
-        display: none;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color:  rgba(0,0,10, 0.5); /*this is 757CB3 */
-        z-index: 2;
-        cursor: pointer;
-        }
-
-
-.power-button {
-            background-color: #9510AC; 
-            color: #ffffff;
+       /* START STYLE PRESENTATION SLIDES */
+       .slides_button {
+            background-color: #9510AC;
             border: none;
-            padding: 20px 30px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            width: 15%;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
+            color: white;
+            position: absolute;
+            top: 15%;
+            border-radius: 50%;
+            padding: 25px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .slides_button:hover {
+            background-color: #1A3038;
+        }
+
+        /* Start slide overlay */
+        #overlay1 {
             position: fixed;
-            bottom: 0;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
             left: 0;
-            margin: 20px;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 10, 0.5);
+            /*this is 757CB3 */
+            z-index: 2;
+            cursor: pointer;
         }
 
-
-        .power-button:hover {
-            background-color: #1A3038; 
+        #overlay2 {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 10, 0.5);
+            /*this is 757CB3 */
+            z-index: 2;
+            cursor: pointer;
         }
 
-        #contents {
-          justify-content: center;
+        #outerContainer {
+            background-color: #ffffff;
+            border: 2px solid #256e8a;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            padding: 20px;
 
+            max-height: 95vh;
+            /* Set maximum height for the container */
+            overflow-y: auto;
+            /* Enable vertical scrolling if content overflows */
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
         }
+
+        /* End slide overlay */
+        /* END STYLE PRESENTATION SLIDES */
 
 </style>
 
-</head>
-<body>
 
-<div id="overlay" onclick="off()">
-  <div id="contents">
-    <div id="text">
 
-  <ul>
-    <li>Filtering</li>
-    <li>Sort and filter on active ingredients, brand and class</li>
-    <li>
-        Collapsibles
-        <ul>
-            <li>Closed</li>
-            <li>Ratings - ☆ and absolute number</li>
-            <li>Comments - User interaction</li>
-            <li>Open
+        <!-- start stuff for the presentation -->
+        <div id="overlay1">
+            <div id="outerContainer">
+            <h3> Searching for contraceptives </h3>
+            <ul>
+              <li> Filtering </li>
                 <ul>
-                    <li>Information - Class, format, active and inactive ingredients.</li>
-                    <li>Description</li>
-                  </ul>                
-            </li>
-        </ul>
-        <li>Not implemented</li>
-            </ul> 
-                <li>Comment and rating preview</li>
-                <li>Extensive filtering</li>
-            </ul> 
-    </li>
-</ul>
+                  <li>Sort and filter on active ingredients, brand and class</li>
+                </ul>
+                <li> Collapsibles </li>
+                <ul>
+                  <li>Closed</li>
+                    <ul>
+                      <li>Ratings - ☆ and absolute number</li>
+                      <li>Comments - User interaction</li>
+                    </ul>
+                  <li>Open</li>
+                    <ul>
+                      <li>Information - Class, format, active and inactive ingredients.</li>
+                      <li>Description</li>
+                    </ul>                
+            </ul>
+            </div>
+        </div>
 
-    </div>
-  </div>
-</div>
+        <div id="overlay2">
+            <div id="outerContainer">
+            <h3> Logging side effects </h3>
+            <ul>
+              <li> Checkbox and intensity slider </li>
+              <li> Customisable list </li>
+              <ul>
+                  <li>Quick access to your most logged side effects</li>
+              </ul>
+              <li> Dynamic list </li>
+              <ul>
+                  <li>Logging less common side effects through dropdown list</li>
+                  <li>Options to opt out</li>
+              </ul>
+            </ul>
+            </div>
+        </div>
+        <button type="button" class="slides_button" style="right:30%" onclick="overlay1_on()">SLIDE 1</button>
+        <button type="button" class="slides_button" style="right:20%" onclick="overlay2_on()">SLIDE 2</button>
 
-<div style="padding:20px">
-  <button type="button" class="power-button" onclick="on()">SLIDES</button>
-</div>
+        <script>
+            function overlay1_on() {
+                document.getElementById("overlay1").style.display = "block";
+            }
 
-<script>
-function on() {
-  document.getElementById("overlay").style.display = "block";
-}
+            function overlay1_off() {
+                document.getElementById("overlay1").style.display = "none";
+            }
 
-function off() {
-  document.getElementById("overlay").style.display = "none";
-}
-</script>
-   
-</body>
-</html> 
+            function overlay2_on() {
+                document.getElementById("overlay2").style.display = "block";
+            }
+
+            function overlay2_off() {
+                document.getElementById("overlay2").style.display = "none";
+            }
+
+            document.addEventListener("keydown", function (event) {// to allow for esc closing 
+                if (event.key === "Escape") {
+                    overlay1_off();
+                    overlay2_off(); y
+                }
+            });
+
+        </script>
