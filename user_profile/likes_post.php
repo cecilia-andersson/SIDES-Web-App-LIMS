@@ -67,5 +67,6 @@ if (isset($_POST['postID']) && isset($_POST['userID'])) {
 $previousPage = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'default_page.php';
 header("Location: $previousPage");
 
+
 exit();
 ?>
