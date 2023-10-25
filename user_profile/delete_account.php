@@ -37,9 +37,6 @@
         $sql_reports = "DELETE FROM report WHERE userid=$userid";
         $result_reports = $link->query($sql_reports);
 
-        $sql_drug_association_reports = "DELETE FROM drug_association_report WHERE R_user_fk_id=$userid";
-        $result_drug_association_reports = $link->query($sql_drug_association_reports);
-
         $sql_user_drug = "DELETE FROM user_drug WHERE userid=$userid";
         $result_user_drug = $link->query($sql_user_drug);
 
@@ -47,7 +44,7 @@
         $result_user = $link->query($sql_user);
 
 
-        if ($result_likes_comments && $result_post_likes && $result_comments && $result_posts && $result_reviews && $result_reports && $result_drug_association_reports && $result_user_drug && $result_user) {
+        if ($result_likes_comments && $result_post_likes && $result_comments && $result_posts && $result_reviews && $result_reports && $result_user_drug && $result_user) {
             $message = urlencode("Your account was successfully deleted");
             //log out
             session_start();
