@@ -295,8 +295,8 @@
                     </form>
                     </p>
                     <p>
-                    <form action="../Forms/sidesreport_form.php" method="POST">
-                        <input type="submit" value="Report Past SIDES">
+                    <form action="../Analytics/analytics.php" method="POST">
+                        <input type="submit" value="My SIDES intensity">
                     </form>
                     </p>
                 </div><!-- Forms -->
