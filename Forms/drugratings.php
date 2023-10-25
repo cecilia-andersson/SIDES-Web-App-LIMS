@@ -92,6 +92,7 @@ WHERE drug_brand = '$drugtorate'";
 <footer>
     <?php
     include "../footer.php";
+    include "../Logging_and_posts/process_form.php";
     ?>
 </footer>
 

@@ -8,12 +8,12 @@
 </style>
 
 <body>
+    <header>
+        <?php
+        include "../navigation.php";
+        ?>
+    </header>
     <div class="white">
-        <header>
-            <?php
-            include "../navigation.php";
-            ?>
-        </header>
         <h2>Add Contraceptive</h2>
 
         <?php

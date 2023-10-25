@@ -123,7 +123,7 @@
     </style>
 </head>
 
-<body style="background-color: rgba(100,167,172,0.15);">
+<body>
     <header>
         <?php
         include "../navigation.php";

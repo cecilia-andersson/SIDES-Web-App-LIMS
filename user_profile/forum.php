@@ -107,7 +107,9 @@
     }
 
     ?>
-
+        <?php
+        include "../Logging_and_posts/process_form.php";
+        ?>
 </body>
 
 </html>

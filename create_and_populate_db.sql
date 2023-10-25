@@ -305,7 +305,7 @@ VALUES
 
 INSERT INTO review (userid, drug_id, rating, text_review, review_date)
 VALUES
-    (1, 1, 4, 'Works well for me!', '2023-09-18 15:30:00'),
+    (1, 11, 2, 'Does its job, but should come with a packet of headache pills!!!', '2023-09-18 15:30:00'),
     (1, 2, 1, 'Experienced massive side effects.', '2023-09-19 14:45:00'),
     (1, 3, 1, 'Experienced massive side effects.', '2023-09-19 14:45:00'),
     (2, 3, 3, 'Experienced some side effects.', '2023-09-19 14:45:00');
