@@ -179,8 +179,17 @@ VALUES
     (37, '19850130', SUBSTRING('$2y$10$engineer123engineer123engineer', 1, 60), 'female28', '$2y$10$engineer123engineer123engineer', 'female28@email.com'),
     (38, '19840112', SUBSTRING('$2y$10$developer123developer123developer', 1, 60), 'female29', '$2y$10$developer123developer123developer', 'female29@email.com'),
     (39, '19830025', SUBSTRING('$2y$10$designer123designer123designer', 1, 60), 'female30', '$2y$10$designer123designer123designer', 'female30@email.com'),
-    (40, '19820208', SUBSTRING('$2y$10$artist123artist123artist', 1, 60), 'female31', '$2y$10$artist123artist123artist', 'female31@email.com');
-
+    (40, '19820208', SUBSTRING('$2y$10$artist123artist123artist', 1, 60), 'female31', '$2y$10$artist123artist123artist', 'female31@email.com')
+    (41, '19950101', SUBSTRING('$2y$10$AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEe', 1, 60), 'female32', SUBSTRING('$2y$10$AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEe', 1, 60), 'female32@email.com'),
+    (42, '19941215', SUBSTRING('$2y$10$FfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKk', 1, 60), 'female33', SUBSTRING('$2y$10$FfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKk', 1, 60), 'female33@email.com'),
+    (43, '19931128', SUBSTRING('$2y$10$HhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm', 1, 60), 'female34', SUBSTRING('$2y$10$HhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm', 1, 60), 'female34@email.com'),
+    (44, '19920103', SUBSTRING('$2y$10$IiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLl', 1, 60), 'female35', SUBSTRING('$2y$10$IiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLl', 1, 60), 'female35@email.com'),
+    (45, '19910122', SUBSTRING('$2y$10$JjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNn', 1, 60), 'female36', SUBSTRING('$2y$10$JjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNn', 1, 60), 'female36@email.com'),
+    (46, '19900106', SUBSTRING('$2y$10$KkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOo', 1, 60), 'female37', SUBSTRING('$2y$10$KkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOo', 1, 60), 'female37@email.com'),
+    (47, '19890119', SUBSTRING('$2y$10$LlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp', 1, 60), 'female38', SUBSTRING('$2y$10$LlMmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPp', 1, 60), 'female38@email.com'),
+    (48, '19880102', SUBSTRING('$2y$10$MmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQq', 1, 60), 'female39', SUBSTRING('$2y$10$MmNnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQq', 1, 60), 'female39@email.com'),
+    (49, '19870115', SUBSTRING('$2y$10$NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRr', 1, 60), 'female40', SUBSTRING('$2y$10$NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRr', 1, 60), 'female40@email.com'),
+    (50, '19860129', SUBSTRING('$2y$10$OoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSs', 1, 60), 'female41', SUBSTRING('$2y$10$OoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSs', 1, 60), 'female41@email.com');
 
 
 -- ¤¤¤¤¤¤¤¤¤¤¤¤¤¤ 
@@ -310,6 +319,7 @@ VALUES
     (1, 3, 1, 'Experienced massive side effects.', '2023-09-19 14:45:00'),
     (2, 3, 3, 'Experienced some side effects.', '2023-09-19 14:45:00');
 
+
 INSERT INTO user_drug (userid, drug_id, reg_date, startdate, enddate)
 VALUES
     (1, 1, '2023-09-18 10:00:00', '2023-09-18', '2023-09-25'),
@@ -406,6 +416,8 @@ VALUES
 -- User 34
 (34, 10, 4, 'Great results with minimal side effects.', '2023-10-09 14:16:32'),
 (34, 11, 1, 'Not recommended.', '2023-10-09 14:16:32'),
+
+
 -- User 35
 (35, 7, 4, 'Satisfactory results with minor side effects.', '2023-10-09 14:16:32'),
 (35, 9, 3, 'Average results.', '2023-10-09 14:16:32'),
@@ -423,7 +435,39 @@ VALUES
 (39, 8, 5, 'Seasonale is amazing! No side effects, great results.', '2023-10-09 14:16:32'),
 -- User 40
 (40, 10, 4, 'Great results with minimal side effects.', '2023-10-09 14:16:32'),
-(40, 11, 3, 'Could be better.', '2023-10-09 14:16:32');
+(40, 11, 3, 'Could be better.', '2023-10-09 14:16:32')
+-- User 41
+(41, 1, 3, 'I disliked Ortho Tri-Cyclen due to side effects.', '2023-10-09 14:16:32'),
+(41, 4, 5, 'I love Alesse! No side effects and great results.', '2023-10-09 14:16:32'),
+-- User 42
+(42, 4, 1, 'Alesse was terrible with severe side effects.', '2023-10-09 14:16:32'),
+(42, 3, 2, 'Lo Loestrin Fe gave me side effects, could be better.', '2023-10-09 14:16:32'),
+-- User 43
+(43, 4, 3, 'I had satisfactory results with Alesse and mild side effects.', '2023-10-09 14:16:32'),
+(43, 6, 2, 'Micronor gave me side effects, could be better.', '2023-10-09 14:16:32'),
+-- User 44
+(44, 1, 3, 'Ortho Tri-Cyclen gave me side effects, could be better', '2023-10-09 14:16:32'),
+(44, 2, 3, 'Yasmin was decent', '2023-10-09 14:16:32'),
+-- User 45
+(45, 3, 2, 'Disappointed with the results from Lo Loestrin Fe.', '2023-10-09 14:16:32'),
+(45, 5, 5, 'This drug is a miracle! No side effects at all.', '2023-10-09 14:16:32'),
+-- User 46
+(46, 6, 3, 'I had average results with Micronor and minor side effects.', '2023-10-09 14:16:32'),
+(46, 8, 4, 'Seasonale worked well with minimal side effects.', '2023-10-09 14:16:32'),
+-- User 47
+(47, 9, 2, 'Lybrel was disappointing with side effects.', '2023-10-09 14:16:32'),
+(47, 10, 4, 'Plan B One-Step worked well with no issues.', '2023-10-09 14:16:32'),
+-- User 48
+(48, 11, 2, 'Ella had side effects, could be better', '2023-10-09 14:16:32'),
+(48, 1, 2, 'Ortho Tri-Cyclen had side effects, could be better.', '2023-10-09 14:16:32'),
+-- User 49
+(49, 2, 4, 'Yasmin worked effectively with minimal side effects.', '2023-10-09 14:16:32'),
+(49, 3, 1, 'Lo Loestrin Fe caused terrible side effects. Do not recommend.', '2023-10-09 14:16:32'),
+-- User 50
+(50, 4, 3, 'Alesse had some mild side effects, but it was okay.', '2023-10-09 14:16:32'),
+(50, 5, 4, 'Seasonique was effective with minimal side effects.', '2023-10-09 14:16:32');
+
+
 
 
 
