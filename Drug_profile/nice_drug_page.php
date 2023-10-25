@@ -136,7 +136,7 @@
         }
         ?>
 
-        <form action="../Analytics/analytics.php" method="POST">
+        <form action="../Analytics/compare_analytics.php" method="POST">
             <input type="submit" value="See more about this drug">
         </form>
         <!-- <form action="../Analytics/compare_analytics.php" method="POST">
