@@ -210,6 +210,7 @@
                                 $user_id = $row["userid"];
                             }
                             ?>
+                            <br>
                             <!-- Add the "Drug Recommendation" button -->
                             <a href="../Analytics/user_drug_recommendation.php?userid=<?php echo $userid; ?>">Drug
                                 Recommendation</a>
@@ -255,6 +256,10 @@
                     if (isset($_GET['Message'])) {
                         echo $_GET['Message'];
                     }
+                    ?>
+                    <h4>Calendar</h4>
+                    <p>Click on a date to see your daily log:</p>
+                    <?php
 
                     include "calendar.php";
                     ?>
