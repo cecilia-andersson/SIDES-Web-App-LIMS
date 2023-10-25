@@ -23,9 +23,7 @@
     </header>
 
 
-    <?php
-    include "../footer.php";
-    ?>
+
     <div class="white" style="margin-bottom:4%;">
         <h2> Forum </h2>
         <div>
@@ -113,7 +111,10 @@
     }
 
     ?>
-
+        <?php
+        include "../footer.php";
+        include "../Logging_and_posts/process_form.php";
+        ?>
 </body>
 
 </html>
