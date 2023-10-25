@@ -47,6 +47,8 @@
     </header>
     <h2>Drug Recommendation</h2>
     <?php
+    // Disable deprecated notices
+    error_reporting(E_ALL & ~E_DEPRECATED);
     // error_reporting(E_ALL);
     // ini_set('display_errors', 1);
     // Include the FP-Growth implementation classes
