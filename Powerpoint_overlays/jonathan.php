@@ -93,9 +93,25 @@
             </div>
         </div>
 
-
+        <div id="overlay2">
+            <div id="outerContainer">
+            <h3> Doing cool analytics stuff </h3>
+            <ul>
+              <li> Wow! </li>
+              <li> Cool! </li>
+              <ul>
+                  <li>Datamining!</li>
+              </ul>
+              <li> Big brain </li>
+              <ul>
+                  <li>its even got star animations</li>
+              </ul>
+            </ul>
+            </div>
+        </div>
 
         <button type="button" class="slides_button" style="right:30%" onclick="overlay1_on()"> <b>SLIDE 1</b></button>
+        <button type="button" class="slides_button" style="right:20%" onclick="overlay2_on()"><b>SLIDE 2</b></button>
 
         <script>
             function overlay1_on() {
