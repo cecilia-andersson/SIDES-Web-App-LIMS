@@ -116,13 +116,13 @@
                     echo '</div>';
 
                     if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
-                        echo '<form action="/LIMS-Flubber/user_profile/likes_comments.php" method="POST">'; /*?postID=' . $postID . '*/
+                        echo '<form action="likes_comments.php" method="POST">'; /*?postID=' . $postID . '*/
                         echo '<input type="hidden" name="commentID" value="' . $commentID . '">';
                         echo '<input type="hidden" name="userID" value="' . $userID . '">';
                         echo '<input type="submit" value="&#x1F44D" />' . " " . $comment_likes . " " . "likes" . '';
                         echo '</form>';
                     } else {
-                        echo '<form action="/LIMS-Flubber/user_profile/login_page.php" method = "POST">';
+                        echo '<form action="login_page.php" method = "POST">';
                         echo '<input type="submit" value="&#x1F44D" />' . " " . $comment_likes . " " . "likes" . '';
                         echo '</form>';
                     }
