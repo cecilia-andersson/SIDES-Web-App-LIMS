@@ -7,7 +7,7 @@ if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
 }
 
 $startdate = $_POST['start'];
-$enddate= $_POST['end'];
+$enddate = $_POST['end'];
 $contraceptive = $_POST['drug'];
 
 $sql_drug = "SELECT drug_id FROM drugs WHERE drug_brand = '$contraceptive'";
@@ -36,16 +36,18 @@ if ($result) {
 ?>
 <!DOCTYPE html>
 <html>
-    <header>
-        <?php
-            include "../navigation.php";
-            include "../DB_connect.php";
-        ?>
-    </header>
+<header>
+    <?php
+    include "../navigation.php";
+    include "../DB_connect.php";
+    ?>
+</header>
 <h3>Contraceptive updated successfully!</h3>
 <footer>
-        <?php
-            include "../footer.php";
-        ?>
-    </footer>
+    <?php
+    include "../footer.php";
+    include "../Logging_and_posts/process_form.php";
+    ?>
+</footer>
+
 </html>

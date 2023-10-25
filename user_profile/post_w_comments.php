@@ -21,9 +21,7 @@
         include "../navigation.php";
         ?>
     </header>
-    <?php
-    include "../footer.php";
-    ?>
+
     <?php
     if (isset($_GET['postID'])) {
         $postID = $_GET['postID'];
@@ -46,7 +44,9 @@
             while ($postRow = $postResult->fetch_assoc()) {
                 $post_likes = $postRow['post_likes'];
                 $postID = $postRow['post_id'];
-                $userID = $_SESSION["id"];
+                if (isset($_SESSION["id"])) {
+                    $userID = $_SESSION["id"];
+                }
                 echo '<div class="white" style="margin-bottom:2%;">';
                 echo '<div class="forum-post">';
                 echo '<div>';
@@ -120,24 +120,28 @@
                         echo '<input type="hidden" name="commentID" value="' . $commentID . '">';
                         echo '<input type="hidden" name="userID" value="' . $userID . '">';
                         echo '<input type="submit" value="&#x1F44D" />' . " " . $comment_likes . " " . "likes" . '';
-                        echo '</form>';
+                        echo '</form></div>';
                     } else {
                         echo '<form action="login_page.php" method = "POST">';
                         echo '<input type="submit" value="&#x1F44D" />' . " " . $comment_likes . " " . "likes" . '';
-                        echo '</form>';
+                        echo '</form></div>';
                     }
-                    echo '</div>';
+                    
                 }
             } else {
                 echo '<p>No comments yet.</p>';
             }
 
         } else {
-            echo '<p>Post not found.</p>';
+            echo '<p>Post not found.</p></div>';
         }
     }
     ?>
     </div>
+    <?php
+    include "../footer.php";
+    include "../Logging_and_posts/process_form.php";
+    ?>
 </body>
 
 </html>

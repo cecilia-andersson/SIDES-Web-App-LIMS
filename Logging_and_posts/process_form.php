@@ -5,19 +5,6 @@
 <head>
 
     <style>
-        body {
-            background-color: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            color: #1a3038;
-            line-height: 22px;
-            width: 80%;
-            margin: auto;
-            padding: 2em;
-            z-index: 1;
-            overflow: auto;
-        }
-
         #overlay {
             position: fixed;
             display: none;
@@ -320,57 +307,64 @@
                     $currentDrug = "<p>Drug_id does not exist in the drug table</p>";
                 }
             }
-        }
 
-        echo '<div id="overlay">'; // create the overlay effect
-    
-        echo '<div id="formContainer">';
-        echo $currentDrug;
-        echo '<form id="reportForm" action="../Logging_and_posts/submit_report.php" method="post">';
-        echo '<input type="hidden" name="drugid" value="' . $drug_id . '">';
+            echo '<div id="overlay">'; // create the overlay effect
+            echo '<div id="formContainer">';
+            echo $currentDrug;
+            echo '<form id="reportForm" action="../Logging_and_posts/submit_report.php" method="post">';
+            echo '<input type="hidden" name="drugid" value="' . $drug_id . '">';
 
-        $currentDate = date("Y-m-d"); // maybe time is not interesting? 
-        echo '<label><input type="date" id="selectDate" name="selectDate" value="' . $currentDate . '"></label>';
-        // realised this funciton is already included in calendar 
-        //echo '<button name="selectDate" type="button" onclick="setDate()">Reset date</button>';
+            $currentDate = date("Y-m-d"); // maybe time is not interesting? 
+            echo '<label><input type="date" id="selectDate" name="selectDate" value="' . $currentDate . '"></label>';
+            // realised this funciton is already included in calendar 
+            //echo '<button name="selectDate" type="button" onclick="setDate()">Reset date</button>';
     
-        echo '<div class="checkbox-list">'; //container for checkboxes
+            echo '<div class="checkbox-list">'; //container for checkboxes
     
-        while ($row = $result->fetch_assoc()) {
-            //echo $row['se_id'];
-            echo '<div class="checkbox-slider-row">';
-            echo '<label><input type="checkbox" name="side_effects[]" value="' . $row['se_id'] . '">' . $row['se_name'] . '</label>';
-            echo '<div class="slidecontainer"><input type="range" min="1" max="10" name="side_effects_intensity[]" value="1" class="slider" id="slider' . $row['se_id'] . '"></div>';
+            while ($row = $result->fetch_assoc()) {
+                //echo $row['se_id'];
+                echo '<div class="checkbox-slider-row">';
+                echo '<label><input type="checkbox" name="side_effects[]" value="' . $row['se_id'] . '">' . $row['se_name'] . '</label>';
+                echo '<div class="slidecontainer"><input type="range" min="1" max="10" name="side_effects_intensity[]" value="1" class="slider" id="slider' . $row['se_id'] . '"></div>';
+                echo '</div>';
+            }
+
+
+            // Interactive dropdown
+            echo '<div class="search-dropdown">';
+            echo '<label for="options">Add more side effects:</label>';
+            echo '<select id="options" name="options">';
+            echo '<option value="" disabled selected style="color: gray;">- - Select an option - -</option>';
+            while ($row = $result_all_sE->fetch_assoc()) {
+                echo '<option value="' . $row['se_id'] . '">' . $row['se_name'] . '</option>';
+            }
+
+            echo '</select>';
+
+
+            echo '<button type="button" onclick="addOptionToCheckboxList()">Add to Checkbox List</button>';
             echo '</div>';
-        }
+            echo '</div>';
 
+            echo '<div class="bottom-buttons">';
 
-        // Interactive dropdown
-        echo '<div class="search-dropdown">';
-        echo '<label for="options">Add more side effects:</label>';
-        echo '<select id="options" name="options">';
-        echo '<option value="" disabled selected style="color: gray;">- - Select an option - -</option>';
-        while ($row = $result_all_sE->fetch_assoc()) {
-            echo '<option value="' . $row['se_id'] . '">' . $row['se_name'] . '</option>';
-        }
+            echo '<button type="button" onclick="overlay_off()">Close</button>';
+            echo '<button type="button" onclick="window.location.href=\'../Forms/changesides_form.php\'">Configure side effects</button>';
+            echo '<input type="submit" value="Submit"></form>';
 
-        echo '</select>';
-
-
-        echo '<button type="button" onclick="addOptionToCheckboxList()">Add to Checkbox List</button>';
-        echo '</div>';
-        echo '</div>';
-
-        echo '<div class="bottom-buttons">';
-
-        echo '<button type="button" onclick="overlay_off()">Close</button>';
-        echo '<button type="button" onclick="window.location.href=\'../Forms/changesides_form.php\'">Configure side effects</button>';
-        echo '<input type="submit" value="Submit"></form>';
-
-        echo '</div>';
-        echo '</div>'; // form container
-        echo '</div>'; //overlay end
+            echo '</div>';
+            echo '</div>'; // form container
+            echo '</div>'; //overlay end
     
+        } else {
+            $currentDrug = "<h4>You have no registered contraceptive. <br>Please add one in your profile.</h4>";
+            echo '<div id="overlay">'; // create the overlay effect
+            echo '<div id="formContainer">';
+            echo $currentDrug;
+            echo '</div>'; // form container
+            echo '</div>'; //overlay end
+        }
+
 
 
         //chekc if user has logged
@@ -386,6 +380,8 @@
         //echo '<div class="Logging-button">';
     
 
+
+
         if ($userid != null) {
             // Check if the user has logged today
             if ($loggedToday) {
@@ -398,6 +394,7 @@
     
 
         $link->close();
+
         ?>
 
         <script>

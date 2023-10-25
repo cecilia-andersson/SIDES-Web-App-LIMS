@@ -78,7 +78,7 @@
             background-color: #1A3038;
         }
 
-        #overlay {
+        #overlay1 {
             position: fixed;
             display: none;
             width: 100%;
@@ -93,7 +93,7 @@
             cursor: pointer;
         }
 
-        #outerContainer {
+        #outerContainer1 {
             background-color: #ffffff;
             border: 2px solid #256e8a;
             border-radius: 15px;
@@ -114,7 +114,7 @@
             -ms-transform: translate(-50%, -50%);
         }
 
-        #buttonContainer {
+        #buttonContainer1 {
             text-align: center;
         }
     </style>
@@ -126,6 +126,8 @@
         include "../navigation.php";
         include "../DB_connect.php";
         ?>
+
+
     </header>
     <div class="white">
 
@@ -227,21 +229,21 @@
                 
                 }
                 ?>
-                    <div id="overlay">
-                        <div id="outerContainer">
+                    <div id="overlay1">
+                        <div id="outerContainer1">
                             <h4> Are you sure you want to delete your account and all its data?</h4>
 
-                            <div id="buttonContainer">
-                                <form action="delete_account.php" action="overlay_on()" style="display:inline;">
+                            <div id="buttonContainer1">
+                                <form action="delete_account.php" action="overlay_on1()" style="display:inline;">
                                     <input type="submit" value="Yes"
                                         style="background-color: #C43B39; border: 1px solid #C43B39;" />
                                 </form>
-                                <button type="button" class="no_button" onclick="overlay_off()">No</button>
+                                <button type="button" class="no_button" onclick="overlay_off1()">No</button>
                             </div>
                         </div>
                     </div>
 
-                    <button type="button" class="delete_button" onclick="overlay_on()" style="display:inline">Delete
+                    <button type="button" class="delete_button" onclick="overlay_on1()" style="display:inline">Delete
                         account</button>
 
                     <form action="edit_myprofile.php" style="display:inline">
@@ -301,24 +303,29 @@
         </main>
     </div><!-- All content -->
 
+
+
     <script>
-        function overlay_on() {
-            document.getElementById("overlay").style.display = "block";
+        function overlay_on1() {
+            document.getElementById("overlay1").style.display = "block";
         }
 
-        function overlay_off() {
-            document.getElementById("overlay").style.display = "none";
+        function overlay_off1() {
+            document.getElementById("overlay1").style.display = "none";
         }
 
         document.addEventListener("keydown", function (event) {// to allow for esc closing 
             if (event.key === "Escape") {
-                overlay_off(); y
+                overlay_off1(); y
             }
         });
     </script>
     </div>
 
 </body>
+<?php
+include "../Logging_and_posts/process_form.php";
+?>
 <?php
 include "../footer.php";
 ?>
