@@ -192,7 +192,7 @@ VALUES
 
 INSERT INTO side_effects (se_name)
 VALUES
-    ('No side effects today'), ("Experiencing side effects, but too tired to document/don't want to"), ('Headache'), ('Nausea'),('Dizziness'),('Fatigue'),('Insomnia'),('Dry mouth'),('Constipation'),('Diarrhea'),('Vomiting'),
+    ('Headache'), ('Nausea'),('Dizziness'),('Fatigue'),('Insomnia'),('Dry mouth'),('Constipation'),('Diarrhea'),('Vomiting'),
     ('Blurred vision'),('Rash'),('Swelling'),('Heart palpitations'),('Anxiety'),('Depression'),('Irritability'),('Weight gain'),
     ('Weight loss'),('Loss of appetite'),('Muscle pain'),('Joint pain'),('Back pain'),('Fever'),('Chills'),('Cough'),
     ('Shortness of breath'),('Chest pain'),('Abdominal pain'),('Indigestion'),('Gas'),('Bloating'),('Frequent urination'),
@@ -208,7 +208,8 @@ VALUES
     ('Swollen toes'),('Frequent hiccups'),('Stomach cramps'),('Dry eyes'),('Loss of smell'),('Loss of taste'),('Shortness of temper'),
     ('Difficulty swallowing'),('Nervousness'),('Loss of energy'),('Loss of strength'),('Hair thinning'),('Joint swelling'),
     ('Muscle weakness'),('Sensitivity to cold'),('Sensitivity to heat'),('Stomach ulcers'),('Kidney pain'),('Throat tightness'),
-    ('Weight fluctuations'),('Bleeding gums'),('Nasal bleeding'),('Frequent burping'),('Facial flushing'),('Difficulty speaking');
+    ('Weight fluctuations'),('Bleeding gums'),('Nasal bleeding'),('Frequent burping'),('Facial flushing'),('Difficulty speaking'),
+    ('No side effects today'), ("Experiencing side effects, but too tired to document/don't want to");
 
 
 INSERT INTO drugs (drug_brand, drug_class, drug_format, drug_active_ingredient, drug_inactive_ingredient)
