@@ -178,33 +178,7 @@
 
         </script>
     </div>
-    <div>
-        <div id="overlay">
-            <div id="outerContainer">
-                <h4> Reviewing Drugs </h4>
-                <p>
-                    This is where I will talk about the data for this.
-                </p>
-            </div>
-        </div>
-        <button type="button" class="slides_button" style="right:30%" onclick="overlay_on()">Data Info</button>
-       
 
-<script>
-
-function overlay_on() {
-    document.getElementById("overlay").style.display = "block";
-}
-
-function overlay_off() {
-    document.getElementById("overlay").style.display = "none";
-}
-document.addEventListener("keydown", function (event) {// to allow for esc closing 
-    if (event.key === "Escape") {
-        overlay_off();
-        overlay2_off(); y
-    }
-});
 </script>
 
     <?php
