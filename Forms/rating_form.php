@@ -5,6 +5,52 @@
         font-size: larger;
         color: black;
     }
+        /* START STYLE PRESENTATION SLIDES */
+        .slides_button {
+            background-color: #9510AC;
+            border: none;
+            color: white;
+            position: absolute;
+            top: 40%;
+            border-radius: 50%;
+            padding: 25px;
+            width: 100px;
+            height: 100px;
+        }
+    /* Start slide overlay */
+    #overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 10, 0.5);
+    /*this is 757CB3 */
+    z-index: 2;
+    cursor: pointer;
+        }
+        #outerContainer {
+            background-color: #ffffff;
+            border: 2px solid #256e8a;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+
+            max-height: 95vh;
+            /* Set maximum height for the container */
+            overflow-y: auto;
+            /* Enable vertical scrolling if content overflows */
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
 </style>
 
 <body>
@@ -18,13 +64,29 @@
         <h2>Review Contraceptive</h2>
         <?php
         include "../DB_connect.php";
+        session_start();
+
+        if (isset($_SESSION['username']) && isset($_SESSION["id"])) {
+        $userid = $_SESSION['id'];
+}
+        
+        // fetching only user's used drugs
+        $usersdrugs = "SELECT drug_id FROM user_drug WHERE userid = '$userid'";
+        $ud_result = $link->query($usersdrugs);
+        $ud_list = [];
+        if ($ud_result -> num_rows >0) {
+            while($ud_row = $ud_result ->fetch_assoc()) {
+                $ud_list[] = $ud_row["drug_id"];
+            }
+        } 
+        $ud_list_broken = implode(',', $ud_list);
 
         // active ingredient options
-        $drugs_sql = "SELECT drug_brand FROM drugs";
+        $drugs_sql = "SELECT drug_brand FROM drugs WHERE drug_id IN ($ud_list_broken)";
         $drugs_result = $link->query($drugs_sql);
         // add to an array
         $drug_list = [];
-        if ($drugs_result->num_rows > 0) {
+        if ($drugs_result->num_rows >= 0) {
             while ($drug_row = $drugs_result->fetch_assoc()) {
                 $drug_list[] = $drug_row["drug_brand"];
             }
@@ -68,10 +130,39 @@
         </form>
     </div>
 
-    <?php
+
+<div>
+        <div id="overlay">
+            <div id="outerContainer">
+            <img src="../images/ceci_flows/reviews.png" alt="review database flowchart" width = 500 height = auto>
+            </div>
+        </div>
+        <button type="button" class="slides_button" style="right:30%" onclick="overlay_on()">Say more!</button>
+       
+
+<script>
+
+function overlay_on() {
+    document.getElementById("overlay").style.display = "block";
+}
+
+function overlay_off() {
+    document.getElementById("overlay").style.display = "none";
+}
+document.addEventListener("keydown", function (event) {// to allow for esc closing 
+    if (event.key === "Escape") {
+        overlay_off();
+        overlay2_off(); y
+    }
+});
+
+</script>
+
+<?php
     include "../footer.php";
     include "../Logging_and_posts/process_form.php";
     ?>
+
 </body>
 
 </html>

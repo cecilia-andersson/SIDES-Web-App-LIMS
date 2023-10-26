@@ -219,115 +219,130 @@ if (!defined('DIRECT_ACCESS')) {
 
                 if (!$isUnexpectedFormatRHS) {
                     // Check if the format of the RHS is as expected (no errors)
-                
-                    // Initialize counters for the numerator and denominator
-                    $numerator = 0;    // This will count cases where both LHS is disliked and RHS is liked
-                    $denominator = 0;  // This will count cases where LHS is disliked
-                
-                    foreach ($allTransactions as $transaction) {
-                        // Iterate through all user transactions
-                
-                        // Initialize flags to track if LHS is disliked and RHS is liked for this transaction
-                        $lhsDisliked = true;  // Assume LHS is initially disliked
-                        $rhsLiked = true;     // Assume RHS is initially liked
-                
-                        foreach ($LHSItems as $item) {
-                            // Iterate through the items on the left-hand side of the rule
-                            list($drugId, $rating) = explode(':', $item);
-                            $found = false;  // Flag to track if this item was found in the transaction
-                
-                            foreach ($transaction as $transItem) {
-                                // Iterate through the items in the user's transaction
-                                list($transDrugId, $transRating) = explode(':', $transItem);
-                
-                                if ($transDrugId == $drugId && $transRating == 1) {
-                                    // If the item on LHS is found and disliked (rating = 1) in the transaction
-                                    $found = true;
-                                    break;  // No need to continue searching
-                                }
-                            }
-                
-                            if (!$found) {
-                                // If any LHS item is not found or not disliked in the transaction, set the flag to false
-                                $lhsDisliked = false;
-                                break;  // No need to check the remaining LHS items
+
+                // Initialize counters for the numerator and denominator
+                $numerator = 0;  // This will count cases where both LHS is disliked and RHS is liked
+                $denominator = 0;  // This will count cases where LHS is disliked and RHS is tried
+
+                foreach ($allTransactions as $transaction) {
+                    // Initialize flags to track if LHS is disliked and RHS is liked for this transaction
+                    $lhsDisliked = true;  // Assume LHS is initially disliked
+
+                    foreach ($LHSItems as $item) {
+                        // Iterate through the items on the left-hand side of the rule
+                        list($drugId, $rating) = explode(':', $item);
+                        $found = false;  // Flag to track if this item was found in the transaction
+
+                        foreach ($transaction as $transItem) {
+                            // Iterate through the items in the user's transaction
+                            list($transDrugId, $transRating) = explode(':', $transItem);
+
+                            if ($transDrugId == $drugId && $transRating == 1) {
+                                // If the item on LHS is found and disliked (rating = 1) in the transaction
+                                $found = true;
+                                break;  // No need to continue searching
                             }
                         }
-                
-                        if ($lhsDisliked) {
-                            // If LHS is disliked in this transaction
-                
-                            foreach ($RHSItems as $item) {
-                                // Iterate through the items on the right-hand side of the rule
-                                list($drugId, $rating) = explode(':', $item);
-                                $found = false;  // Flag to track if this item was found in the transaction
-                
-                                foreach ($transaction as $transItem) {
-                                    // Iterate through the items in the user's transaction
-                                    list($transDrugId, $transRating) = explode(':', $transItem);
-                
-                                    if ($transDrugId == $drugId && $transRating == 0) {
-                                        // If the item on RHS is found and liked (rating = 0) in the transaction
-                                        $found = true;
-                                        break;  // No need to continue searching
-                                    }
-                                }
-                
-                                if (!$found) {
-                                    // If any RHS item is not found or not liked in the transaction, set the flag to false
-                                    $rhsLiked = false;
-                                    break;  // No need to check the remaining RHS items
-                                }
-                            }
-                
-                            // Increment the denominator since LHS is disliked in this transaction
-                            $denominator++;
-                
-                            // Increment the numerator if RHS is liked in this transaction
-                            if ($rhsLiked) {
-                                $numerator++;
+
+                        if (!$found) {
+                            // If any LHS item is not found or not disliked in the transaction, set the flag to false
+                            $lhsDisliked = false;
+                            break;  // No need to check the remaining LHS items
+                        }
+                    }
+
+                    $rhsDisliked = false; // Flag to track if RHS is disliked in this transaction
+
+                    foreach ($RHSItems as $item) {
+                        // Iterate through the items on the right-hand side of the rule
+                        list($drugId, $rating) = explode(':', $item);
+                        $found = false; // Flag to track if this item was found in the transaction
+
+                        foreach ($transaction as $transItem) {  
+                            // echo "<br>";
+                            // var_dump($transItem);  
+                            // echo "<br>";                        
+                            // Iterate through the items in the user's transaction
+                            list($transDrugId, $transRating) = explode(':', $transItem);
+
+                            if ($transDrugId == $drugId && $transRating == 1) {
+                                // If the item on RHS is found and disliked (rating = 1) in the transaction
+                                $rhsDisliked = true;
+                                break; // No need to continue searching
                             }
                         }
                     }
-                
-                    // Calculate the "Satisfaction Confidence"
-                    $satisfactionConfidence = ($denominator > 0) ? ($numerator / $denominator * 100) : 0;
-                    $satisfactionConfidence = number_format($satisfactionConfidence, 0); // Format as integer percentage
 
+                    $rhsLiked = false; // Flag to track if RHS is liked in this transaction
+
+                    foreach ($RHSItems as $item) {
+                        // Iterate through the items on the right-hand side of the rule
+                        list($drugId, $rating) = explode(':', $item);
+                        $found = false; // Flag to track if this item was found in the transaction
+
+                        foreach ($transaction as $transItem) {  
+                            // var_dump($transItem);                          
+                            // Iterate through the items in the user's transaction
+                            list($transDrugId, $transRating) = explode(':', $transItem);
+
+                            if ($transDrugId == $drugId && $transRating == 0) {
+                                // If the item on RHS is found and liked (rating = 0) in the transaction
+                                $rhsLiked = true;
+                                break; // No need to continue searching
+                            }
+                        }
+                    }
+
+                    if ($lhsDisliked && ($rhsDisliked || $rhsLiked)) {
+                        // If LHS is disliked, and either RHS is disliked or RHS is liked in this transaction
+                        $denominator++;
+
+                        if ($rhsLiked) {
+                            // If RHS is liked in this transaction, increment the numerator
+                            $numerator++;
+                        }
+                    }
+                }
+
+                // Calculate the "Satisfaction Confidence" only once, after processing all transactions
+                $satisfactionConfidence = ($denominator > 0) ? ($numerator / $denominator * 100) : 0;
+                $satisfactionConfidence = number_format($satisfactionConfidence, 0); // Format as an integer percentage
+
+                // Now, display the rule and satisfaction confidence based on the overall calculations
+                // ... (rest of the code for displaying the rule)
                     // Create a unique rule string for checking duplicates
                     $uniqueRuleString = $LHS . ' => ' . $RHS;
 
                     if (!isset($uniqueRules[$uniqueRuleString])) {
                         // Display the rule only if it is what you want (LHS = Dislike and RHS = Like)
                         if ($isDislike && $isLike && $satisfactionConfidence > 0) {
-                            $Finalrules[$uniqueRuleString] = [implode(', ',$LHSBrands),implode(', ',$RHSBrands),$satisfactionConfidence];
+                            $Finalrules[$uniqueRuleString] = [implode(', ', $LHSBrands), implode(', ', $RHSBrands), $satisfactionConfidence];
                             // Add this condition to check if it's included as part of the main script. If true, then all the generated rules will be displayed
                             if (defined('DIRECT_ACCESS') && DIRECT_ACCESS === true) {
-                            echo '<li>If you <span class="lhs">dislike ' . implode(', ', $LHSBrands) . '</span>, you may instead <span class="rhs">like ' . implode(', ', $RHSBrands) . '</span> <span class="confidence">(Satisfaction Confidence: ';
+                                echo '<li>If you <span class="lhs">dislike ' . implode(', ', $LHSBrands) . '</span>, you may instead <span class="rhs">like ' . implode(', ', $RHSBrands) . '</span> <span class="confidence">(Satisfaction Confidence: ';
 
-                            // Calculate the "Satisfaction Confidence" in terms of stars
-                            $starRating = '';
+                                // Calculate the "Satisfaction Confidence" in terms of stars
+                                $starRating = '';
 
-                            if ($satisfactionConfidence >= 1 && $satisfactionConfidence < 10) {
-                                $starRating = '☆☆☆☆☆'; // 0 stars
-                            } elseif ($satisfactionConfidence >= 10 && $satisfactionConfidence < 30) {
-                                $starRating = '★☆☆☆☆'; // 1 star
-                            } elseif ($satisfactionConfidence >= 30 && $satisfactionConfidence < 50) {
-                                $starRating = '★★☆☆☆'; // 2 stars
-                            } elseif ($satisfactionConfidence >= 50 && $satisfactionConfidence < 70) {
-                                $starRating = '★★★☆☆'; // 3 stars
-                            } elseif ($satisfactionConfidence >= 70 && $satisfactionConfidence < 90) {
-                                $starRating = '★★★★☆'; // 4 stars
-                            } elseif ($satisfactionConfidence >= 90) {
-                                $starRating = '★★★★★'; // 5 stars
-                            } else {
-                                $starRating = '☆☆☆☆☆'; // 0 stars
+                                if ($satisfactionConfidence >= 1 && $satisfactionConfidence < 10) {
+                                    $starRating = '☆☆☆☆☆'; // 0 stars
+                                } elseif ($satisfactionConfidence >= 10 && $satisfactionConfidence < 30) {
+                                    $starRating = '★☆☆☆☆'; // 1 star
+                                } elseif ($satisfactionConfidence >= 30 && $satisfactionConfidence < 50) {
+                                    $starRating = '★★☆☆☆'; // 2 stars
+                                } elseif ($satisfactionConfidence >= 50 && $satisfactionConfidence < 70) {
+                                    $starRating = '★★★☆☆'; // 3 stars
+                                } elseif ($satisfactionConfidence >= 70 && $satisfactionConfidence < 90) {
+                                    $starRating = '★★★★☆'; // 4 stars
+                                } elseif ($satisfactionConfidence >= 90) {
+                                    $starRating = '★★★★★'; // 5 stars
+                                } else {
+                                    $starRating = '☆☆☆☆☆'; // 0 stars
+                                }
+
+                                echo $starRating . ' ' . $satisfactionConfidence . '%';
+                                echo ')</span></li>';
                             }
-
-                            echo $starRating . ' ' . $satisfactionConfidence . '%';
-                            echo ')</span></li>';
-                            }
-
 
                             // Mark this rule as seen in the uniqueRules array
                             $uniqueRules[$uniqueRuleString] = true;
