@@ -5,6 +5,20 @@
     <title>Analytics for DRUG X</title>
     <link href="../images/SIDES_head_icon.png" rel="icon">
 </head>
+<style>
+            button {
+            background-color: #9510AC;
+            color: white;
+            border-radius: 0.375rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            border: 1px solid #757CB3;
+            font-size: 0.875rem;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 
 <body>
     <header>

@@ -17,10 +17,10 @@ if (isset($_SESSION['id']) && isset($_POST['comment_text'])) {
     $result1 = $stmt1->execute();
 
     if ($result1){
-        header("Location:/LIMS-Flubber/user_profile/post_w_comments.php?postID=$post_id");
+        header("Location:/user_profile/post_w_comments.php?postID=$post_id");
     die;
     }else{
-        header("Location:/LIMS-Flubber/user_profile/post_w_comments.php?postID=$post_id");
+        header("Location:/user_profile/post_w_comments.php?postID=$post_id");
     die;
     }
 

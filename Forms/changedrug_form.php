@@ -105,26 +105,10 @@
         }
         ?>
     </div>
-    <?php
-    include "../footer.php";
-    include "../Logging_and_posts/process_form.php";
-    ?>
     <div>
         <div id="overlay">
             <div id="outerContainer">
-                <h4> Updating Contraceptive </h4>
-                <img src="../images/ceci_flows/changedrug.png" alt="database flowchart">
-                <ul>
-                    <li>  </li>
-                    <li> </li>
-                    <ul>
-                        <li>  </li>
-                        <li>  </li>
-                        <li> </li>
-                    </ul>
-                    <li>  </li>
-                    <li>  </li>
-                </ul>
+                <img src="../images/ceci_flows/changedrug.png" alt="database flowchart" width = 500 height = auto>
             </div>
         </div>
         <button type="button" class="slides_button" style="right:30%" onclick="overlay_on()">Say more!</button>
@@ -144,7 +128,10 @@
             });
 
         </script>
-
+    <?php
+    include "../footer.php";
+    include "../Logging_and_posts/process_form.php";
+    ?>
 </body>
 
 </html>
